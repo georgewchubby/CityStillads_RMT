@@ -19,15 +19,17 @@ public class Vogn {
     public Vogn(){
         
     }
-    
-    public Vogn(int vognID, String vType, String status, String reserveretFra, String reserveretTil, int ono) {
-        this.vognID = vognID;
-        this.vType = vType;
-        this.status = status;
-        this.reserveretFra = reserveretFra;
-        this.reserveretTil = reserveretTil;
-        this.ono = ono;
+    public Vogn(int vognID,String vType, String status, String reserveretFra, String reserveretTil, int ono){
+    this.vognID = vognID;
+    this.vType = vType;
+    this.status = status;
+    this.reserveretFra = reserveretFra;
+    this.reserveretTil = reserveretTil;
+    this.ono = ono;
+            
     }
+    
+    
 
     public int getVognID() {
         return vognID;

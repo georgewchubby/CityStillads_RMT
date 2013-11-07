@@ -284,9 +284,4 @@ public class OrderMapper {
         
         return partsRemovedFromOrder == 1;
     }
-        
-    }
-
-   
-    
-
+}
