@@ -9,16 +9,26 @@ package domain;
  * @author CP
  */
 public class Part {
-    private int pnum;
+    private long pnum;
     private String pnavn;
     private String pbeskrivelse;
-    public Part(){}
+    private int qty;
+    
+    public Part(){
+    }
 
-    public int getPnum() {
+    public Part(long pnum, String pnavn, String pbeskrivelse, int qty) {
+        this.pnum = pnum;
+        this.pnavn = pnavn;
+        this.pbeskrivelse = pbeskrivelse;
+        this.qty = qty;
+    }
+
+    public long getPnum() {
         return pnum;
     }
 
-    public void setPnum(int pnum) {
+    public void setPnum(long pnum) {
         this.pnum = pnum;
     }
 
@@ -36,6 +46,14 @@ public class Part {
 
     public void setPbeskrivelse(String pbeskrivelse) {
         this.pbeskrivelse = pbeskrivelse;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
     
     @Override
