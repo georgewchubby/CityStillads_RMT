@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 //=== Maps between objects and tables
 //=== Encapsulates SQL-statements
 // hau
 public class PartMapper {
     //== load an order and the associated order details
- 
+
     public Part getPart(long pno, Connection con) {
         Part part = null;
         String SQLString1 = // get order
@@ -50,13 +49,44 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple)
+    public boolean saveNewPartWitnum(Part p, Connection con) {
+        int rowsInserted = 0;
+        String SQLString
+                = "insert into parts "
+                + "values (?,?,?,?)";
+        PreparedStatement statement = null;
+
+        try {
+            //== insert tuple
+            statement = con.prepareStatement(SQLString);
+            statement.setLong(1, p.getPnum());
+            statement.setString(2, p.getPnavn());
+            statement.setString(3, p.getPbeskrivelse());
+            statement.setInt(4, p.getQty());
+            rowsInserted = statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Fail in PartMapper - saveNewPart");
+            System.out.println(e.getMessage());
+        } finally // must close statement
+        {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Fail in PartMapper - saveNewPart");
+                System.out.println(e.getMessage());
+            }
+        }
+        return rowsInserted == 1;
+    }
+
+    //== Insert new Part (tuple) auto part number assigned
     public boolean saveNewPart(Part p, Connection con) {
         int rowsInserted = 0;
-        String SQLString1 =
-                "select partseq.nextval  "
+        String SQLString1
+                = "select partseq.nextval  "
                 + "from dual";
-        String SQLString2 =
-                "insert into parts "
+        String SQLString2
+                = "insert into parts "
                 + "values (?,?,?,?)";
         PreparedStatement statement = null;
 
@@ -91,10 +121,10 @@ public class PartMapper {
     }
 
     //== Update Part qty
-    public boolean updatePartQty(int pnum,int qty, Connection con) {
+    public boolean updatePartQty(int pnum, int qty, Connection con) {
         int partUpdated = 0;
-        String SQLString =
-                "Update Parts "
+        String SQLString
+                = "Update Parts "
                 + "set qty = ? where pno = ?";
         PreparedStatement statement = null;
 
@@ -118,35 +148,30 @@ public class PartMapper {
         }
         return partUpdated == 1;
     }
-    
+
     /*
      *---------------------Update Part-----------------------------------------  
      */
-    
-    public boolean updatePart(Part p, Connection con)
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Part origPart = getPart(p.getPnum(), con);
-             if (p.getPnavn().compareTo(origPart.getPnavn()) !=0 && 
-                 p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) == 0)
-             {
-                 SQLString = "UPDATE Parts "+
-                    "SET pname ="+ p.getPnavn() +"where ono = "+ p.getPnum() +";";
-             }
-             if (p.getPnavn().compareTo(origPart.getPnavn()) == 0 && 
-                 p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0)
-             {
-                 SQLString = "UPDATE Parts "+
-                    "SET description ="+ p.getPbeskrivelse()+"where ono = "+ p.getPnum() +";";
-             }else if (p.getPnavn().compareTo(origPart.getPnavn()) != 0 && 
-                 p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0)
-             {
-                 SQLString = "UPDATE Order "+
-                    "SET pname ="+ p.getPnavn() +","+ "description = "+ 
-                     p.getPbeskrivelse() +"where pno = "+ p.getPnum() +";";
-             }
-        
+    public boolean updatePart(Part p, Connection con) {
+        int rowUpdated = 0;
+        String SQLString = "";
+        Part origPart = getPart(p.getPnum(), con);
+        if (p.getPnavn().compareTo(origPart.getPnavn()) != 0
+                && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) == 0) {
+            SQLString = "UPDATE Parts "
+                    + "SET pname =" + p.getPnavn() + "where ono = " + p.getPnum() + ";";
+        }
+        if (p.getPnavn().compareTo(origPart.getPnavn()) == 0
+                && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0) {
+            SQLString = "UPDATE Parts "
+                    + "SET description =" + p.getPbeskrivelse() + "where ono = " + p.getPnum() + ";";
+        } else if (p.getPnavn().compareTo(origPart.getPnavn()) != 0
+                && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0) {
+            SQLString = "UPDATE Order "
+                    + "SET pname =" + p.getPnavn() + "," + "description = "
+                    + p.getPbeskrivelse() + "where pno = " + p.getPnum() + ";";
+        }
+
         PreparedStatement statement = null;
 
         try {
@@ -167,14 +192,11 @@ public class PartMapper {
         }
         return rowUpdated == 1;
     }
-    
+
     //-----------------------Delete Part--------------------------------------//
-    
-    public boolean deletePart(int pnum,int qty, Connection con)
-    {
+    public boolean deletePart(int pnum, Connection con) {
         int partDeleted = 0;
-        String SQLString = "DELETE  FROM Parts "+
-        "WHERE pno = "+ pnum +";";
+        String SQLString = "Delete from parts where pno = '" + pnum + "';";
         PreparedStatement statement = null;
 
         try {
@@ -193,51 +215,6 @@ public class PartMapper {
                 System.out.println(e.getMessage());
             }
         }
-         return partDeleted == 1 ;
+        return partDeleted == 1;
     }
-    
-    
-    
-    //------------------Updated  Details--------------------------------//
-    
-    
-    public boolean updateOrderDetails(int pnum,int qty, Connection con)
-    {
-        
-        int partsUpdated = 0;
-        
-       
-        String SQLString = // get order detail
-                "update Parts "
-                +"set qty = "+ qty
-                +"where pno = "+ pnum ;
-         
-        PreparedStatement statement = null;
-
-        try {
-            
-            statement = con.prepareStatement(SQLString);
-            partsUpdated = statement.executeUpdate();
-        
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - updatePartsQTy");
-            System.out.println(e.getMessage());
-        } finally // must close statement
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - updatePartsQTy");
-                System.out.println(e.getMessage());
-            }
-        }
-        return partsUpdated == 1;
-    }
-    
-    
-    
-    }
-
-   
-    
-
+}

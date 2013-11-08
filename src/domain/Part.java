@@ -24,6 +24,13 @@ public class Part {
         this.qty = qty;
     }
 
+    public Part(String pnavn, String pbeskrivelse, int qty) {
+        
+        this.pnavn = pnavn;
+        this.pbeskrivelse = pbeskrivelse;
+        this.qty = qty;
+    }
+    
     public long getPnum() {
         return pnum;
     }

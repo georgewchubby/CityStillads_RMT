@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 //default visibility - not visible outside package - tm
 class DBConnector {
 
-    private static String id = "tm";						//Insert ORACLE id and password
-    private static String pw = "tm";
+    private static String id = "cphjv12";						//Insert ORACLE id and password
+    private static String pw = "j0ach1m";
 
     public Connection getConnection() {
         Connection con = null;

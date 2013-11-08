@@ -46,14 +46,14 @@ public class PartMapperTest {
     @Test
     public void testGetPart() {
         System.out.println("getPart");
-        long pno = 0L;
-        Connection con = null;
+        Part expResult = new Part(00130, "Bla","pupi caca" ,10);
+        Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        Part expResult = null;
-        Part result = instance.getPart(pno, con);
-        assertEquals(expResult, result);
+        instance.saveNewPartWitnum(expResult, con);
+        Part result = instance.getPart(expResult.getPnum(), con);
+        assertEquals(expResult.getPnum(), result.getPnum());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // fail("testGetPart failed");
     }
 
     /**
@@ -62,14 +62,14 @@ public class PartMapperTest {
     @Test
     public void testSaveNewPart() {
         System.out.println("saveNewPart");
-        Part p = null;
-        Connection con = null;
+        Part p = new Part("Bla","pipi caca" ,40);
+        Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
         boolean expResult = false;
         boolean result = instance.saveNewPart(p, con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -78,15 +78,14 @@ public class PartMapperTest {
     @Test
     public void testUpdatePartQty() {
         System.out.println("updatePartQty");
-        int pnum = 0;
-        int qty = 0;
-        Connection con = null;
+        int pnum = 00010;
+        int qty = 150;
+        Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        boolean expResult = false;
-        boolean result = instance.updatePartQty(pnum, qty, con);
-        assertEquals(expResult, result);
+        instance.updatePartQty(pnum, qty, con);
+        assertEquals(instance.getPart(pnum, con).getQty(), 150);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -95,14 +94,12 @@ public class PartMapperTest {
     @Test
     public void testUpdatePart() {
         System.out.println("updatePart");
-        Part p = null;
-        Connection con = null;
+        Part p = new Part(00130, "BlaBla", "pupi caca", 10);
+        Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        boolean expResult = false;
-        boolean result = instance.updatePart(p, con);
-        assertEquals(expResult, result);
+        assertFalse(instance.updatePart(p, con));
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -111,32 +108,17 @@ public class PartMapperTest {
     @Test
     public void testDeletePart() {
         System.out.println("deletePart");
-        int pnum = 0;
-        int qty = 0;
-        Connection con = null;
+        int pnum = 99;
+        //Part p = new Part(pnum, "Delete", "Del del del", 100);
+        Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        boolean expResult = false;
-        boolean result = instance.deletePart(pnum, qty, con);
-        assertEquals(expResult, result);
+        //instance.saveNewPartWitnum(p, con);
+        instance.deletePart(pnum, con);
+        assertEquals(null, instance.getPart(pnum, con).getPnum());
+        
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of updateOrderDetails method, of class PartMapper.
-     */
-    @Test
-    public void testUpdateOrderDetails() {
-        System.out.println("updateOrderDetails");
-        int pnum = 0;
-        int qty = 0;
-        Connection con = null;
-        PartMapper instance = new PartMapper();
-        boolean expResult = false;
-        boolean result = instance.updateOrderDetails(pnum, qty, con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
