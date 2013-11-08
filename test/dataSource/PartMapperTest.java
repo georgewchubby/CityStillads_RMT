@@ -54,7 +54,6 @@ public class PartMapperTest {
         Part p = new Part(80000, "GetPart", "Get this part", 10);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        //instance.deletePart(80000, con);
         instance.saveNewPartWitnum(p, con);
         assertEquals("GetPart", instance.getPart(80000, con).getPnavn());
         // TODO review the generated test code and remove the default call to fail.
@@ -88,7 +87,6 @@ public class PartMapperTest {
         Part p = new Part(pnum, "UpdateQty", "Update the qty", 10);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        //instance.deletePart(70000, con);
         instance.saveNewPartWitnum(p, con);
         instance.updatePartQty(pnum, qty, con);
         assertEquals(150, instance.getPart(pnum, con).getQty());
@@ -106,7 +104,6 @@ public class PartMapperTest {
         Part p2 = new Part(90000, "Updated", "Updated this", 11);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        //instance.deletePart(90000, con);
         instance.saveNewPartWitnum(p1, con);
         instance.updatePart(p2, con);
         assertEquals("Updated", instance.getPart(90000, con).getPnavn());

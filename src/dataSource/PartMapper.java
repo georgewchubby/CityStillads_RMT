@@ -82,28 +82,17 @@ public class PartMapper {
     //== Insert new Part (tuple) auto part number assigned
     public boolean saveNewPart(Part p, Connection con) {
         int rowsInserted = 0;
-        String SQLString1
-                = "select part_seq.nextval  "
-                + "from parts";
-        String SQLString2
-                = "insert into parts "
-                + "values (?,?,?,?)";
+        String SQLString
+                = "insert into parts (pno, pname, description, qty) "
+                + "values (part_seq.nextval,?,?,?)";
         PreparedStatement statement = null;
-
+        
         try {
-            //== get unique 
-            statement = con.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                p.setPnum(rs.getInt(1));
-            }
-
             //== insert tuple
-            statement = con.prepareStatement(SQLString2);
-            statement.setInt(1, p.getPnum());
-            statement.setString(2, p.getPnavn());
-            statement.setString(3, p.getPbeskrivelse());
-            statement.setInt(4, p.getQty());
+            statement = con.prepareStatement(SQLString);
+            statement.setString(1, p.getPnavn());
+            statement.setString(2, p.getPbeskrivelse());
+            statement.setInt(3, p.getQty());
             rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
             System.out.println("Fail in PartMapper - saveNewPart");
