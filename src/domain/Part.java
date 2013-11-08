@@ -9,7 +9,7 @@ package domain;
  * @author CP
  */
 public class Part {
-    private long pnum;
+    private int pnum;
     private String pnavn;
     private String pbeskrivelse;
     private int qty;
@@ -17,7 +17,7 @@ public class Part {
     public Part(){
     }
 
-    public Part(long pnum, String pnavn, String pbeskrivelse, int qty) {
+    public Part(int pnum, String pnavn, String pbeskrivelse, int qty) {
         this.pnum = pnum;
         this.pnavn = pnavn;
         this.pbeskrivelse = pbeskrivelse;
@@ -31,11 +31,11 @@ public class Part {
         this.qty = qty;
     }
     
-    public long getPnum() {
+    public int getPnum() {
         return pnum;
     }
 
-    public void setPnum(long pnum) {
+    public void setPnum(int pnum) {
         this.pnum = pnum;
     }
 

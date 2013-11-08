@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class PartMapper {
     //== load an order and the associated order details
 
-    public Part getPart(long pno, Connection con) {
+    public Part getPart(int pno, Connection con) {
         Part part = null;
         String SQLString1 = // get order
                 "select * "
@@ -24,7 +24,7 @@ public class PartMapper {
         try {
             //=== get Part
             statement = con.prepareStatement(SQLString1);
-            statement.setLong(1, pno);     // primary key value
+            statement.setInt(1, pno);     // primary key value
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 part = new Part(pno,
@@ -59,7 +59,7 @@ public class PartMapper {
         try {
             //== insert tuple
             statement = con.prepareStatement(SQLString);
-            statement.setLong(1, p.getPnum());
+            statement.setInt(1, p.getPnum());
             statement.setString(2, p.getPnavn());
             statement.setString(3, p.getPbeskrivelse());
             statement.setInt(4, p.getQty());
@@ -83,8 +83,8 @@ public class PartMapper {
     public boolean saveNewPart(Part p, Connection con) {
         int rowsInserted = 0;
         String SQLString1
-                = "select partseq.nextval  "
-                + "from dual";
+                = "select part_seq.nextval  "
+                + "from parts";
         String SQLString2
                 = "insert into parts "
                 + "values (?,?,?,?)";
@@ -100,7 +100,7 @@ public class PartMapper {
 
             //== insert tuple
             statement = con.prepareStatement(SQLString2);
-            statement.setLong(1, p.getPnum());
+            statement.setInt(1, p.getPnum());
             statement.setString(2, p.getPnavn());
             statement.setString(3, p.getPbeskrivelse());
             statement.setInt(4, p.getQty());
@@ -159,17 +159,17 @@ public class PartMapper {
         if (p.getPnavn().compareTo(origPart.getPnavn()) != 0
                 && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) == 0) {
             SQLString = "UPDATE Parts "
-                    + "SET pname =" + p.getPnavn() + "where ono = " + p.getPnum() + ";";
+                    + "SET pname = '" + p.getPnavn() + "' where pno = " + p.getPnum();
         }
         if (p.getPnavn().compareTo(origPart.getPnavn()) == 0
                 && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0) {
             SQLString = "UPDATE Parts "
-                    + "SET description =" + p.getPbeskrivelse() + "where ono = " + p.getPnum() + ";";
+                    + "SET description = '" + p.getPbeskrivelse() + "' where pno = " + p.getPnum();
         } else if (p.getPnavn().compareTo(origPart.getPnavn()) != 0
                 && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0) {
-            SQLString = "UPDATE Order "
-                    + "SET pname =" + p.getPnavn() + "," + "description = "
-                    + p.getPbeskrivelse() + "where pno = " + p.getPnum() + ";";
+            SQLString = "UPDATE Parts "
+                    + "SET pname = '" + p.getPnavn() + "', " + "description = '"
+                    + p.getPbeskrivelse() + "' where pno = " + p.getPnum();
         }
 
         PreparedStatement statement = null;
@@ -196,7 +196,7 @@ public class PartMapper {
     //-----------------------Delete Part--------------------------------------//
     public boolean deletePart(int pnum, Connection con) {
         int partDeleted = 0;
-        String SQLString = "Delete from parts where pno = '" + pnum + "';";
+        String SQLString = "Delete from parts where pno = " + pnum;
         PreparedStatement statement = null;
 
         try {
