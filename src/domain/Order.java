@@ -1,30 +1,46 @@
 package domain;
 
 import java.util.ArrayList;
-//=== hau
+
+//=== chris
+
 public class Order
 {
 
 	  private int ono; 
 	  private int cno; // A FK that should be mapped to a reference
 	  private int eno; // A FK that should be mapped to a reference
-	  private String received;
+	  private String received ;
 	  private String startDato;
 	  private String slutDato;
 	  private String projectLocation;
-	  private ArrayList<PakkeListe> orderDetails;
-         	
-	  public Order(int o, int c, int e, String r, String startDate, String endDate)
+          private ArrayList<Pakke> orderDetails;
+         
+          public Order(int c, int e, String r, String startDate, String endDate, String oLocation)
 	  {
-	    ono = o;
+	    
 	    cno = c;
 	    eno = e;
 	    received = r;
-	    startDate = startDate;
+	    startDato = startDate;
             slutDato = endDate;
-	    orderDetails = new ArrayList<PakkeListe>();
+            projectLocation = oLocation;
 	  }
+          
+          // overloaded for existing orders
+          public Order(int order,int cust, int empl, String recieved, String startDate, String endDate, String oLocation)
+	  {
+	    ono = order;
+	    cno = cust;
+	    eno = empl;
+	    received = recieved;
+	    startDato = startDate;
+            slutDato = endDate;
+            projectLocation = oLocation;
 	  
+          }
+	  
+          
 	  //== accessors
 	  public int getOno()
 	  {
@@ -80,11 +96,21 @@ public class Order
     public void setSlutDato(String slutDato) {
         this.slutDato = slutDato;
     }
+
+    public String getProjectLocation() {
+        return projectLocation;
+    }
+
+    
+    public void setProjectLocation(String projectLocation) {
+        this.projectLocation = projectLocation;
+    }
 	
+    
 	  
-	  public void addDetail(PakkeListe od)
+	  public void addDetail(ArrayList<Pakke> p)
 	  {
-	    orderDetails.add(od);
+	    orderDetails = p;
 	  }
           
     @Override

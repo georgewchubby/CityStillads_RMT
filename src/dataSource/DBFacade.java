@@ -2,6 +2,7 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 // Encapsulates the Data Source Layer
 // Encapsulates connection handling 
@@ -45,8 +46,8 @@ public class DBFacade {
         return om.deleteOrder(ono, con);
     }
 
-    public boolean saveNewOrderDetail(PakkeListe od) {
-        return om.saveNewOrderDetail(od, con);
+    public boolean saveNewOrderDetail(ArrayList <Pakke>PakkeListe ) {
+        return om.saveNewOrderDetail(PakkeListe, con);
     }
     
     public boolean updateOdetails(int ono,int pno,int qty){

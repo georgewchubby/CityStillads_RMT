@@ -18,9 +18,9 @@ public class Controller {
         return currentOrder;
     }
 
-    public Order createNewOrder(int cno, int eno, String rec, String start, String slut) {
+    public Order createNewOrder(int cno, int eno, String recDate, String delDate, String pkupDate, String plocation) {
         //== create order object with tmp ono=0
-        currentOrder = new Order(0, cno, eno, rec, start, slut);
+        currentOrder = new Order(0, cno, eno, recDate, delDate, pkupDate,plocation);
 
         //== save and get DB-generated unique ono
         boolean status = dbf.saveNewOrder(currentOrder);

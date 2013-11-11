@@ -40,9 +40,9 @@ public class PartMapperTest {
     public void tearDown() {
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        instance.deletePart(70000, con);
-        instance.deletePart(80000, con);
-        instance.deletePart(90000, con);
+//        instance.deletePart(70000, con);
+        instance.deletePart(30, con);
+//        instance.deletePart(90000, con);
     }
 
     /**
@@ -51,11 +51,12 @@ public class PartMapperTest {
     @Test
     public void testGetPart() {
         System.out.println("getPart");
-        Part p = new Part(80000, "GetPart", "Get this part", 10);
+        Part p = new Part(30, "GetPart", "Get this part", 10);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
         instance.saveNewPartWitnum(p, con);
-        assertEquals("GetPart", instance.getPart(80000, con).getPnavn());
+        Part result = instance.getPart(p.getPnum(), con);
+        assertEquals(result.getPnum(),p.getPnum());
         // TODO review the generated test code and remove the default call to fail.
         // fail("testGetPart failed");
     }
@@ -82,7 +83,7 @@ public class PartMapperTest {
     @Test
     public void testUpdatePartQty() {
         System.out.println("updatePartQty");
-        int pnum = 70000;
+        int pnum = 30;
         int qty = 150;
         Part p = new Part(pnum, "UpdateQty", "Update the qty", 10);
         Connection con = new DBConnector().getConnection();
@@ -100,13 +101,13 @@ public class PartMapperTest {
     @Test
     public void testUpdatePart() {
         System.out.println("updatePart");
-        Part p1 = new Part(90000, "Update", "Update this", 10);
-        Part p2 = new Part(90000, "Updated", "Updated this", 11);
+        Part p1 = new Part(30, "Update", "Update this", 10);
+        Part p2 = new Part(30, "Updated", "Updated this", 10);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
         instance.saveNewPartWitnum(p1, con);
         instance.updatePart(p2, con);
-        assertEquals("Updated", instance.getPart(90000, con).getPnavn());
+        assertEquals("Updated", instance.getPart(30, con).getPnavn());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -117,7 +118,7 @@ public class PartMapperTest {
     @Test
     public void testDeletePart() {
         System.out.println("deletePart");
-        int pnum = 99999;
+        int pnum = 30;
         Part p = new Part(pnum, "Delete", "Del del del", 100);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();

@@ -97,6 +97,8 @@ public class StartFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        OrderManagementSystemFrame oms = new OrderManagementSystemFrame();
        oms.setVisible(true);
+       
+       oms.setEnabled(true);
        this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -14,23 +14,22 @@ public class Part {
     private String pbeskrivelse;
     private int qty;
     
-    public Part(){
+    public Part(){}
+    
+    public Part(int pnum, String pnavn,String pBeskrivelse, int qty){
+    this.pnum = pnum;
+    this.pnavn = pnavn;
+    this.pbeskrivelse = pBeskrivelse;   
+    this.qty = qty;
     }
-
-    public Part(int pnum, String pnavn, String pbeskrivelse, int qty) {
-        this.pnum = pnum;
-        this.pnavn = pnavn;
-        this.pbeskrivelse = pbeskrivelse;
-        this.qty = qty;
-    }
-
-    public Part(String pnavn, String pbeskrivelse, int qty) {
-        
+    
+    public Part(String pnavn,String pbeskrivelse, int qty){
         this.pnavn = pnavn;
         this.pbeskrivelse = pbeskrivelse;
         this.qty = qty;
     }
     
+
     public int getPnum() {
         return pnum;
     }
@@ -62,6 +61,8 @@ public class Part {
     public void setQty(int qty) {
         this.qty = qty;
     }
+    
+    
     
     @Override
     public String toString(){
