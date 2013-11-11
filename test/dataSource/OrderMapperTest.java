@@ -18,39 +18,24 @@ import static org.junit.Assert.*;
  * @author CP
  */
 public class OrderMapperTest {
-    
+
     public OrderMapperTest() {
-        OrderMapper instance = new OrderMapper();
-        Connection con = new DBConnector().getConnection();
-        instance.deleteOrder(11, con);
-        
     }
-    
+
     @Before
     public void setUp() {
         OrderMapper instance = new OrderMapper();
         Connection con = new DBConnector().getConnection();
+        instance.updateOrderDetails(2, 3, 25, con);
         instance.deleteOrder(11, con);
+        instance.deleteOrder(12, con);
+//        instance.deleteOrder(13, con);
+//        instance.deleteOrder(14, con);
+//        instance.deleteOrder(15, con);
+//        instance.deleteOrder(16, con);
+//        instance.deleteOrder(17, con);
+//        instance.deleteOrder(18, con);
     }
-
-    /**
-     * Test of saveOrder method, of class OrderMapper.
-     */
-//    @Test
-//    public void testSaveOrder() {
-//        System.out.println("saveOrder");
-//        Date r = new Date(20,03,2012);
-//        Date st = new Date(20,04,2012);
-//        Date sl = new Date(25,06,2012);
-//        Order o = new Order(00011,00001,0005,r,st,sl,"Brisgaard");
-//        Connection con = new DBConnector().getConnection();
-//        OrderMapper instance = new OrderMapper();
-//        boolean result = instance.saveOrder(o, con);
-//        boolean expResult = true;
-//        assertEquals(result,expResult);
-//        // TODO review the generated test code and remove the default call to fail.
-//        //fail("The test case is a prototype.");
-//    }
 
     /**
      * Test of saveNewOrder method, of class OrderMapper.
@@ -61,7 +46,7 @@ public class OrderMapperTest {
         String r = "23,03,2012";
         String st = "23,04,2012";
         String sl = "28,05,2012";
-        Order o = new Order(11,0005,r,st,sl,"Brisgaard");
+        Order o = new Order(11, 0005, r, st, sl, "Brisgaard");
 //        Pakke p;
 //        ArrayList <Pakke> pl = new ArrayList<>();
 //        p = new Pakke(00002,00003,45);
@@ -91,7 +76,7 @@ public class OrderMapperTest {
         String r = "20,03,2012";
         Connection con = new DBConnector().getConnection();
         OrderMapper instance = new OrderMapper();
-        Order expResult = new Order(11,00001,0005,r,null,null,"Brisgaard");
+        Order expResult = new Order(11, 00001, 0005, r, null, null, "Brisgaard");
         instance.saveOrder(expResult, con);
         Order result = instance.getOrder(ono, con);
         assertEquals(expResult.getOno(), result.getOno());
@@ -106,14 +91,14 @@ public class OrderMapperTest {
     public void testSaveNewOrderDetail() {
         System.out.println("saveNewOrderDetail");
         Pakke p;
-        ArrayList <Pakke> pl = new ArrayList<>();
-        p = new Pakke(00002,00003,45);
+        ArrayList<Pakke> pl = new ArrayList<>();
+        p = new Pakke(00002, 00003, 45);
         pl.add(p);
-        p = new Pakke(00002,00004,38);
+        p = new Pakke(00002, 00004, 38);
         pl.add(p);
-        p = new Pakke(00002,00006,23);
+        p = new Pakke(00002, 00006, 23);
         pl.add(p);
-        
+
         Connection con = new DBConnector().getConnection();
         OrderMapper instance = new OrderMapper();
         boolean expResult = true;
@@ -127,25 +112,193 @@ public class OrderMapperTest {
      * Test of updateOrder method, of class OrderMapper.
      */
     @Test
-    public void testUpdateOrder()  {
+    public void testUpdateOrder() {
         System.out.println("updateOrder");
-        String r = "20,03,2012";
-        String st = "23,04,2012";
-        String sl = "20,05,2012";
-        Order o = new Order(11,00001,0005,r,"NA","NA","Brisgaard");
-        Order oUpdate = new Order(11,00001,0005,r,st,sl,"Brisgaard");
+        String rec = "20,03,2012";
+        String deliv = "23,04,2012";
+        String pkup = "20,05,2012";
+        Order o = new Order(12, 00001, 0005, rec, "NA", "NA", "Brisgaard");
+        Order oUpdate = new Order(12, 00001, 0005, rec, deliv, pkup, "Brisgaard");
         Connection con = new DBConnector().getConnection();
         OrderMapper instance = new OrderMapper();
         instance.saveOrder(o, con);
-        System.out.println("saved " + instance.getOrder(o.getOno(), con));
+        System.out.println("Saved " + instance.getOrder(o.getOno(), con));
         boolean expResult = true;
         boolean result = instance.updateOrder(oUpdate, con);
-        System.out.println("updated " + instance.getOrder(o.getOno(), con));
+        System.out.println("Updated " + instance.getOrder(o.getOno(), con));
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
+//    @Test
+//    public void testUpdateOrderAllNew() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(12, 00001, 0005, r, "NA", "NA", "Brisgaard");
+//        Order oUpdate = new Order(12, 00002, 0003, r2, st, sl, "Brisgaard2");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved allnew " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated allnew " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testUpdateOrderNoLocation() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(12, 00001, 0005, r, "NA", "NA", "Brisgaard");
+//        Order oUpdate = new Order(12, 00002, 0003, r2, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved nolocation " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated nolocation " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testUpdateOrderCnoEnoRecDeliv() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(13, 00001, 0005, r, "NA", sl, "Brisgaard");
+//        Order oUpdate = new Order(13, 00002, 0003, r2, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved CnoEnoRecDeliv " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated CnoEnoRecDeliv " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testUpdateOrderCnoEnoRec() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(14, 00001, 0005, r, st, sl, "Brisgaard");
+//        Order oUpdate = new Order(14, 00002, 0003, r2, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved cnoenorec " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated cnoenorec " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testUpdateOrderCnoEno() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(15, 00001, 0005, r, st, sl, "Brisgaard");
+//        Order oUpdate = new Order(15, 00002, 0003, r, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved cnoeno " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated cnoeno " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//    
+//     @Test
+//    public void testUpdateOrderCno() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(16, 00001, 0005, r, st, sl, "Brisgaard");
+//        Order oUpdate = new Order(16, 00002, 0005, r, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved cno " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated cno " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//    
+//    @Test
+//    public void testUpdateOrderEno() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(17, 00001, 0005, r, st, sl, "Brisgaard");
+//        Order oUpdate = new Order(17, 00001, 0006, r, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved eno " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated eno " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+//    
+//    @Test
+//    public void testUpdateOrderRec() {
+//        System.out.println("updateOrder");
+//        String r = "20,03,2012";
+//        String r2 = "21,03,2012";
+//        String st = "24,04,2012";
+//        String sl = "21,05,2012";
+//        Order o = new Order(18, 00001, 0005, r, st, sl, "Brisgaard");
+//        Order oUpdate = new Order(18, 00001, 0005, r2, st, sl, "Brisgaard");
+//        Connection con = new DBConnector().getConnection();
+//        OrderMapper instance = new OrderMapper();
+//        instance.saveOrder(o, con);
+//        System.out.println("saved rec " + instance.getOrder(o.getOno(), con));
+//        boolean expResult = true;
+//        boolean result = instance.updateOrder(oUpdate, con);
+//        System.out.println("updated rec " + instance.getOrder(o.getOno(), con));
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+    
     /**
      * Test of deleteOrder method, of class OrderMapper.
      */
@@ -155,13 +308,13 @@ public class OrderMapperTest {
         String r = "22,05,2013";
         String st = "29,05,2013";
         String sl = "22,06,2013";
-        Order testO = new Order(11,00001,0005,r,st,sl,"Brisgaard");
-        
+        Order testO = new Order(11, 00001, 0005, r, st, sl, "Brisgaard");
+
         Connection con = new DBConnector().getConnection();
         OrderMapper instance = new OrderMapper();
         instance.saveOrder(testO, con);
         //boolean expResult = true;
-        boolean result = instance.deleteOrder((int)testO.getOno(), con);
+        boolean result = instance.deleteOrder((int) testO.getOno(), con);
         assertTrue(result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
