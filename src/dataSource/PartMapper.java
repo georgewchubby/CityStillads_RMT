@@ -84,31 +84,13 @@ public class PartMapper {
     //== Insert new Part (tuple) auto part number assigned
     public boolean saveNewPart(Part p, Connection con) {
         int rowsInserted = 0;
-//        String SQLString1 =
-//                "SELECT part_seq.nextval"
-//                 + "FROM parts" ;
-//        String SQLString2
-//                = "insert into parts"
-//                + "values (?,?,?,?)";
-        String SQLString2 = "insert into parts (pno, pname, description, qty) "
+        String SQLString = "insert into parts (pno, pname, description, qty) "
                 + "values (part_seq.nextval,?,?,?)";
-        
+
         PreparedStatement statement = null;
-        
-//        try {
-//            statement = con.prepareStatement(SQLString1);
-//            ResultSet rs = statement.executeQuery();
-//            if (rs.next()) {
-//                p.setPnum(rs.getInt(1));
-//            }
-//        }catch (Exception e) {
-//            System.out.println("Fail in PartMapper - saveNewPart getting part number from sql part_seq");
-//            System.out.println(e.getMessage());
-//        }
-        
-        try{
+        try {
             //== insert tuple
-            statement = con.prepareStatement(SQLString2);
+            statement = con.prepareStatement(SQLString);
             //statement.setInt(1, p.getPnum());
             statement.setString(1, p.getPnavn());
             statement.setString(2, p.getPbeskrivelse());
@@ -120,20 +102,20 @@ public class PartMapper {
         } finally // must close statement
         {
             try {
-                
+
                 statement.close();
-                
+
             } catch (SQLException e) {
                 System.out.println("Fail in PartMapper - saveNewPart statement close");
                 System.out.println(e.getMessage());
                 try {
-                    throw new Exception("Informative exeption- new part number is = "+ p.getPnum());
+                    throw new Exception("Informative exeption- new part number is = " + p.getPnum());
                 } catch (Exception ex) {
                     Logger.getLogger(PartMapper.class.getName()).log(Level.FINE, null, ex);
                 }
             }
         }
-        
+
         return rowsInserted == 1;
     }
 

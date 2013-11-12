@@ -2,7 +2,6 @@ package dataSource;
 
 import domain.Order;
 import domain.Pakke;
-import domain.Pakke;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,8 +14,8 @@ import java.util.TreeMap;
 //=== Encapsulates SQL-statements
 // hau
 public class OrderMapper {
-    //== load an order and the associated order details
 
+    //== Save an order and the associated order details
     public boolean saveOrder(Order o, Connection con) {
         int rowsInserted = 0;
         String SQLString
@@ -62,25 +61,28 @@ public class OrderMapper {
         String SQLString2
                 = "insert into orders "
                 + "values (?,?,?,?,?,?,?)";
+        String SQLString3 = "insert into orders "
+                + "values (ono_seq.nextval,?,?,?,?,?,?)";
+
         PreparedStatement statement = null;
 
         try {
             //== get unique ono
-            statement = con.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                o.setOno(rs.getInt(1));
-            }
+//            statement = con.prepareStatement(SQLString1);
+//            ResultSet rs = statement.executeQuery();
+//            if (rs.next()) {
+//                o.setOno(rs.getInt(1));
+//            }
 
             //== insert tuple
-            statement = con.prepareStatement(SQLString2);
-            statement.setInt(1, o.getOno());
-            statement.setInt(2, o.getCustomerNo());
-            statement.setInt(3, o.getEmployeeNo());
-            statement.setString(4, o.getReceived());
-            statement.setString(5, o.getStartDato());
-            statement.setString(6, o.getSlutDato());
-            statement.setString(7, o.getProjectLocation());
+            statement = con.prepareStatement(SQLString3);
+//            statement.setInt(1, o.getOno());
+            statement.setInt(1, o.getCustomerNo());
+            statement.setInt(2, o.getEmployeeNo());
+            statement.setString(3, o.getReceived());
+            statement.setString(4, o.getStartDato());
+            statement.setString(5, o.getSlutDato());
+            statement.setString(6, o.getProjectLocation());
             rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - saveNewOrder");
@@ -97,7 +99,7 @@ public class OrderMapper {
         return rowsInserted == 1;
     }
 
-    // fixed pakkeListen som blevet til Pakke klasse
+    //== Load an order and the associated order details
     public Order getOrder(int ono, Connection con) {
         Order o = null;
         ArrayList<Pakke> pl = null;
@@ -187,159 +189,12 @@ public class OrderMapper {
         return rowsInserted == 1;
     }
 
-    /*
-     *---------------------Update Order-----------------------------------------  
-     */
-    public boolean updateOrder2(Order o, Connection con) {
-        int rowUpdated = 0;
-        String SQLString = "";
-        Order origOrder = getOrder(o.getOno(), con);
-
-        if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) != 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) != 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) != 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) != 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo() + ", "
-                    + "ENO = " + o.getEmployeeNo() + ", "
-                    + "RECEIVED = '" + o.getReceived() + "', "
-                    + "DELIV_DATE = '" + o.getStartDato() + "', "
-                    + "PKUP_DATE = '" + o.getSlutDato() + "', "
-                    + "PROJECT_LOCATION = '" + o.getProjectLocation() + "'"
-                    + " where ONO = " + o.getOno();
-
-        } else if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) != 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) != 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) != 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo() + ", "
-                    + "ENO = " + o.getEmployeeNo() + ", "
-                    + "RECEIVED = '" + o.getReceived() + "', "
-                    + "DELIV_DATE = '" + o.getStartDato() + "', "
-                    + "PKUP_DATE = '" + o.getSlutDato() + "'"
-                    + "where ONO =" + o.getOno();
-
-        } else if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) != 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) != 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo() + ", "
-                    + "ENO = " + o.getEmployeeNo() + ", "
-                    + "RECEIVED = '" + o.getReceived() + "', "
-                    + "DELIV_DATE = '" + o.getStartDato() + "'"
-                    + "where ONO = " + o.getOno();
-
-        } else if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) != 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) == 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo() + ", "
-                    + "ENO = " + o.getEmployeeNo() + ", "
-                    + "RECEIVED = '" + o.getReceived() + "'"
-                    + "where ONO =" + o.getOno();
-
-        } else if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) == 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) == 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo() + ", "
-                    + "ENO = " + o.getEmployeeNo()
-                    + "where ONO =" + o.getOno();
-
-        } else if (origOrder.getCustomerNo() != o.getCustomerNo()
-                && origOrder.getEmployeeNo() == o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) == 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) == 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "CNO = " + o.getCustomerNo()
-                    + "where ONO = " + o.getOno();
-
-        } else if (origOrder.getCustomerNo() == o.getCustomerNo()
-                && origOrder.getEmployeeNo() == o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) == 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) != 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) != 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-
-            SQLString = "UPDATE ORDERS SET "
-                    + "DELIV_DATE = '" + o.getStartDato()
-                    + "', PKUP_DATE = '" + o.getSlutDato() + "'"
-                    + "WHERE ONO = " + o.getOno();
-
-        } else if (origOrder.getCustomerNo() == o.getCustomerNo()
-                && origOrder.getEmployeeNo() != o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) == 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) == 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-            
-            SQLString = "UPDATE ORDERS SET "
-                    + "ENO = " + o.getEmployeeNo()
-                    + "where ONO = " + o.getOno();
-            
-        }else if (origOrder.getCustomerNo() == o.getCustomerNo()
-                && origOrder.getEmployeeNo() == o.getEmployeeNo()
-                && origOrder.getReceived().compareTo(o.getReceived()) != 0
-                && origOrder.getStartDato().compareTo(o.getStartDato()) == 0
-                && origOrder.getSlutDato().compareTo(o.getSlutDato()) == 0
-                && origOrder.getProjectLocation().compareTo(o.getProjectLocation()) == 0) {
-            
-            SQLString = "UPDATE ORDERS SET "
-                    + "RECEIVED = '" + o.getReceived() + "'"
-                    + "where ONO = " + o.getOno();
-        }
-        
-        PreparedStatement statement = null;
-
-        try {
-            //== insert value----- Unit of work start
-            con.setAutoCommit(false);
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in OrderMapper - updateOrder");
-            System.out.println(e.getMessage());
-        } finally // must close statement
-        {
-            try {
-                con.commit();
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in OrderMapper - updateOrder");
-                System.out.println(e.getMessage());
-            }
-        }
-
-        return rowUpdated == 1;
-    }
-    
+    //== Update Order
     public boolean updateOrder(Order o, Connection con) {
         int rowUpdated = 0;
         String SQLString = "";
         Order origOrder = getOrder(o.getOno(), con);
-        
+
         if (origOrder.getOno() == o.getOno()
                 && origOrder.getCustomerNo() == o.getCustomerNo()
                 && origOrder.getEmployeeNo() == o.getEmployeeNo()) {
@@ -373,9 +228,8 @@ public class OrderMapper {
 
         return rowUpdated == 1;
     }
-    
-    //-----------------------Delete Order-with unit-of-work-------------------//
 
+    //== Delete Order-with unit-of-work
     public boolean deleteOrder(int ono, Connection con) {
 
         int orderDeleted = 0;
@@ -406,7 +260,7 @@ public class OrderMapper {
         return orderDeleted == 1;
     }
 
-    //------------------Updated Order Details--------------------------------//
+    //== Updated Order Details
     public boolean updateOrderDetails(int ono, int pno, int qty, Connection con) {
         int detailsUpdated = 0;
 
@@ -438,7 +292,7 @@ public class OrderMapper {
         return detailsUpdated == 1;
     }
 
-    //-------------removes a part order from an order-------------------------//
+    //== removes a part order from an order
     public boolean deletePartfromOrder(int ono, int pno, Connection con) {
         int partsRemovedFromOrder = 0;
         String SQLString = "DELETE FROM PAKKELISTE WHERE ono = " + ono + "and pno = " + pno;
@@ -463,5 +317,4 @@ public class OrderMapper {
 
         return partsRemovedFromOrder == 1;
     }
-
 }
