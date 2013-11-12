@@ -37,27 +37,25 @@ public class DBFacade {
     public boolean saveNewOrder(Order o) {
         return om.saveNewOrder(o, con);
     }
-    
-    public boolean updateOrder(Order o){
+
+    public boolean updateOrder(Order o) {
         return om.updateOrder(o, con);
     }
-    
-    public boolean deleteOrder(int ono){
+
+    public boolean deleteOrder(int ono) {
         return om.deleteOrder(ono, con);
     }
 
-    public boolean saveNewOrderDetail(ArrayList <Pakke>PakkeListe ) {
+    public boolean saveNewOrderDetail(ArrayList<Pakke> PakkeListe) {
         return om.saveNewOrderDetail(PakkeListe, con);
     }
-    
-    public boolean updateOdetails(int ono,int pno,int qty){
+
+    public boolean updateOdetails(int ono, int pno, int qty) {
         return om.updateOrderDetails(ono, pno, qty, con);
     }
-    
-    public boolean removePartFromOrder(int ono,int pno){
+
+    public boolean removePartFromOrder(int ono, int pno) {
         return om.deletePartfromOrder(ono, pno, con);
     }
-
-
 
 }
