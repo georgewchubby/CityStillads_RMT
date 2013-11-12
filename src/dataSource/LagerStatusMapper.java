@@ -17,7 +17,7 @@ import dataSource.DBConnector;
  * @author CP
  */
 public class LagerStatusMapper {
-    
+
     public ArrayList updateLager() {
         int lagerUpdated = 0;
         int available = 0;
@@ -26,11 +26,11 @@ public class LagerStatusMapper {
         ArrayList<L_Stat> lagerStat = null;
         String SQLString = // gets reserved
                 "SELECT P.PNO AS PART_NUMBER,P.QTY AS TOTAL,P.Qty-Pkl.Qty AS AVAILABLE"
-                +"FROM Pakkeliste PKL,Parts P WHERE Pkl.Pno = P.Pno;";
+                + "FROM Pakkeliste PKL,Parts P WHERE Pkl.Pno = P.Pno;";
 
-         String SQLString_res =      
-                 "select PNO,SUM(qty) from PAKKELISTE PKL" 
-                +"group by(Pno);";
+        String SQLString_res
+                = "select PNO,SUM(qty) from PAKKELISTE PKL"
+                + "group by(Pno);";
 
         PreparedStatement statement = null;
 
@@ -39,24 +39,22 @@ public class LagerStatusMapper {
             statement = con.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-               lstat = new L_Stat(rs.getInt(1),
+                lstat = new L_Stat(rs.getInt(1),
                         rs.getInt(2));
-               lagerStat.add(lstat);
+                lagerStat.add(lstat);
             }
 
             //=== get order details
             statement = con.prepareStatement(SQLString_res);
             rs = statement.executeQuery();
             while (rs.next()) {
-                for (int i = 0; i < lagerStat.size(); i++) 
-                {
-                    if(lagerStat.get(i).getPnum() == rs.getInt(1))
-                    {
+                for (int i = 0; i < lagerStat.size(); i++) {
+                    if (lagerStat.get(i).getPnum() == rs.getInt(1)) {
                         lagerStat.get(i).setReserved(rs.getInt(2));
-                         
+
                     }
                 }
-                
+
             }
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - crap");
@@ -70,14 +68,13 @@ public class LagerStatusMapper {
                 System.out.println(e.getMessage());
             }
         }
-        for (int i = 0; i < lagerStat.size(); i++) 
-        {
-         available = lagerStat.get(i).getTotal()-lagerStat.get(i).getReserved();
-         lagerStat.get(i).setAvailable(available);
+        for (int i = 0; i < lagerStat.size(); i++) {
+            available = lagerStat.get(i).getTotal() - lagerStat.get(i).getReserved();
+            lagerStat.get(i).setAvailable(available);
         }
-        
+
        // return rowsInserted == 1;
-       // saveUpdate(lagerStat, con);
+        // saveUpdate(lagerStat, con);
         return lagerStat;
     }
 }
@@ -139,11 +136,8 @@ public class LagerStatusMapper {
 ////       // saveUpdate(lagerStat, con);
 ////        return lagerStat;
 //    }
-    
-    
-    
-}
-    public boolean saveUpdate(ArrayList<L_Stat> ls, Connection con) {
+
+public boolean saveUpdate(ArrayList<L_Stat> ls, Connection con) {
         int rowsInserted = 0;
         
         String SQLString =

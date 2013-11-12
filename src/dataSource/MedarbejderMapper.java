@@ -1,26 +1,29 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dataSource;
- 
 
-import domain.Vogn;
+import domain.Medarbejder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-//=== Maps between objects and tables
-//=== Encapsulates SQL-statements
-// hau
-public class VognMapper {
-  
-      public boolean saveNewVogn(Vogn v, Connection con) {
+/**
+ *
+ * @author Saleh
+ */
+public class MedarbejderMapper {
+    
+      public boolean saveNewMedarbejder(Medarbejder m, Connection con) {
         int rowsInserted = 0;
         String SQLString1 =
                 "select orderseq.nextval  "
                 + "from dual";
         String SQLString2 =
-                "insert into Vogn "
-                + "values (?,?,?,?,?,?)";
+                "insert into Employees "
+                + "values (?,?,?,?,?)";
         PreparedStatement statement = null;
 
         try {
@@ -28,39 +31,38 @@ public class VognMapper {
             statement = con.prepareStatement(SQLString1);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                v.setOno(rs.getInt(1));
+                m.setmID(rs.getInt(1));
             }
 
             //== insert tuple
             statement = con.prepareStatement(SQLString2);
-            statement.setInt(1, v.getVognID());
-            statement.setString(2, v.getvType());
-            statement.setString(3, v.getStatus());
-            statement.setString(4, v.getReserveretFra());
-            statement.setString(5, v.getReserveretTil());
-            statement.setInt(6, v.getOno());
+            statement.setInt(1, m.getmID());
+            statement.setString(2, m.getStilling());
+            statement.setString(3, m.getmNavn());
+            statement.setString(4, m.getmAddr());
+            statement.setString(5, m.getmTlf());
             rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - saveNewVogn");
+            System.out.println("Fail in MedarbejderMapper - saveNewMedarbejder");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - saveNewVogn");
+                System.out.println("Fail in MedarbejderMapper - saveNewMedarbejder");
                 System.out.println(e.getMessage());
             }
         }
         return rowsInserted == 1;
     }
     
-    public Vogn getVogn(int vognID, Connection con) {
-        Vogn v = null;
+    public Medarbejder getMedarbejder(int mID, Connection con) {
+        Medarbejder m = null;
         String SQLString1 = // get order
                 "select * "
-                + "from vogn "
-                + "where vognID = ?";
+                + "from Employees "
+                + "where mID = ?";
      
         // foreign key match 
         PreparedStatement statement = null;
@@ -68,15 +70,14 @@ public class VognMapper {
         try {
             //=== get order
             statement = con.prepareStatement(SQLString1);
-            statement.setInt(1, vognID);     // primary key value
+            statement.setInt(1, mID);     // primary key value
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                v = new Vogn(vognID,                     
+                m = new Medarbejder(mID,                     
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getInt(6));
+                        rs.getString(5));
       
             }
 
@@ -93,7 +94,7 @@ public class VognMapper {
                 System.out.println(e.getMessage());
             }
         }
-        return v;
+        return m;
     }
 
     //== Insert new order (tuple)
@@ -105,15 +106,16 @@ public class VognMapper {
      *---------------------Update Order-----------------------------------------  
      */
     
-    public boolean updateVognStatus(Vogn v, Connection con)
+    
+    public boolean updatemNavn(Medarbejder m, Connection con)
     {
             int rowUpdated = 0;
             String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getStatus() != origVogn.getStatus())
+            Medarbejder origMedarbejder = getMedarbejder(m.getmID(), con);
+             if (m.getmNavn() != origMedarbejder.getmNavn())
              {
-                 SQLString = "UPDATE Vogn status "+
-                    "SET status ="+ v.getStatus() +"where vognno = "+ v.getVognID() +";";
+                 SQLString = "UPDATE Medarbejder ID "+
+                    "SET ID ="+ m.getmNavn() +"where mID = "+ m.getmID() +";";
              }
         PreparedStatement statement = null;
 
@@ -122,34 +124,34 @@ public class VognMapper {
             statement = con.prepareStatement(SQLString);
             rowUpdated = statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in vognMapper - updateVogn");
+            System.out.println("Fail in MedarbejderMapper - updateMedarbejderNavn");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in vognMapper - updateVogn");
+                System.out.println("Fail in MedarbejderMapper - updateMedarbejderNavn");
                 System.out.println(e.getMessage());
             }
         }
         return rowUpdated == 1;
     }
     
-    public boolean updateVognDatoFra(Vogn v, Connection con) throws SQLException
+    public boolean updateMedarbejderStilling(Medarbejder m, Connection con) throws SQLException
     {
             int rowUpdated = 0;
             String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getReserveretFra() != origVogn.getReserveretFra())
+            Medarbejder origMedarbejder = getMedarbejder(m.getmID(), con);
+             if (m.getStilling() != origMedarbejder.getStilling())
              {
-                 SQLString = "UPDATE Vogn DatoFra "+
-                    "SET datofra ="+ v.getReserveretFra() +"where vognNo = "+ v.getVognID() +";";
-             }
-             else if (v.getReserveretFra() == origVogn.getReserveretFra()){
+                 SQLString = "UPDATE Medarbejder Stilling "+
+                    "SET Medarbejder stilling ="+ m.getStilling() +"where mID = "+ m.getmID() +";";
+             } 
+             else if (m.getStilling() == origMedarbejder.getStilling()){
              
            
-          throw new SQLException("VognMapper - Update Vogn Dato Fra");
+          throw new SQLException("MedarbejderMapper - Update Stilling");
              }
         PreparedStatement statement = null;
 
@@ -158,33 +160,69 @@ public class VognMapper {
             statement = con.prepareStatement(SQLString);
             rowUpdated = statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - updateVogndatofra");
+            System.out.println("Fail in VognMapper - updateMedarbejderStilling");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - updateVogndatofra");
+                System.out.println("Fail in VognMapper - updateMedarbejderStilling");
                 System.out.println(e.getMessage());
             }
         }
         return rowUpdated == 1;
     }
-    public boolean updateVognDatoTil(Vogn v, Connection con) throws SQLException
+    public boolean updateMedarbejdermAdr(Medarbejder m, Connection con) throws SQLException
     {
             int rowUpdated = 0;
             String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getReserveretTil() != origVogn.getReserveretTil())
+            Medarbejder origMedarbejder = getMedarbejder(m.getmID(), con);
+             if (m.getmAddr() != origMedarbejder.getmAddr())
+             {
+                 SQLString = "UPDATE Medarbejder Adresse "+
+                    "SET mAddr ="+ m.getmAddr() +"where mID = "+ m.getmID() +";";
+             }
+             else if (m.getmAddr() == origMedarbejder.getmAddr()){
+             
+           
+          throw new SQLException("MedarbejderMapper - Update Medarbejder addresse");
+             }
+        PreparedStatement statement = null;
+
+        try {
+            //== insert value
+            statement = con.prepareStatement(SQLString);
+            rowUpdated = statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Fail in MedarbejderMapper - update Medarbejder Addresse");
+            System.out.println(e.getMessage());
+        } finally // must close statement
+        {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Fail in MedarbejderMapper - update Medarbejder addresse");
+                System.out.println(e.getMessage());
+            }
+        }
+        return rowUpdated == 1;
+    }
+    
+      public boolean updateMedarbejdermTlf(Medarbejder m, Connection con) throws SQLException
+    {
+            int rowUpdated = 0;
+            String SQLString = "";
+            Medarbejder origMedarbejder = getMedarbejder(m.getmID(), con);
+             if (m.getmTlf() != origMedarbejder.getmTlf())
              {
                  SQLString = "UPDATE Vogn DatoTil "+
-                    "SET datoTil ="+ v.getReserveretTil() +"where vognno = "+ v.getVognID() +";";
+                    "SET datoTil ="+ m.getmTlf() +"where vognno = "+ m.getmID() +";";
              }
-             else if (v.getReserveretTil() == origVogn.getReserveretTil()){
+             else if (m.getmTlf() == origMedarbejder.getmTlf()){
              
            
-          throw new SQLException("VognMapper - Update Vogn Dato Til");
+          throw new SQLException("MedarbejderMapper - Update Vogn Ono");
              }
         PreparedStatement statement = null;
 
@@ -193,50 +231,14 @@ public class VognMapper {
             statement = con.prepareStatement(SQLString);
             rowUpdated = statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - update Vogn Dato Til");
+            System.out.println("Fail in MedarbejderMapper - Update Medarbejder Telefon");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - update Vogn dato til");
-                System.out.println(e.getMessage());
-            }
-        }
-        return rowUpdated == 1;
-    }
-    
-      public boolean updateVognOno(Vogn v, Connection con) throws SQLException
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getOno() != origVogn.getOno())
-             {
-                 SQLString = "UPDATE Vogn DatoTil "+
-                    "SET datoTil ="+ v.getOno() +"where vognno = "+ v.getVognID() +";";
-             }
-             else if (v.getOno() == origVogn.getOno()){
-             
-           
-          throw new SQLException("VognMapper - Update Vogn Ono");
-             }
-        PreparedStatement statement = null;
-
-        try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in VognMapper - Update Vogn Ono");
-            System.out.println(e.getMessage());
-        } finally // must close statement
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - Update Vogn Ono");
+                System.out.println("Fail in MedarbejderMapper - Update Medarbejder Telefon");
                 System.out.println(e.getMessage());
             }
         }
@@ -244,37 +246,35 @@ public class VognMapper {
     }
     
     
-    //-----------------------Delet Order--------------------------------------//
     
-    public boolean deleteVogn(Vogn v, Connection con)
+    //DELETE Medarbejder
+    
+    
+    
+    public boolean deleteMedarbejder(Medarbejder m, Connection con)
     {
-        int vognDeleted = 0;
-        String SQLString = "DELETE FROM Vogn "+
-        "WHERE vognID = "+ v.getVognID()+ ";";
+        int MedarbejderDeleted = 0;
+        String SQLString = "DELETE FROM Employees "+
+        "WHERE mID = "+ m.getmID()+ ";";
     
         PreparedStatement statement = null;
 
         try {
             //== insert value
             statement = con.prepareStatement(SQLString);
-            vognDeleted = statement.executeUpdate(); // delete vogn
+            MedarbejderDeleted = statement.executeUpdate(); // delete vogn
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - deleteOrder");
+            System.out.println("Fail in MedarbejderMapper - deleteMedarbejder");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - deleteOrder");
+                System.out.println("Fail in MedarbejderMapper - deleteMedarbejder");
                 System.out.println(e.getMessage());
             }
         }
-         return vognDeleted == 1 ;
+         return MedarbejderDeleted == 1 ;
     }
 }
-    
-    
-    
-    //------------------Updated Order Details--------------------------------//
-    

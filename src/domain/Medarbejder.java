@@ -16,8 +16,15 @@ public class Medarbejder {
     private String mTlf;
     
     public Medarbejder(){
-        
     }
+
+    public Medarbejder(int mID, String Stilling, String mNavn, String mAddr, String mTlf) {
+        this.mID = mID;
+        this.Stilling = Stilling;
+        this.mNavn = mNavn;
+        this.mAddr = mAddr;
+        this.mTlf = mTlf;
+    }   
 
     public int getmID() {
         return mID;
