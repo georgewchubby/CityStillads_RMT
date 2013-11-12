@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 //=== Encapsulates SQL-statements
 // hau
 public class PartMapper {
+    
     //== load an order and the associated order details
-
     public Part getPart(int pno, Connection con) {
         Part part = null;
         String SQLString1 = // get order
@@ -148,9 +148,7 @@ public class PartMapper {
         return partUpdated == 1;
     }
 
-    /*
-     *---------------------Update Part-----------------------------------------  
-     */
+    //== Update part
     public boolean updatePart(Part p, Connection con) {
         int rowUpdated = 0;
         String SQLString = "";
@@ -192,7 +190,7 @@ public class PartMapper {
         return rowUpdated == 1;
     }
 
-    //-----------------------Delete Part--------------------------------------//
+    //== Delete part
     public boolean deletePart(int pnum, Connection con) {
         int partDeleted = 0;
         String SQLString = "Delete from parts where pno = " + pnum;
