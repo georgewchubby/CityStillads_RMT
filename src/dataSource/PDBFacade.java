@@ -7,21 +7,21 @@ import java.sql.Connection;
  *
  * @author joachim
  */
-public class PartFacade {
+public class PDBFacade {
 
     private final PartMapper pm;
     private final Connection con;
 
-    private static PartFacade instance;
+    private static PDBFacade instance;
 
-    private PartFacade() {
+    private PDBFacade() {
         pm = new PartMapper();
         con = new DBConnector().getConnection();
     }
 
-    public static PartFacade getInstance() {
+    public static PDBFacade getInstance() {
         if (instance == null) {
-            instance = new PartFacade();
+            instance = new PDBFacade();
         }
         return instance;
     }

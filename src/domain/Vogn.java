@@ -12,12 +12,22 @@ public class Vogn {
     private int vognID;
     private String vType;
     private String status; // montering/afmontering
+    private int ono;
     private String reserveretFra; //dato
     private String reserveretTil; //dato
-    private int ono;
+  
     
     public Vogn(){
         
+    }
+    public Vogn(int vognID,String vType, String status,int ono, String reserveretFra, String reserveretTil){
+    this.vognID = vognID;
+    this.vType = vType;
+    this.status = status;
+    this.ono = ono;
+    this.reserveretFra = reserveretFra;
+    this.reserveretTil = reserveretTil;
+     
     }
 
     public int getVognID() {
@@ -44,6 +54,14 @@ public class Vogn {
         this.status = status;
     }
 
+    public int getOno() {
+        return ono;
+    }
+
+    public void setOno(int ono) {
+        this.ono = ono;
+    }
+
     public String getReserveretFra() {
         return reserveretFra;
     }
@@ -60,18 +78,11 @@ public class Vogn {
         this.reserveretTil = reserveretTil;
     }
 
-    public int getOno() {
-        return ono;
-    }
-
-    public void setOno(int ono) {
-        this.ono = ono;
+    @Override
+    public String toString() {
+        return "Vogn{" + "vognID=" + vognID + ", vType=" + vType + ", status=" + status + ", ono=" + ono + ", reserveretFra=" + reserveretFra + ", reserveretTil=" + reserveretTil + '}';
     }
     
-    @Override
-    public String toString(){
-        return ""+ vognID +"  "+ vType +"  "+ status +"  "+ reserveretFra+"  "+ 
-                   reserveretTil +"  "+ ono;    
-    }
+    
     
 }

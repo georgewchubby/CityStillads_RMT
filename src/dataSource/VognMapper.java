@@ -15,30 +15,21 @@ public class VognMapper {
   
       public boolean saveNewVogn(Vogn v, Connection con) {
         int rowsInserted = 0;
-        String SQLString1 =
-                "select orderseq.nextval  "
-                + "from dual";
-        String SQLString2 =
+            String SQLString2 =
                 "insert into Vogn "
                 + "values (?,?,?,?,?,?)";
         PreparedStatement statement = null;
 
         try {
-            //== get unique ono
-            statement = con.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                v.setOno(rs.getInt(1));
-            }
 
-            //== insert tuple
             statement = con.prepareStatement(SQLString2);
             statement.setInt(1, v.getVognID());
             statement.setString(2, v.getvType());
             statement.setString(3, v.getStatus());
-            statement.setString(4, v.getReserveretFra());
-            statement.setString(5, v.getReserveretTil());
-            statement.setInt(6, v.getOno());
+            statement.setInt(4, v.getOno());
+            statement.setString(5, v.getReserveretFra());
+            statement.setString(6, v.getReserveretTil());
+        
             rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
             System.out.println("Fail in VognMapper - saveNewVogn");
@@ -60,7 +51,7 @@ public class VognMapper {
         String SQLString1 = // get order
                 "select * "
                 + "from vogn "
-                + "where vognID = ?";
+                + "where vognno = ?";
      
         // foreign key match 
         PreparedStatement statement = null;
@@ -74,9 +65,10 @@ public class VognMapper {
                 v = new Vogn(vognID,                     
                         rs.getString(2),
                         rs.getString(3),
+                        rs.getInt(6),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getInt(6));
+                        rs.getString(5));
+                       
       
             }
 
@@ -211,13 +203,13 @@ public class VognMapper {
     {
             int rowUpdated = 0;
             String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getOno() != origVogn.getOno())
+            Vogn origVogn = getVogn(v.getOno(), con);
+             if (v.getVognID() != origVogn.getVognID())
              {
-                 SQLString = "UPDATE Vogn DatoTil "+
-                    "SET datoTil ="+ v.getOno() +"where vognno = "+ v.getVognID() +";";
+                 SQLString = "UPDATE Vogn vognID "+
+                    "SET vognID ="+ v.getVognID() +"where Ono = "+ v.getOno() +";";
              }
-             else if (v.getOno() == origVogn.getOno()){
+             else if (v.getVognID() == origVogn.getVognID()){
              
            
           throw new SQLException("VognMapper - Update Vogn Ono");

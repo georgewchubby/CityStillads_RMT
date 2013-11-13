@@ -9,26 +9,27 @@ package domain;
  * @author CP
  */
 public class Part {
+
     private int pnum;
     private String pnavn;
     private String pbeskrivelse;
     private int qty;
-    
-    public Part(){}
-    
-    public Part(int pnum, String pnavn,String pBeskrivelse, int qty){
-    this.pnum = pnum;
-    this.pnavn = pnavn;
-    this.pbeskrivelse = pBeskrivelse;   
-    this.qty = qty;
+
+    public Part() {
     }
-    
-    public Part(String pnavn,String pbeskrivelse, int qty){
+
+    public Part(int pnum, String pnavn, String pBeskrivelse, int qty) {
+        this.pnum = pnum;
+        this.pnavn = pnavn;
+        this.pbeskrivelse = pBeskrivelse;
+        this.qty = qty;
+    }
+
+    public Part(String pnavn, String pbeskrivelse, int qty) {
         this.pnavn = pnavn;
         this.pbeskrivelse = pbeskrivelse;
         this.qty = qty;
     }
-    
 
     public int getPnum() {
         return pnum;
@@ -61,13 +62,9 @@ public class Part {
     public void setQty(int qty) {
         this.qty = qty;
     }
-    
-    
-    
+
     @Override
-    public String toString(){
-        return "" +pnum +"   "+ pnavn +"   "+ pbeskrivelse;
+    public String toString() {
+        return "" + pnum + "   " + pnavn + "   " + pbeskrivelse;
     }
-    
-    
 }

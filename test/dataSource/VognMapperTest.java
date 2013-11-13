@@ -24,6 +24,23 @@ public class VognMapperTest {
     }
 
     /**
+     * Test of saveNewVogn method, of class VognMapper.
+     */
+    @Test
+    public void testSaveNewVogn() {
+        System.out.println("saveNewVogn");
+       String s = "Stor";
+        String h = "Hjemme";
+        String f = "20,04,2012";
+        String sl = "20,12,2012";
+        Vogn v = new Vogn(12000000,s,h,1,f,sl);
+        Connection con = new DBConnector().getConnection();
+        VognMapper instance = new VognMapper();
+        boolean result = instance.saveNewVogn(v, con);
+        assertTrue(result);
+    }
+
+    /**
      * Test of getVogn method, of class VognMapper.
      */
     @Test
@@ -34,22 +51,6 @@ public class VognMapperTest {
         VognMapper instance = new VognMapper();
         Vogn expResult = null;
         Vogn result = instance.getVogn(vognID, con);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of saveNewVogn method, of class VognMapper.
-     */
-    @Test
-    public void testSaveNewVogn() {
-        System.out.println("saveNewVogn");
-        Vogn v = null;
-        Connection con = null;
-        VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.saveNewVogn(v, con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
