@@ -31,11 +31,11 @@ public class PDBFacade {
         return pm.getPart(pno, con);
     }
 
-    public boolean saveNewPartWitnum(Part p) throws SQLException {
+    public boolean saveNewPartWitnum(Part p) throws SQLException, NumberFormatException {
         return pm.saveNewPartWitnum(p, con);
     }
 
-    public boolean saveNewPart(Part p) throws SQLException {
+    public boolean saveNewPart(Part p) throws SQLException, NumberFormatException {
         return pm.saveNewPart(p, con);
     }
 

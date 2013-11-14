@@ -53,7 +53,7 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple)
-    public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException {
+    public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException, NumberFormatException {
         int rowsInserted = 0;
         String SQLString
                 = "insert into parts "
@@ -79,7 +79,7 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple) auto part number assigned
-    public boolean saveNewPart(Part p, Connection con) throws SQLException {
+    public boolean saveNewPart(Part p, Connection con) throws SQLException, NumberFormatException {
         int rowsInserted = 0;
         String SQLString = "insert into parts (pno, pname, description, qty) "
                 + "values (part_seq.nextval,?,?,?)";

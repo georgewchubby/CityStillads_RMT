@@ -22,7 +22,7 @@ public class PartController {
         return currentPart;
     }
 
-    public boolean saveNewPartWitnum(Part p) throws SQLException {
+    public boolean saveNewPartWitnum(Part p) throws SQLException, NumberFormatException {
         currentPart = p;
 
         boolean saved = pf.saveNewPartWitnum(currentPart);
@@ -30,7 +30,7 @@ public class PartController {
         return saved;
     }
 
-    public boolean saveNewPart(Part p) throws SQLException {
+    public boolean saveNewPart(Part p) throws SQLException, NumberFormatException {
         currentPart = p;
 
         boolean saved = pf.saveNewPart(currentPart);

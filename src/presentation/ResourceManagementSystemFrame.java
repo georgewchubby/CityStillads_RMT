@@ -1169,7 +1169,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 pc.saveNewPart(p);
                 clearNewFields();
                 jLabelSaved.setText("Saved");
-            } catch (SQLException ex) {
+            } catch (NumberFormatException | SQLException ex) {
+                ex.
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -1182,7 +1183,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 pc.saveNewPartWitnum(p);
                 clearNewFields();
                 jLabelSaved.setText("Saved");
-            } catch (SQLException ex) {
+            } catch (NumberFormatException | SQLException ex) {
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -1445,7 +1446,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonSaveVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveVognActionPerformed
         // TODO add your handling code here:
-
+        
     }//GEN-LAST:event_jButtonSaveVognActionPerformed
 
     private void jButtonNewVognBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognBackActionPerformed
