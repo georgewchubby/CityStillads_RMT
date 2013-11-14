@@ -129,6 +129,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Leave empty for auto-number"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldNewPartNoFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNewPartName">
             </Component>
@@ -288,6 +291,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Leave empty for auto-number"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdatePartNoFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdatePartName">
             </Component>
@@ -461,6 +467,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Leave empty for auto-number"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdateQtyNoFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdateQtyName">
             </Component>
@@ -633,6 +642,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Leave empty for auto-number"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDeletePartNoFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartName">
             </Component>
@@ -746,7 +758,11 @@
                                           <Component id="jTextFieldPartDescription" pref="166" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jButtonGetPart" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jButtonGetPart" min="-2" pref="91" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonClear" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -792,7 +808,10 @@
                           <Component id="jButtonDeletePart" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonGetPart" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonGetPart" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonClear" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="63" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -868,6 +887,14 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPartDescription">
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonClear">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonClearActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

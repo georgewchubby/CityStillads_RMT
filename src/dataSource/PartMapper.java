@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 //=== Encapsulates SQL-statements
 // hau
 public class PartMapper {
-    
+
     //== load an order and the associated order details
     public Part getPart(int pno, Connection con) {
         Part part = null;
@@ -157,8 +157,7 @@ public class PartMapper {
                 && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) == 0) {
             SQLString = "UPDATE Parts "
                     + "SET pname = '" + p.getPnavn() + "' where pno = " + p.getPnum();
-        }
-        if (p.getPnavn().compareTo(origPart.getPnavn()) == 0
+        } else if (p.getPnavn().compareTo(origPart.getPnavn()) == 0
                 && p.getPbeskrivelse().compareTo(origPart.getPbeskrivelse()) != 0) {
             SQLString = "UPDATE Parts "
                     + "SET description = '" + p.getPbeskrivelse() + "' where pno = " + p.getPnum();

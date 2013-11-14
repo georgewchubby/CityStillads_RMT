@@ -153,6 +153,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonUpdateQty = new javax.swing.JButton();
         jButtonDeletePart = new javax.swing.JButton();
         jTextFieldPartDescription = new javax.swing.JTextField();
+        jButtonClear = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jFrameNewPart.setMinimumSize(new java.awt.Dimension(550, 350));
@@ -169,6 +170,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel9.setText("Part Description");
 
         jTextFieldNewPartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldNewPartNo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldNewPartNoFocusGained(evt);
+            }
+        });
 
         jButtonSavePart.setText("Save Part");
         jButtonSavePart.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +271,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel14.setText("Part Description");
 
         jTextFieldUpdatePartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldUpdatePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldUpdatePartNoFocusGained(evt);
+            }
+        });
 
         jButtonUpdatePartUpdate.setText("Update Part");
         jButtonUpdatePartUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -375,6 +386,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel17.setText("Part Quantity");
 
         jTextFieldUpdateQtyNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldUpdateQtyNo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldUpdateQtyNoFocusGained(evt);
+            }
+        });
 
         jButtonUpdateQtyUpdate.setText("Update Qty");
         jButtonUpdateQtyUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -486,6 +502,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel22.setText("Part Description");
 
         jTextFieldDeletePartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldDeletePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldDeletePartNoFocusGained(evt);
+            }
+        });
 
         jButtonDeletePartDelete.setText("Delete Part");
         jButtonDeletePartDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -631,6 +652,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelGetPartLayout = new javax.swing.GroupLayout(jPanelGetPart);
         jPanelGetPart.setLayout(jPanelGetPartLayout);
         jPanelGetPartLayout.setHorizontalGroup(
@@ -652,7 +680,10 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                     .addComponent(jTextFieldPartName)
                                     .addComponent(jTextFieldPartQuantity)
                                     .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
-                            .addComponent(jButtonGetPart, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelGetPartLayout.createSequentialGroup()
+                                .addComponent(jButtonGetPart, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonClear)))
                         .addGap(40, 40, 40)
                         .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -688,7 +719,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonDeletePart))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGetPart)
+                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGetPart)
+                    .addComponent(jButtonClear))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -723,16 +756,16 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonGetPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetPartActionPerformed
         // TODO add your handling code here:
-        int pno = 0;
+        int pnum = 0;
 
         if (jTextFieldPartNo.getText().equals("")) {
-            pno = 0;
+            pnum = 0;
         } else {
-            pno = Integer.parseInt(jTextFieldPartNo.getText());
+            pnum = Integer.parseInt(jTextFieldPartNo.getText());
         }
 
         clearGetFields();
-        Part p = pc.getPart(pno);
+        Part p = pc.getPart(pnum);
 
         if (p != null) {
             jTextFieldPartName.setText(p.getPnavn());
@@ -773,15 +806,16 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameNewPart.setVisible(false);
         jFrameNewPart.dispose();
+        clearNewFields();
     }//GEN-LAST:event_jButtonNewPartBackActionPerformed
 
     private void jButtonUpdatePartUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartUpdateActionPerformed
         // TODO add your handling code here:
         String updateName = jTextFieldUpdatePartName.getText();
         String updateDescription = jTextFieldUpdatePartDescription.getText();
-        int updatePno = Integer.parseInt(jTextFieldUpdatePartNo.getText());
+        int updatePnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
 
-        Part p = new Part(updatePno, updateName, updateName, 0);
+        Part p = new Part(updatePnum, updateName, updateDescription, 0);
 
         pc.updatePart(p);
 
@@ -793,6 +827,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameUpdatePart.setVisible(false);
         jFrameUpdatePart.dispose();
+        clearUpdateFields();
     }//GEN-LAST:event_jButtonUpdatePartBackActionPerformed
 
     private void jButtonUpdatePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartActionPerformed
@@ -802,15 +837,15 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonUpdatePartLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartLoadActionPerformed
         // TODO add your handling code here:
-        int pno = 0;
+        int pnum = 0;
 
         if (jTextFieldUpdatePartNo.getText().equals("")) {
-            pno = 0;
+            pnum = 0;
         } else {
-            pno = Integer.parseInt(jTextFieldUpdatePartNo.getText());
+            pnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
         }
 
-        Part p = pc.getPart(pno);
+        Part p = pc.getPart(pnum);
 
         if (p != null) {
             jTextFieldUpdatePartName.setText(p.getPnavn());
@@ -825,13 +860,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int pnum, qty;
 
-        if (jTextFieldDeletePartNo.getText().equals("")) {
+        if (jTextFieldUpdateQtyNo.getText().equals("")) {
             pnum = 0;
         } else {
             pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
         }
 
-        if (jTextFieldDeletePartNo.getText().equals("")) {
+        if (jTextFieldUpdateQtyQty.getText().equals("")) {
             qty = 0;
         } else {
             qty = Integer.parseInt(jTextFieldUpdateQtyQty.getText());
@@ -847,21 +882,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameUpdateQty.setVisible(false);
         jFrameUpdateQty.dispose();
+        clearUpdateQtyFields();
     }//GEN-LAST:event_jButtonUpdateQtyBackActionPerformed
 
     private void jButtonUpdateQtyLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyLoadActionPerformed
         // TODO add your handling code here:
-        int pno = 0;
+        int pnum = 0;
 
         if (jTextFieldUpdateQtyNo.getText().equals("")) {
-            pno = 0;
+            pnum = 0;
         } else {
-            pno = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
+            pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
         }
 
         clearDeleteFields();
 
-        Part p = pc.getPart(pno);
+        Part p = pc.getPart(pnum);
 
         if (p != null) {
             jTextFieldUpdateQtyName.setText(p.getPnavn());
@@ -884,18 +920,18 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonDeletePartDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartDeleteActionPerformed
         // TODO add your handling code here:
-        int pno;
+        int pnum;
 
         if (jTextFieldDeletePartNo.getText().equals("")) {
-            pno = 0;
+            pnum = 0;
         } else {
-            pno = Integer.parseInt(jTextFieldDeletePartNo.getText());
+            pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
         }
 
         int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
                 "Warning", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            pc.deletePart(pno);
+            pc.deletePart(pnum);
         }
 
         clearDeleteFields2();
@@ -906,21 +942,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameDeletePart.setVisible(false);
         jFrameDeletePart.dispose();
+        clearDeleteFields();
     }//GEN-LAST:event_jButtonDeletePartBackActionPerformed
 
     private void jButtonDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLoadActionPerformed
         // TODO add your handling code here:
-        int pno = 0;
+        int pnum = 0;
 
         if (jTextFieldDeletePartNo.getText().equals("")) {
-            pno = 0;
+            pnum = 0;
         } else {
-            pno = Integer.parseInt(jTextFieldDeletePartNo.getText());
+            pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
         }
 
         clearUpdateQtyFields();
 
-        Part p = pc.getPart(pno);
+        Part p = pc.getPart(pnum);
 
         if (p != null) {
             jTextFieldDeletePartName.setText(p.getPnavn());
@@ -931,6 +968,34 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             jLabelDeleteStatus.setText("No such part!");
         }
     }//GEN-LAST:event_jButtonDeleteLoadActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        clearGetFields();
+    }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jTextFieldNewPartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNewPartNoFocusGained
+        // TODO add your handling code here:
+        jLabelSaved.setText("");
+    }//GEN-LAST:event_jTextFieldNewPartNoFocusGained
+
+    private void jTextFieldUpdatePartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUpdatePartNoFocusGained
+        // TODO add your handling code here:
+        jLabelUpdated.setText("");
+        jLabelUpdateStatus.setText("");
+    }//GEN-LAST:event_jTextFieldUpdatePartNoFocusGained
+
+    private void jTextFieldUpdateQtyNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUpdateQtyNoFocusGained
+        // TODO add your handling code here:
+        jLabelUpdateQtyStatus.setText("");
+        jLabelQty.setText("");
+    }//GEN-LAST:event_jTextFieldUpdateQtyNoFocusGained
+
+    private void jTextFieldDeletePartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDeletePartNoFocusGained
+        // TODO add your handling code here:
+        jLabelDeleteStatus.setText("");
+        jLabelDeleted.setText("");
+    }//GEN-LAST:event_jTextFieldDeletePartNoFocusGained
 
     /**
      * @param args the command line arguments
@@ -968,6 +1033,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDeleteLoad;
     private javax.swing.JButton jButtonDeletePart;
     private javax.swing.JButton jButtonDeletePartBack;
