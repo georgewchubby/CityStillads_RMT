@@ -7,6 +7,11 @@ package presentation;
 
 import domain.PartController;
 import domain.Part;
+import domain.Vogn;
+import domain.VognController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,7 +24,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     /**
      * Creates new form ResourceManagementSystemFrame
      */
-    private PartController pc = new PartController();
+    private final PartController pc = new PartController();
+    private final VognController vc = new VognController();
 
     public ResourceManagementSystemFrame() {
         initComponents();
@@ -62,12 +68,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldDeletePartDescription.setText("");
         jLabelDeleted.setText("");
     }
-    
+
     private void clearDeleteFields2() {
         jTextFieldDeletePartNo.setText("");
         jTextFieldDeletePartName.setText("");
         jTextFieldDeletePartQuantity.setText("");
         jTextFieldDeletePartDescription.setText("");
+    }
+
+    private void clearVognFields() {
+        jTextFieldVognNo.setText("");
+        jTextFieldVognOno.setText("");
+        jTextFieldVognType.setText("");
+        jTextFieldVognStatus.setText("");
+        jTextFieldVognReservedFrom.setText("");
+        jTextFieldVognReservedTo.setText("");
+        jLabelVognStatus.setText("");
     }
 
     /**
@@ -137,7 +153,31 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelDeleted = new javax.swing.JLabel();
         jButtonDeleteLoad = new javax.swing.JButton();
         jLabelDeleteStatus = new javax.swing.JLabel();
-        jTabbedPaneParts = new javax.swing.JTabbedPane();
+        jFrameAllParts = new javax.swing.JFrame();
+        jPanelAllParts = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButtonAllPartsLoad = new javax.swing.JButton();
+        jButtonAllPartsBack = new javax.swing.JButton();
+        jFrameNewVogn = new javax.swing.JFrame();
+        jPanelNewPart1 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jTextFieldVognNewNo = new javax.swing.JTextField();
+        jTextFieldVognNewType = new javax.swing.JTextField();
+        jTextFieldVognNewStatus = new javax.swing.JTextField();
+        jTextFieldVognNewOno = new javax.swing.JTextField();
+        jButtonSaveVogn = new javax.swing.JButton();
+        jButtonNewVognBack = new javax.swing.JButton();
+        jLabelSaved1 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jTextFieldVognNewResFrom = new javax.swing.JTextField();
+        jTextFieldVognNewResUntil = new javax.swing.JTextField();
+        jTabbedPane = new javax.swing.JTabbedPane();
         jPanelGetPart = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -154,7 +194,27 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonDeletePart = new javax.swing.JButton();
         jTextFieldPartDescription = new javax.swing.JTextField();
         jButtonClear = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jButtonAllParts = new javax.swing.JButton();
+        jPanelGetVogn = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jTextFieldVognNo = new javax.swing.JTextField();
+        jTextFieldVognType = new javax.swing.JTextField();
+        jTextFieldVognStatus = new javax.swing.JTextField();
+        jButtonGetVogn = new javax.swing.JButton();
+        jLabelVognStatus = new javax.swing.JLabel();
+        jButtonNewVogn = new javax.swing.JButton();
+        jButtonUpdateVogn = new javax.swing.JButton();
+        jButtonDeleteVogn = new javax.swing.JButton();
+        jTextFieldVognOno = new javax.swing.JTextField();
+        jButtonVognClear = new javax.swing.JButton();
+        jButtonAllVogn = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jTextFieldVognReservedFrom = new javax.swing.JTextField();
+        jTextFieldVognReservedTo = new javax.swing.JTextField();
 
         jFrameNewPart.setMinimumSize(new java.awt.Dimension(550, 350));
 
@@ -605,9 +665,188 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addComponent(jPanelDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jScrollPane1.setViewportView(jTable1);
+
+        jButtonAllPartsLoad.setText("Load Part");
+
+        jButtonAllPartsBack.setText("Back");
+
+        javax.swing.GroupLayout jPanelAllPartsLayout = new javax.swing.GroupLayout(jPanelAllParts);
+        jPanelAllParts.setLayout(jPanelAllPartsLayout);
+        jPanelAllPartsLayout.setHorizontalGroup(
+            jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
+                .addComponent(jButtonAllPartsLoad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAllPartsBack)
+                .addContainerGap())
+        );
+        jPanelAllPartsLayout.setVerticalGroup(
+            jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAllPartsLoad)
+                    .addComponent(jButtonAllPartsBack))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jFrameAllPartsLayout = new javax.swing.GroupLayout(jFrameAllParts.getContentPane());
+        jFrameAllParts.getContentPane().setLayout(jFrameAllPartsLayout);
+        jFrameAllPartsLayout.setHorizontalGroup(
+            jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrameAllPartsLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jFrameAllPartsLayout.setVerticalGroup(
+            jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrameAllPartsLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setText("Create new truck");
+
+        jLabel26.setText("Truck No");
+
+        jLabel31.setText("Truck Type");
+
+        jLabel32.setText("Truck Status");
+
+        jLabel33.setText("Order No");
+
+        jTextFieldVognNewNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldVognNewNo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldVognNewNoFocusGained(evt);
+            }
+        });
+
+        jButtonSaveVogn.setText("Save Truck");
+        jButtonSaveVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveVognActionPerformed(evt);
+            }
+        });
+
+        jButtonNewVognBack.setText("Back");
+        jButtonNewVognBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewVognBackActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setText("Reserved From");
+
+        jLabel35.setText("Reserved Until");
+
+        javax.swing.GroupLayout jPanelNewPart1Layout = new javax.swing.GroupLayout(jPanelNewPart1);
+        jPanelNewPart1.setLayout(jPanelNewPart1Layout);
+        jPanelNewPart1Layout.setHorizontalGroup(
+            jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel26))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldVognNewResUntil)
+                            .addComponent(jTextFieldVognNewResFrom)
+                            .addComponent(jTextFieldVognNewType, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(jTextFieldVognNewStatus, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                                .addComponent(jButtonSaveVogn)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonNewVognBack))
+                            .addComponent(jLabelSaved1)
+                            .addComponent(jLabel25))))
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+
+        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
+
+        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil, jTextFieldVognNewStatus, jTextFieldVognNewType});
+
+        jPanelNewPart1Layout.setVerticalGroup(
+            jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel25)
+                .addGap(34, 34, 34)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(jTextFieldVognNewType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(jTextFieldVognNewStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognNewResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognNewResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
+                .addGap(36, 36, 36)
+                .addComponent(jLabelSaved1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSaveVogn)
+                    .addComponent(jButtonNewVognBack))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
+
+        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil, jTextFieldVognNewStatus, jTextFieldVognNewType});
+
+        javax.swing.GroupLayout jFrameNewVognLayout = new javax.swing.GroupLayout(jFrameNewVogn.getContentPane());
+        jFrameNewVogn.getContentPane().setLayout(jFrameNewVognLayout);
+        jFrameNewVognLayout.setHorizontalGroup(
+            jFrameNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelNewPart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jFrameNewVognLayout.setVerticalGroup(
+            jFrameNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelNewPart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPaneParts.setMinimumSize(new java.awt.Dimension(550, 350));
+        jTabbedPane.setMinimumSize(new java.awt.Dimension(550, 350));
 
         jLabel1.setText("Part No");
 
@@ -659,6 +898,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonAllParts.setText("All Parts");
+        jButtonAllParts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAllPartsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelGetPartLayout = new javax.swing.GroupLayout(jPanelGetPart);
         jPanelGetPart.setLayout(jPanelGetPartLayout);
         jPanelGetPartLayout.setHorizontalGroup(
@@ -689,7 +935,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAllParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
@@ -702,53 +949,180 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldPartNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNewPart))
+                    .addComponent(jButtonAllParts))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPartName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUpdatePart))
+                    .addComponent(jButtonNewPart))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldPartQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUpdateQty))
+                    .addComponent(jButtonUpdatePart))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDeletePart))
+                    .addComponent(jButtonUpdateQty))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetPart)
-                    .addComponent(jButtonClear))
-                .addContainerGap(63, Short.MAX_VALUE))
+                    .addComponent(jButtonClear)
+                    .addComponent(jButtonDeletePart))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
-        jTabbedPaneParts.addTab("Parts", jPanelGetPart);
+        jTabbedPane.addTab("Parts", jPanelGetPart);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+        jLabel27.setText("Truck No");
+
+        jLabel28.setText("Truck Type");
+
+        jLabel29.setText("Status");
+
+        jLabel30.setText("Order No");
+
+        jButtonGetVogn.setText("Get Truck");
+        jButtonGetVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGetVognActionPerformed(evt);
+            }
+        });
+
+        jButtonNewVogn.setText("New Truck");
+        jButtonNewVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewVognActionPerformed(evt);
+            }
+        });
+
+        jButtonUpdateVogn.setText("Update Truck");
+        jButtonUpdateVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateVognActionPerformed(evt);
+            }
+        });
+
+        jButtonDeleteVogn.setText("Delete Truck");
+        jButtonDeleteVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteVognActionPerformed(evt);
+            }
+        });
+
+        jButtonVognClear.setText("Clear");
+        jButtonVognClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognClearActionPerformed(evt);
+            }
+        });
+
+        jButtonAllVogn.setText("All Trucks");
+        jButtonAllVogn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAllVognActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Reserved From");
+
+        jLabel24.setText("Reserved Until");
+
+        javax.swing.GroupLayout jPanelGetVognLayout = new javax.swing.GroupLayout(jPanelGetVogn);
+        jPanelGetVogn.setLayout(jPanelGetVognLayout);
+        jPanelGetVognLayout.setHorizontalGroup(
+            jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                        .addComponent(jButtonGetVogn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonVognClear))
+                    .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                        .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel27))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldVognReservedFrom)
+                            .addComponent(jTextFieldVognNo)
+                            .addComponent(jTextFieldVognType)
+                            .addComponent(jTextFieldVognStatus)
+                            .addComponent(jTextFieldVognOno)
+                            .addComponent(jTextFieldVognReservedTo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonUpdateVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAllVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(87, 107, Short.MAX_VALUE))
         );
 
-        jTabbedPaneParts.addTab("tab2", jPanel2);
+        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
+
+        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel23, jLabel24, jLabel27, jLabel28, jLabel29, jLabel30});
+
+        jPanelGetVognLayout.setVerticalGroup(
+            jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(jTextFieldVognNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAllVogn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jTextFieldVognType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNewVogn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jTextFieldVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonUpdateVogn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(jTextFieldVognOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDeleteVogn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognReservedFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognReservedTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGetVogn)
+                    .addComponent(jButtonVognClear))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
+
+        jTabbedPane.addTab("Fleet", jPanelGetVogn);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -790,16 +1164,32 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         String newDesc = jTextFieldNewPartDescription.getText();
 
         if (jTextFieldNewPartNo.getText().compareTo("") == 0) {
-            Part p = new Part(newName, newDesc, newQty);
-            pc.saveNewPart(p);
-            clearNewFields();
+            try {
+                Part p = new Part(newName, newDesc, newQty);
+                pc.saveNewPart(p);
+                clearNewFields();
+                jLabelSaved.setText("Saved");
+            } catch (SQLException ex) {
+                if (ex.getErrorCode() == 1) {
+                    JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         } else {
-            Part p = new Part(Integer.parseInt(jTextFieldNewPartNo.getText()), newName, newDesc, newQty);
-            pc.saveNewPartWitnum(p);
-            clearNewFields();
+            try {
+                Part p = new Part(Integer.parseInt(jTextFieldNewPartNo.getText()), newName, newDesc, newQty);
+                pc.saveNewPartWitnum(p);
+                clearNewFields();
+                jLabelSaved.setText("Saved");
+            } catch (SQLException ex) {
+                if (ex.getErrorCode() == 1) {
+                    JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
-
-        jLabelSaved.setText("Saved");
     }//GEN-LAST:event_jButtonSavePartActionPerformed
 
     private void jButtonNewPartBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPartBackActionPerformed
@@ -997,6 +1387,74 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelDeleted.setText("");
     }//GEN-LAST:event_jTextFieldDeletePartNoFocusGained
 
+    private void jButtonAllPartsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonAllPartsActionPerformed
+
+    private void jButtonGetVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetVognActionPerformed
+        // TODO add your handling code here:
+        int vognID = 0;
+
+        if (jTextFieldVognNo.getText().equals("")) {
+            vognID = 0;
+        } else {
+            vognID = Integer.parseInt(jTextFieldVognNo.getText());
+        }
+
+        clearVognFields();
+
+        Vogn v = vc.getVogn(vognID);
+
+        if (v != null) {
+            jTextFieldVognNo.setText(v.getVognID() + "");
+            jTextFieldVognOno.setText(v.getOno() + "");
+            jTextFieldVognType.setText(v.getvType());
+            jTextFieldVognStatus.setText(v.getStatus());
+            jTextFieldVognReservedFrom.setText(v.getReserveretFra());
+            jTextFieldVognReservedTo.setText(v.getReserveretTil());
+        } else {
+            jLabelVognStatus.setText("No such truck");
+        }
+    }//GEN-LAST:event_jButtonGetVognActionPerformed
+
+    private void jButtonNewVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNewVognActionPerformed
+
+    private void jButtonUpdateVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateVognActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateVognActionPerformed
+
+    private void jButtonDeleteVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteVognActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteVognActionPerformed
+
+    private void jButtonVognClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognClearActionPerformed
+        // TODO add your handling code here:
+        clearVognFields();
+    }//GEN-LAST:event_jButtonVognClearActionPerformed
+
+    private void jButtonAllVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllVognActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAllVognActionPerformed
+
+    private void jTextFieldVognNewNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewNoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldVognNewNoFocusGained
+
+    private void jButtonSaveVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveVognActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonSaveVognActionPerformed
+
+    private void jButtonNewVognBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognBackActionPerformed
+        // TODO add your handling code here:
+        jFrameNewVogn.setVisible(false);
+        jFrameNewVogn.dispose();
+        clearVognFields();
+    }//GEN-LAST:event_jButtonNewVognBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1033,15 +1491,24 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAllParts;
+    private javax.swing.JButton jButtonAllPartsBack;
+    private javax.swing.JButton jButtonAllPartsLoad;
+    private javax.swing.JButton jButtonAllVogn;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDeleteLoad;
     private javax.swing.JButton jButtonDeletePart;
     private javax.swing.JButton jButtonDeletePartBack;
     private javax.swing.JButton jButtonDeletePartDelete;
+    private javax.swing.JButton jButtonDeleteVogn;
     private javax.swing.JButton jButtonGetPart;
+    private javax.swing.JButton jButtonGetVogn;
     private javax.swing.JButton jButtonNewPart;
     private javax.swing.JButton jButtonNewPartBack;
+    private javax.swing.JButton jButtonNewVogn;
+    private javax.swing.JButton jButtonNewVognBack;
     private javax.swing.JButton jButtonSavePart;
+    private javax.swing.JButton jButtonSaveVogn;
     private javax.swing.JButton jButtonUpdatePart;
     private javax.swing.JButton jButtonUpdatePartBack;
     private javax.swing.JButton jButtonUpdatePartLoad;
@@ -1050,8 +1517,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUpdateQtyBack;
     private javax.swing.JButton jButtonUpdateQtyLoad;
     private javax.swing.JButton jButtonUpdateQtyUpdate;
+    private javax.swing.JButton jButtonUpdateVogn;
+    private javax.swing.JButton jButtonVognClear;
+    private javax.swing.JFrame jFrameAllParts;
     private javax.swing.JFrame jFrameDeletePart;
     private javax.swing.JFrame jFrameNewPart;
+    private javax.swing.JFrame jFrameNewVogn;
     private javax.swing.JFrame jFrameUpdatePart;
     private javax.swing.JFrame jFrameUpdateQty;
     private javax.swing.JLabel jLabel1;
@@ -1069,7 +1540,20 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1080,17 +1564,23 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDeleted;
     private javax.swing.JLabel jLabelQty;
     private javax.swing.JLabel jLabelSaved;
+    private javax.swing.JLabel jLabelSaved1;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelUpdateQtyStatus;
     private javax.swing.JLabel jLabelUpdateStatus;
     private javax.swing.JLabel jLabelUpdated;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabelVognStatus;
+    private javax.swing.JPanel jPanelAllParts;
     private javax.swing.JPanel jPanelDeletePart;
     private javax.swing.JPanel jPanelGetPart;
+    private javax.swing.JPanel jPanelGetVogn;
     private javax.swing.JPanel jPanelNewPart;
+    private javax.swing.JPanel jPanelNewPart1;
     private javax.swing.JPanel jPanelUpdatePart;
     private javax.swing.JPanel jPanelUpdateQty;
-    private javax.swing.JTabbedPane jTabbedPaneParts;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldDeletePartDescription;
     private javax.swing.JTextField jTextFieldDeletePartName;
     private javax.swing.JTextField jTextFieldDeletePartNo;
@@ -1109,5 +1599,17 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUpdateQtyName;
     private javax.swing.JTextField jTextFieldUpdateQtyNo;
     private javax.swing.JTextField jTextFieldUpdateQtyQty;
+    private javax.swing.JTextField jTextFieldVognNewNo;
+    private javax.swing.JTextField jTextFieldVognNewOno;
+    private javax.swing.JTextField jTextFieldVognNewResFrom;
+    private javax.swing.JTextField jTextFieldVognNewResUntil;
+    private javax.swing.JTextField jTextFieldVognNewStatus;
+    private javax.swing.JTextField jTextFieldVognNewType;
+    private javax.swing.JTextField jTextFieldVognNo;
+    private javax.swing.JTextField jTextFieldVognOno;
+    private javax.swing.JTextField jTextFieldVognReservedFrom;
+    private javax.swing.JTextField jTextFieldVognReservedTo;
+    private javax.swing.JTextField jTextFieldVognStatus;
+    private javax.swing.JTextField jTextFieldVognType;
     // End of variables declaration//GEN-END:variables
 }
