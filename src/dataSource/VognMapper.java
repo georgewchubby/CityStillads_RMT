@@ -1,5 +1,4 @@
 package dataSource;
- 
 
 import domain.Vogn;
 import java.sql.Connection;
@@ -7,16 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 //=== Maps between objects and tables
 //=== Encapsulates SQL-statements
 // hau
 public class VognMapper {
-  
-      public boolean saveNewVogn(Vogn v, Connection con) {
+
+    public boolean saveNewVogn(Vogn v, Connection con) {
         int rowsInserted = 0;
-            String SQLString2 =
-                "insert into Vogn "
+        String SQLString2
+                = "insert into Vogn "
                 + "values (?,?,?,?,?,?)";
         PreparedStatement statement = null;
 
@@ -29,7 +27,7 @@ public class VognMapper {
             statement.setInt(4, v.getOno());
             statement.setString(5, v.getReserveretFra());
             statement.setString(6, v.getReserveretTil());
-        
+
             rowsInserted = statement.executeUpdate();
         } catch (Exception e) {
             System.out.println("Fail in VognMapper - saveNewVogn");
@@ -45,33 +43,27 @@ public class VognMapper {
         }
         return rowsInserted == 1;
     }
-    
+
     public Vogn getVogn(int vognID, Connection con) {
         Vogn v = null;
         String SQLString1 = // get order
                 "select * "
                 + "from vogn "
                 + "where vognno = ?";
-     
-        // foreign key match 
         PreparedStatement statement = null;
-
         try {
             //=== get order
             statement = con.prepareStatement(SQLString1);
             statement.setInt(1, vognID);     // primary key value
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                v = new Vogn(vognID,                     
+                v = new Vogn(vognID,
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(6),
-                        rs.getString(4),
-                        rs.getString(5));
-                       
-      
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6));
             }
-
 
         } catch (Exception e) {
             System.out.println("Fail in VognMapper - getVogn");
@@ -87,32 +79,40 @@ public class VognMapper {
         }
         return v;
     }
-
-    //== Insert new order (tuple)
-
-
-    //== Insert new order detail (tuple)
-    
     /*
-     *---------------------Update Order-----------------------------------------  
+     *---------------------Update Vogn-----------------------------------------  
      */
-    
-    public boolean updateVognStatus(Vogn v, Connection con)
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getStatus() != origVogn.getStatus())
-             {
-                 SQLString = "UPDATE Vogn status "+
-                    "SET status ="+ v.getStatus() +"where vognno = "+ v.getVognID() +";";
-             }
-        PreparedStatement statement = null;
+    public boolean updateVognStatus(int vognID, String stat, Connection con) {
+        int rowUpdated = 0;
+        String origStat;
 
+        String SQLString1 = // querry status
+                "select status "
+                + "from vogn "
+                + "where vognno = ?";
+
+        String SQLString2 = "UPDATE vogn "
+                + "SET status = ? "
+                + "WHERE vognno = ? "; // updates status if not match
+
+        PreparedStatement statement = null;
         try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
+            //=== get order
+            statement = con.prepareStatement(SQLString1);
+            statement.setInt(1, vognID);
+//            statement.setString(2,stat );
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                origStat = rs.getString(1);
+                System.out.println("origstat   " + origStat);
+                if (origStat.compareTo(stat) != 0) {
+                    statement = con.prepareStatement(SQLString2);
+                    statement.setString(1, stat);
+                    statement.setInt(2, vognID);
+                    rowUpdated = statement.executeUpdate();
+                }
+            }
         } catch (Exception e) {
             System.out.println("Fail in vognMapper - updateVogn");
             System.out.println(e.getMessage());
@@ -125,125 +125,204 @@ public class VognMapper {
                 System.out.println(e.getMessage());
             }
         }
+
         return rowUpdated == 1;
     }
-    
-    public boolean updateVognDatoFra(Vogn v, Connection con) throws SQLException
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getReserveretFra() != origVogn.getReserveretFra())
-             {
-                 SQLString = "UPDATE Vogn DatoFra "+
-                    "SET datofra ="+ v.getReserveretFra() +"where vognNo = "+ v.getVognID() +";";
-             }
-             else if (v.getReserveretFra() == origVogn.getReserveretFra()){
-             
-           
-          throw new SQLException("VognMapper - Update Vogn Dato Fra");
-             }
-        PreparedStatement statement = null;
 
+    public boolean updateVognNO(int vognID, int NewvognNO, Connection con) {
+        int rowUpdated = 0;
+        int origno;
+
+        String SQLString1 = // querry status
+                "select vognno "
+                + "from vogn "
+                + "where vognno = ?";
+
+        String SQLString2 = "UPDATE vogn "
+                + "SET vognno = ? "
+                + "WHERE vognno = ? "; // updates status if not match
+
+        PreparedStatement statement = null;
         try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
+            //=== get order
+            statement = con.prepareStatement(SQLString1);
+            statement.setInt(1, vognID);
+//            statement.setString(2,stat );
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                origno = rs.getInt(1);
+                System.out.println("origNO  " + origno);
+                if (NewvognNO != vognID) {
+                    statement = con.prepareStatement(SQLString2);
+                    statement.setInt(1, NewvognNO);
+                    statement.setInt(2, vognID);
+                    rowUpdated = statement.executeUpdate();
+                }
+            }
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - updateVogndatofra");
+            System.out.println("Fail in vognMapper - updateVogn");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - updateVogndatofra");
+                System.out.println("Fail in vognMapper - updateVogn");
                 System.out.println(e.getMessage());
             }
         }
+
         return rowUpdated == 1;
     }
-    public boolean updateVognDatoTil(Vogn v, Connection con) throws SQLException
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Vogn origVogn = getVogn(v.getVognID(), con);
-             if (v.getReserveretTil() != origVogn.getReserveretTil())
-             {
-                 SQLString = "UPDATE Vogn DatoTil "+
-                    "SET datoTil ="+ v.getReserveretTil() +"where vognno = "+ v.getVognID() +";";
-             }
-             else if (v.getReserveretTil() == origVogn.getReserveretTil()){
-             
-           
-          throw new SQLException("VognMapper - Update Vogn Dato Til");
-             }
-        PreparedStatement statement = null;
 
+    public boolean updateVognOno(int vognID, int Ono, Connection con) {
+        int rowUpdated = 0;
+        int origOno;
+
+        String SQLString1 = // querry status
+                "select Ono "
+                + "from vogn "
+                + "where vognno = ?";
+
+        String SQLString2 = "UPDATE vogn "
+                + "SET Ono = ? "
+                + "WHERE vognno = ? "; // updates status if not match
+
+        PreparedStatement statement = null;
         try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
+            //=== get order
+            statement = con.prepareStatement(SQLString1);
+            statement.setInt(1, vognID);
+//            statement.setString(2,stat );
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                origOno = rs.getInt(1);
+                System.out.println("origOno   " + origOno);
+                if (origOno != Ono) {
+                    statement = con.prepareStatement(SQLString2);
+                    statement.setInt(1, Ono);
+                    statement.setInt(2, vognID);
+                    rowUpdated = statement.executeUpdate();
+                }
+            }
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - update Vogn Dato Til");
+            System.out.println("Fail in vognMapper - updateVogn");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - update Vogn dato til");
+                System.out.println("Fail in vognMapper - updateVogn");
                 System.out.println(e.getMessage());
             }
         }
+
         return rowUpdated == 1;
     }
-    
-      public boolean updateVognOno(Vogn v, Connection con) throws SQLException
-    {
-            int rowUpdated = 0;
-            String SQLString = "";
-            Vogn origVogn = getVogn(v.getOno(), con);
-             if (v.getVognID() != origVogn.getVognID())
-             {
-                 SQLString = "UPDATE Vogn vognID "+
-                    "SET vognID ="+ v.getVognID() +"where Ono = "+ v.getOno() +";";
-             }
-             else if (v.getVognID() == origVogn.getVognID()){
-             
-           
-          throw new SQLException("VognMapper - Update Vogn Ono");
-             }
-        PreparedStatement statement = null;
 
+    public boolean updateVognDatoFra(int vognID, String From, Connection con) throws SQLException {
+        int rowUpdated = 0;
+        String origFrom;
+
+        String SQLString1 = // querry status
+                "select reservedfrom "
+                + "from vogn "
+                + "where vognno = ?";
+
+        String SQLString2 = "UPDATE vogn "
+                + "SET reservedfrom = ? "
+                + "WHERE vognno = ? "; // updates status if not match
+
+        PreparedStatement statement = null;
         try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
+            //=== get order
+            statement = con.prepareStatement(SQLString1);
+            statement.setInt(1, vognID);
+//            statement.setString(2,stat );
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                origFrom = rs.getString(1);
+                System.out.println("origFrom   " + origFrom);
+                if (origFrom.compareTo(From) != 0) {
+                    statement = con.prepareStatement(SQLString2);
+                    statement.setString(1, From);
+                    statement.setInt(2, vognID);
+                    rowUpdated = statement.executeUpdate();
+                }
+            }
         } catch (Exception e) {
-            System.out.println("Fail in VognMapper - Update Vogn Ono");
+            System.out.println("Fail in vognMapper - updateFromDato");
             System.out.println(e.getMessage());
         } finally // must close statement
         {
             try {
                 statement.close();
             } catch (SQLException e) {
-                System.out.println("Fail in VognMapper - Update Vogn Ono");
+                System.out.println("Fail in vognMapper - updateFromDato");
                 System.out.println(e.getMessage());
             }
         }
+
         return rowUpdated == 1;
     }
-    
-    
-    //-----------------------Delet Order--------------------------------------//
-    
-    public boolean deleteVogn(Vogn v, Connection con)
-    {
+
+    public boolean updateVognDatoTil(int vognID, String To, Connection con) throws SQLException {
+        int rowUpdated = 0;
+        String origTo;
+
+        String SQLString1 = // querry status
+                "select reservedtil "
+                + "from vogn "
+                + "where vognno = ?";
+
+        String SQLString2 = "UPDATE vogn "
+                + "SET reservedtil = ? "
+                + "WHERE vognno = ? "; // updates status if not match
+
+        PreparedStatement statement = null;
+        try {
+            //=== get order
+            statement = con.prepareStatement(SQLString1);
+            statement.setInt(1, vognID);
+//            statement.setString(2,stat );
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                origTo = rs.getString(1);
+                System.out.println("origTo   " + origTo);
+                if (origTo.compareTo(To) != 0) {
+                    statement = con.prepareStatement(SQLString2);
+                    statement.setString(1, To);
+                    statement.setInt(2, vognID);
+                    rowUpdated = statement.executeUpdate();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in vognMapper - updateFromDato");
+            System.out.println(e.getMessage());
+        } finally // must close statement
+        {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Fail in vognMapper - updateFromDato");
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return rowUpdated == 1;
+    }
+
+    //-----------------------Delete Vogn--------------------------------------//
+    public boolean deleteVogn(int vognID, Connection con) {
         int vognDeleted = 0;
-        String SQLString = "DELETE FROM Vogn "+
-        "WHERE vognID = "+ v.getVognID()+ ";";
-    
+        String SQLString = "DELETE FROM Vogn "
+                + "WHERE vognno = " + vognID;
+
         PreparedStatement statement = null;
 
         try {
@@ -262,11 +341,7 @@ public class VognMapper {
                 System.out.println(e.getMessage());
             }
         }
-         return vognDeleted == 1 ;
+        return vognDeleted == 1;
     }
 }
-    
-    
-    
-    //------------------Updated Order Details--------------------------------//
-    
+

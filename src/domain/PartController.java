@@ -1,6 +1,7 @@
 package domain;
 
 import dataSource.*;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,7 +22,7 @@ public class PartController {
         return currentPart;
     }
 
-    public boolean saveNewPartWitnum(Part p) {
+    public boolean saveNewPartWitnum(Part p) throws SQLException {
         currentPart = p;
 
         boolean saved = pf.saveNewPartWitnum(currentPart);
@@ -29,7 +30,7 @@ public class PartController {
         return saved;
     }
 
-    public boolean saveNewPart(Part p) {
+    public boolean saveNewPart(Part p) throws SQLException {
         currentPart = p;
 
         boolean saved = pf.saveNewPart(currentPart);

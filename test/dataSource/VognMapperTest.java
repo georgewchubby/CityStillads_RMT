@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -6,6 +6,8 @@ package dataSource;
 
 import domain.Vogn;
 import java.sql.Connection;
+import java.sql.SQLException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,10 +19,22 @@ import static org.junit.Assert.*;
 public class VognMapperTest {
     
     public VognMapperTest() {
+        
     }
     
     @Before
     public void setUp() {
+        Connection con = new DBConnector().getConnection();
+        VognMapper instance = new VognMapper();
+        instance.deleteVogn(12000000, con);
+        
+    }
+    @After
+    public void tearDown() {
+        Connection con = new DBConnector().getConnection();
+        VognMapper instance = new VognMapper();
+        instance.deleteVogn(12000000, con);
+   
     }
 
     /**
@@ -31,8 +45,8 @@ public class VognMapperTest {
         System.out.println("saveNewVogn");
        String s = "Stor";
         String h = "Hjemme";
-        String f = "20,04,2012";
-        String sl = "20,12,2012";
+        String f = "20-04-2012";
+        String sl = "20-12-2012";
         Vogn v = new Vogn(12000000,s,h,1,f,sl);
         Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
@@ -46,14 +60,19 @@ public class VognMapperTest {
     @Test
     public void testGetVogn() {
         System.out.println("getVogn");
-        int vognID = 0;
-        Connection con = null;
+        String s = "Stor";
+        String h = "Hjemme";
+        String f = "20-04-2012";
+        String sl = "20-12-2012";
+        int vognID = 12000000;
+        Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        Vogn expResult = null;
+        Vogn expResult = new Vogn(12000000,s,h,1,f,sl);
+        instance.saveNewVogn(expResult, con);
         Vogn result = instance.getVogn(vognID, con);
-        assertEquals(expResult, result);
+        assertEquals(expResult.getVognID(), result.getVognID());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -62,14 +81,21 @@ public class VognMapperTest {
     @Test
     public void testUpdateVognStatus() {
         System.out.println("updateVognStatus");
-        Vogn v = null;
-        Connection con = null;
+        String type = "Stor";
+        String stat = "Hjemme";
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+        String statU = "Ude";
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        
+        Connection con =  new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.updateVognStatus(v, con);
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.updateVognStatus(12000000,statU, con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -78,14 +104,20 @@ public class VognMapperTest {
     @Test
     public void testUpdateVognDatoFra() throws Exception {
         System.out.println("updateVognDatoFra");
-        Vogn v = null;
-        Connection con = null;
+
+        String type = "Stor";
+        String stat = "Hjemme";
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+        String FraU = "22-05-2011";
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        Connection con =  new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.updateVognDatoFra(v, con);
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.updateVognDatoFra(12000000,FraU, con);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -94,14 +126,20 @@ public class VognMapperTest {
     @Test
     public void testUpdateVognDatoTil() throws Exception {
         System.out.println("updateVognDatoTil");
-        Vogn v = null;
-        Connection con = null;
+
+
+        String type = "Stor";
+        String stat = "Hjemme";
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+        String TIL = "23-06-2012";
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        Connection con =  new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.updateVognDatoTil(v, con);
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.updateVognDatoTil(12000000,TIL, con);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -110,14 +148,38 @@ public class VognMapperTest {
     @Test
     public void testUpdateVognOno() throws Exception {
         System.out.println("updateVognOno");
-        Vogn v = null;
-        Connection con = null;
+        String type = "Stor";
+        String stat = "Hjemme";
+        int Ono = 5;
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+       
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        Connection con =  new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.updateVognOno(v, con);
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.updateVognOno(12000000,Ono, con);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    
+       @Test
+    public void testUpdateVognNO() throws Exception {
+        System.out.println("updateVognNO");
+        String type = "Stor";
+        String stat = "Hjemme";
+       
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+        int vognno = 12121212;
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        Connection con =  new DBConnector().getConnection();
+        VognMapper instance = new VognMapper();
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.updateVognNO(12000000, vognno, con);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -126,13 +188,20 @@ public class VognMapperTest {
     @Test
     public void testDeleteVogn() {
         System.out.println("deleteVogn");
-        Vogn v = null;
-        Connection con = null;
+        String type = "Stor";
+        String stat = "Hjemme";
+        String fra = "20-04-2012";
+        String til = "20-12-2012";
+      
+        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
+        
+        Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
-        boolean expResult = false;
-        boolean result = instance.deleteVogn(v, con);
+        instance.saveNewVogn(v, con);
+        boolean expResult = true;
+        boolean result = instance.deleteVogn(12000000, con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 }

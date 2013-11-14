@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,25 +53,20 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple)
-    public boolean saveNewPartWitnum(Part p, Connection con) {
+    public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString
                 = "insert into parts "
                 + "values (?,?,?,?)";
         PreparedStatement statement = null;
 
-        try {
-            //== insert tuple
-            statement = con.prepareStatement(SQLString);
-            statement.setInt(1, p.getPnum());
-            statement.setString(2, p.getPnavn());
-            statement.setString(3, p.getPbeskrivelse());
-            statement.setInt(4, p.getQty());
-            rowsInserted = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - saveNewPart");
-            System.out.println(e.getMessage());
-        } finally // must close statement
+        //== insert tuple
+        statement = con.prepareStatement(SQLString);
+        statement.setInt(1, p.getPnum());
+        statement.setString(2, p.getPnavn());
+        statement.setString(3, p.getPbeskrivelse());
+        statement.setInt(4, p.getQty());
+        rowsInserted = statement.executeUpdate();
         {
             try {
                 statement.close();
@@ -82,24 +79,21 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple) auto part number assigned
-    public boolean saveNewPart(Part p, Connection con) {
+    public boolean saveNewPart(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString = "insert into parts (pno, pname, description, qty) "
                 + "values (part_seq.nextval,?,?,?)";
 
         PreparedStatement statement = null;
-        try {
-            //== insert tuple
-            statement = con.prepareStatement(SQLString);
-            //statement.setInt(1, p.getPnum());
-            statement.setString(1, p.getPnavn());
-            statement.setString(2, p.getPbeskrivelse());
-            statement.setInt(3, p.getQty());
-            rowsInserted = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - saveNewPart");
-            System.out.println(e.getMessage());
-        } finally // must close statement
+
+        //== insert tuple
+        statement = con.prepareStatement(SQLString);
+        //statement.setInt(1, p.getPnum());
+        statement.setString(1, p.getPnavn());
+        statement.setString(2, p.getPbeskrivelse());
+        statement.setInt(3, p.getQty());
+        rowsInserted = statement.executeUpdate();
+
         {
             try {
 

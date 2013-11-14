@@ -2,6 +2,7 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -30,11 +31,11 @@ public class PDBFacade {
         return pm.getPart(pno, con);
     }
 
-    public boolean saveNewPartWitnum(Part p) {
+    public boolean saveNewPartWitnum(Part p) throws SQLException {
         return pm.saveNewPartWitnum(p, con);
     }
 
-    public boolean saveNewPart(Part p) {
+    public boolean saveNewPart(Part p) throws SQLException {
         return pm.saveNewPart(p, con);
     }
 
