@@ -22,7 +22,7 @@ public class VognController {
         return currentVogn;
     }
     
-    public boolean saveVogn(Vogn v) {
+    public boolean saveVogn(Vogn v) throws SQLException {
         currentVogn = v;
         
         boolean saved = vf.saveNewVogn(currentVogn);
@@ -36,11 +36,11 @@ public class VognController {
         return updated;
     }
     
-    public boolean updateVognNo(int vognID, int newVognNo) {
-        boolean updated = vf.updateVognNo(vognID, newVognNo);
-        
-        return updated;
-    }
+//    public boolean updateVognNo(int vognID, int newVognNo) {
+//        boolean updated = vf.updateVognNo(vognID, newVognNo);
+//        
+//        return updated;
+//    }
     
     public boolean updateVognOno(int vognID, int ono) {
         boolean updated = vf.updateVognOno(vognID, ono);
@@ -55,7 +55,7 @@ public class VognController {
     }
     
     public boolean updateVognDatoTil(int vognID, String to) throws SQLException {
-        boolean updated = vf.updateVognDatoFra(vognID, to);
+        boolean updated = vf.updateVognDatoTil(vognID, to);
         
         return updated;
     }

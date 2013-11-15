@@ -31,7 +31,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void clearGetFields() {
+    private void clearPartGetFields() {
         jTextFieldPartNo.setText("");
         jTextFieldPartName.setText("");
         jTextFieldPartQuantity.setText("");
@@ -39,7 +39,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelStatus.setText("");
     }
 
-    private void clearNewFields() {
+    private void clearPartNewFields() {
         jTextFieldNewPartNo.setText("");
         jTextFieldNewPartName.setText("");
         jTextFieldNewPartQuantity.setText("");
@@ -47,21 +47,21 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelSaved.setText("");
     }
 
-    private void clearUpdateFields() {
+    private void clearPartUpdateFields() {
         jTextFieldUpdatePartNo.setText("");
         jTextFieldUpdatePartName.setText("");
         jTextFieldUpdatePartDescription.setText("");
         jLabelUpdated.setText("");
     }
 
-    private void clearUpdateQtyFields() {
+    private void clearPartUpdateQtyFields() {
         jTextFieldUpdateQtyNo.setText("");
         jTextFieldUpdateQtyName.setText("");
         jTextFieldUpdateQtyQty.setText("");
         jLabelQty.setText("");
     }
 
-    private void clearDeleteFields() {
+    private void clearPartDeleteFields() {
         jTextFieldDeletePartNo.setText("");
         jTextFieldDeletePartName.setText("");
         jTextFieldDeletePartQuantity.setText("");
@@ -69,14 +69,14 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelDeleted.setText("");
     }
 
-    private void clearDeleteFields2() {
+    private void clearPartDeleteFields2() {
         jTextFieldDeletePartNo.setText("");
         jTextFieldDeletePartName.setText("");
         jTextFieldDeletePartQuantity.setText("");
         jTextFieldDeletePartDescription.setText("");
     }
 
-    private void clearVognFields() {
+    private void clearVognGetFields() {
         jTextFieldVognNo.setText("");
         jTextFieldVognOno.setText("");
         jTextFieldVognType.setText("");
@@ -84,6 +84,37 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognReservedFrom.setText("");
         jTextFieldVognReservedTo.setText("");
         jLabelVognStatus.setText("");
+    }
+
+    private void clearVognNewFields() {
+        jTextFieldVognNewNo.setText("");
+        jTextFieldVognNewOno.setText("");
+        jTextFieldVognNewResFrom.setText("");
+        jTextFieldVognNewResUntil.setText("");
+    }
+
+    private void clearVognUpdateFields() {
+        jTextFieldVognUpdateNo.setText("");
+        jTextFieldVognUpdateOno.setText("");
+        jTextFieldVognUpdateResFrom.setText("");
+        jTextFieldVognUpdateResUntil.setText("");
+        jComboBoxVognUpdateStatus.setSelectedIndex(0);
+        jComboBoxVognUpdateType.setSelectedIndex(0);
+        jCheckBoxOno.setSelected(false);
+        jCheckBoxStatus.setSelected(false);
+        jCheckBoxResFrom.setSelected(false);
+        jCheckBoxResUntil.setSelected(false);
+    }
+    
+    private void clearVognDeleteFields() {
+        jTextFieldVognDeleteNo.setText("");
+        jTextFieldVognDeleteOno.setText("");
+        jTextFieldVognDeleteResFrom.setText("");
+        jTextFieldVognDeleteResUntil.setText("");
+        jComboBoxVognDeleteStatus.setSelectedIndex(0);
+        jComboBoxVognDeleteType.setSelectedIndex(0);
+        jLabelVognDeleteStatus.setText("");
+        jLabelVognDeleted.setText("");
     }
 
     /**
@@ -160,23 +191,67 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonAllPartsLoad = new javax.swing.JButton();
         jButtonAllPartsBack = new javax.swing.JButton();
         jFrameNewVogn = new javax.swing.JFrame();
-        jPanelNewPart1 = new javax.swing.JPanel();
+        jPanelNewVogn = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jTextFieldVognNewNo = new javax.swing.JTextField();
-        jTextFieldVognNewType = new javax.swing.JTextField();
-        jTextFieldVognNewStatus = new javax.swing.JTextField();
         jTextFieldVognNewOno = new javax.swing.JTextField();
         jButtonSaveVogn = new javax.swing.JButton();
         jButtonNewVognBack = new javax.swing.JButton();
-        jLabelSaved1 = new javax.swing.JLabel();
+        jLabelSavedVogn = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jTextFieldVognNewResFrom = new javax.swing.JTextField();
         jTextFieldVognNewResUntil = new javax.swing.JTextField();
+        jComboBoxVognNewStatus = new javax.swing.JComboBox();
+        jComboBoxVognNewType = new javax.swing.JComboBox();
+        jFrameUpdateVogn = new javax.swing.JFrame();
+        jPanelUpdateVogn = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jTextFieldVognUpdateNo = new javax.swing.JTextField();
+        jTextFieldVognUpdateOno = new javax.swing.JTextField();
+        jButtonVognUpdateLoad = new javax.swing.JButton();
+        jButtonVognUpdateBack = new javax.swing.JButton();
+        jLabelVognUpdated = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jTextFieldVognUpdateResFrom = new javax.swing.JTextField();
+        jTextFieldVognUpdateResUntil = new javax.swing.JTextField();
+        jComboBoxVognUpdateStatus = new javax.swing.JComboBox();
+        jComboBoxVognUpdateType = new javax.swing.JComboBox();
+        jLabelUpdateVognStatus = new javax.swing.JLabel();
+        jCheckBoxStatus = new javax.swing.JCheckBox();
+        jCheckBoxOno = new javax.swing.JCheckBox();
+        jCheckBoxResFrom = new javax.swing.JCheckBox();
+        jCheckBoxResUntil = new javax.swing.JCheckBox();
+        jButtonVognUpdate = new javax.swing.JButton();
+        jFrameDeleteVogn = new javax.swing.JFrame();
+        jPanelDeleteVogn = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jTextFieldVognDeleteNo = new javax.swing.JTextField();
+        jTextFieldVognDeleteOno = new javax.swing.JTextField();
+        jButtonVognDeleteLoad = new javax.swing.JButton();
+        jButtonVognDeleteBack = new javax.swing.JButton();
+        jLabelVognDeleted = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jTextFieldVognDeleteResFrom = new javax.swing.JTextField();
+        jTextFieldVognDeleteResUntil = new javax.swing.JTextField();
+        jComboBoxVognDeleteStatus = new javax.swing.JComboBox();
+        jComboBoxVognDeleteType = new javax.swing.JComboBox();
+        jLabelVognDeleteStatus = new javax.swing.JLabel();
+        jButtonVognDelete = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelGetPart = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -216,7 +291,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognReservedFrom = new javax.swing.JTextField();
         jTextFieldVognReservedTo = new javax.swing.JTextField();
 
-        jFrameNewPart.setMinimumSize(new java.awt.Dimension(550, 350));
+        jFrameNewPart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Create new part");
@@ -319,7 +394,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addComponent(jPanelNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jFrameUpdatePart.setMinimumSize(new java.awt.Dimension(550, 350));
+        jFrameUpdatePart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Update part");
@@ -330,7 +405,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Part Description");
 
-        jTextFieldUpdatePartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldUpdatePartNo.setToolTipText("");
         jTextFieldUpdatePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldUpdatePartNoFocusGained(evt);
@@ -432,7 +507,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addComponent(jPanelUpdatePart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jFrameUpdateQty.setMinimumSize(new java.awt.Dimension(550, 350));
+        jFrameUpdateQty.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jPanelUpdateQty.setMinimumSize(new java.awt.Dimension(410, 225));
 
@@ -445,7 +520,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel17.setText("Part Quantity");
 
-        jTextFieldUpdateQtyNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldUpdateQtyNo.setToolTipText("");
         jTextFieldUpdateQtyNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldUpdateQtyNoFocusGained(evt);
@@ -548,7 +623,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addComponent(jPanelUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jFrameDeletePart.setMinimumSize(new java.awt.Dimension(550, 350));
+        jFrameDeletePart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Delete part");
@@ -561,7 +636,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel22.setText("Part Description");
 
-        jTextFieldDeletePartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldDeletePartNo.setToolTipText("");
         jTextFieldDeletePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldDeletePartNoFocusGained(evt);
@@ -665,6 +740,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addComponent(jPanelDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jFrameAllParts.setMinimumSize(new java.awt.Dimension(550, 450));
+
         jScrollPane1.setViewportView(jTable1);
 
         jButtonAllPartsLoad.setText("Load Part");
@@ -716,6 +793,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        jFrameNewVogn.setMinimumSize(new java.awt.Dimension(550, 450));
+
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Create new truck");
 
@@ -727,12 +806,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel33.setText("Order No");
 
-        jTextFieldVognNewNo.setToolTipText("Leave empty for auto-number");
-        jTextFieldVognNewNo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldVognNewNoFocusGained(evt);
-            }
-        });
+        jTextFieldVognNewNo.setToolTipText("");
 
         jButtonSaveVogn.setText("Save Truck");
         jButtonSaveVogn.addActionListener(new java.awt.event.ActionListener() {
@@ -752,15 +826,39 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel35.setText("Reserved Until");
 
-        javax.swing.GroupLayout jPanelNewPart1Layout = new javax.swing.GroupLayout(jPanelNewPart1);
-        jPanelNewPart1.setLayout(jPanelNewPart1Layout);
-        jPanelNewPart1Layout.setHorizontalGroup(
-            jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+        jTextFieldVognNewResFrom.setText("dd,mm,yyyy");
+        jTextFieldVognNewResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldVognNewResFromFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldVognNewResFromFocusLost(evt);
+            }
+        });
+
+        jTextFieldVognNewResUntil.setText("dd,mm,yyyy");
+        jTextFieldVognNewResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldVognNewResUntilFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldVognNewResUntilFocusLost(evt);
+            }
+        });
+
+        jComboBoxVognNewStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
+
+        jComboBoxVognNewType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
+
+        javax.swing.GroupLayout jPanelNewVognLayout = new javax.swing.GroupLayout(jPanelNewVogn);
+        jPanelNewVogn.setLayout(jPanelNewVognLayout);
+        jPanelNewVognLayout.setHorizontalGroup(
+            jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewVognLayout.createSequentialGroup()
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelNewVognLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35)
                             .addComponent(jLabel34)
                             .addComponent(jLabel33)
@@ -768,85 +866,395 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jLabel31)
                             .addComponent(jLabel26))
                         .addGap(10, 10, 10)
-                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldVognNewResUntil)
-                            .addComponent(jTextFieldVognNewResFrom)
-                            .addComponent(jTextFieldVognNewType, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldVognNewResUntil, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognNewResFrom, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVognNewStatus, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                            .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxVognNewStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxVognNewType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelNewVognLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+                        .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelNewVognLayout.createSequentialGroup()
                                 .addComponent(jButtonSaveVogn)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonNewVognBack))
-                            .addComponent(jLabelSaved1)
+                            .addComponent(jLabelSavedVogn)
                             .addComponent(jLabel25))))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
-        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
+        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
 
-        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil, jTextFieldVognNewStatus, jTextFieldVognNewType});
+        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil});
 
-        jPanelNewPart1Layout.setVerticalGroup(
-            jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNewPart1Layout.createSequentialGroup()
+        jPanelNewVognLayout.setVerticalGroup(
+            jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewVognLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel25)
                 .addGap(34, 34, 34)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(jTextFieldVognNewType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxVognNewType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(jTextFieldVognNewStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxVognNewStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldVognNewResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel34))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldVognNewResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35))
                 .addGap(36, 36, 36)
-                .addComponent(jLabelSaved1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelNewPart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabelSavedVogn)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSaveVogn)
                     .addComponent(jButtonNewVognBack))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
+        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
 
-        jPanelNewPart1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil, jTextFieldVognNewStatus, jTextFieldVognNewType});
+        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil});
 
         javax.swing.GroupLayout jFrameNewVognLayout = new javax.swing.GroupLayout(jFrameNewVogn.getContentPane());
         jFrameNewVogn.getContentPane().setLayout(jFrameNewVognLayout);
         jFrameNewVognLayout.setHorizontalGroup(
             jFrameNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelNewPart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jFrameNewVognLayout.setVerticalGroup(
             jFrameNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelNewPart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jFrameUpdateVogn.setMinimumSize(new java.awt.Dimension(550, 450));
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel36.setText("Update truck");
+
+        jLabel37.setText("Truck No");
+
+        jLabel38.setText("Truck Type");
+
+        jLabel39.setText("Truck Status");
+
+        jLabel40.setText("Order No");
+
+        jTextFieldVognUpdateNo.setToolTipText("");
+
+        jButtonVognUpdateLoad.setText("Load Truck");
+        jButtonVognUpdateLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognUpdateLoadActionPerformed(evt);
+            }
+        });
+
+        jButtonVognUpdateBack.setText("Back");
+        jButtonVognUpdateBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognUpdateBackActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setText("Reserved From");
+
+        jLabel42.setText("Reserved Until");
+
+        jTextFieldVognUpdateResFrom.setText("dd,mm,yyyy");
+        jTextFieldVognUpdateResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldVognUpdateResFromFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldVognUpdateResFromFocusLost(evt);
+            }
+        });
+
+        jTextFieldVognUpdateResUntil.setText("dd,mm,yyyy");
+        jTextFieldVognUpdateResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldVognUpdateResUntilFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldVognUpdateResUntilFocusLost(evt);
+            }
+        });
+
+        jComboBoxVognUpdateStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
+
+        jComboBoxVognUpdateType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
+
+        jCheckBoxStatus.setToolTipText("Check box to update this");
+
+        jCheckBoxOno.setToolTipText("Check box to update this");
+
+        jCheckBoxResFrom.setToolTipText("Check box to update this");
+
+        jCheckBoxResUntil.setToolTipText("Check box to update this");
+
+        jButtonVognUpdate.setText("Update Truck");
+        jButtonVognUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognUpdateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelUpdateVognLayout = new javax.swing.GroupLayout(jPanelUpdateVogn);
+        jPanelUpdateVogn.setLayout(jPanelUpdateVognLayout);
+        jPanelUpdateVognLayout.setHorizontalGroup(
+            jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel38)
+                            .addComponent(jLabel37))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldVognUpdateResUntil, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognUpdateResFrom, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognUpdateNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(jTextFieldVognUpdateOno, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxVognUpdateStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxVognUpdateType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxStatus)
+                            .addComponent(jCheckBoxOno)
+                            .addComponent(jCheckBoxResFrom)
+                            .addComponent(jCheckBoxResUntil)))
+                    .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                                .addComponent(jButtonVognUpdateLoad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonVognUpdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                .addComponent(jButtonVognUpdateBack))
+                            .addComponent(jLabelVognUpdated)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabelUpdateVognStatus))))
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+        jPanelUpdateVognLayout.setVerticalGroup(
+            jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelUpdateVognStatus)
+                .addGap(14, 14, 14)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(jTextFieldVognUpdateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(jComboBoxVognUpdateType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(jComboBoxVognUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxStatus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(jTextFieldVognUpdateOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxOno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognUpdateResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41)
+                    .addComponent(jCheckBoxResFrom))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognUpdateResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel42)
+                    .addComponent(jCheckBoxResUntil))
+                .addGap(34, 34, 34)
+                .addComponent(jLabelVognUpdated)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVognUpdateLoad)
+                    .addComponent(jButtonVognUpdateBack)
+                    .addComponent(jButtonVognUpdate))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jFrameUpdateVognLayout = new javax.swing.GroupLayout(jFrameUpdateVogn.getContentPane());
+        jFrameUpdateVogn.getContentPane().setLayout(jFrameUpdateVognLayout);
+        jFrameUpdateVognLayout.setHorizontalGroup(
+            jFrameUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelUpdateVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jFrameUpdateVognLayout.setVerticalGroup(
+            jFrameUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelUpdateVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jFrameDeleteVogn.setMinimumSize(new java.awt.Dimension(550, 450));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel48.setText("Delete truck");
+
+        jLabel49.setText("Truck No");
+
+        jLabel50.setText("Truck Type");
+
+        jLabel51.setText("Truck Status");
+
+        jLabel52.setText("Order No");
+
+        jTextFieldVognDeleteNo.setToolTipText("");
+
+        jButtonVognDeleteLoad.setText("Load Truck");
+        jButtonVognDeleteLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognDeleteLoadActionPerformed(evt);
+            }
+        });
+
+        jButtonVognDeleteBack.setText("Back");
+        jButtonVognDeleteBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognDeleteBackActionPerformed(evt);
+            }
+        });
+
+        jLabel53.setText("Reserved From");
+
+        jLabel54.setText("Reserved Until");
+
+        jTextFieldVognDeleteResFrom.setText("dd,mm,yyyy");
+
+        jTextFieldVognDeleteResUntil.setText("dd,mm,yyyy");
+
+        jComboBoxVognDeleteStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
+
+        jComboBoxVognDeleteType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
+
+        jButtonVognDelete.setText("Delete Truck");
+        jButtonVognDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVognDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelDeleteVognLayout = new javax.swing.GroupLayout(jPanelDeleteVogn);
+        jPanelDeleteVogn.setLayout(jPanelDeleteVognLayout);
+        jPanelDeleteVognLayout.setHorizontalGroup(
+            jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel54)
+                            .addComponent(jLabel53)
+                            .addComponent(jLabel52)
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel49))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldVognDeleteResUntil, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognDeleteResFrom, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognDeleteNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(jTextFieldVognDeleteOno, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxVognDeleteStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxVognDeleteType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                                .addComponent(jButtonVognDeleteLoad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonVognDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addComponent(jButtonVognDeleteBack))
+                            .addComponent(jLabelVognDeleted)
+                            .addComponent(jLabel48)
+                            .addComponent(jLabelVognDeleteStatus))))
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+        jPanelDeleteVognLayout.setVerticalGroup(
+            jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelVognDeleteStatus)
+                .addGap(14, 14, 14)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49)
+                    .addComponent(jTextFieldVognDeleteNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50)
+                    .addComponent(jComboBoxVognDeleteType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(jComboBoxVognDeleteStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(jTextFieldVognDeleteOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognDeleteResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVognDeleteResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54))
+                .addGap(35, 35, 35)
+                .addComponent(jLabelVognDeleted)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVognDeleteLoad)
+                    .addComponent(jButtonVognDeleteBack)
+                    .addComponent(jButtonVognDelete))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jFrameDeleteVognLayout = new javax.swing.GroupLayout(jFrameDeleteVogn.getContentPane());
+        jFrameDeleteVogn.getContentPane().setLayout(jFrameDeleteVognLayout);
+        jFrameDeleteVognLayout.setHorizontalGroup(
+            jFrameDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jFrameDeleteVognLayout.setVerticalGroup(
+            jFrameDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane.setMinimumSize(new java.awt.Dimension(550, 350));
+        jTabbedPane.setMinimumSize(new java.awt.Dimension(550, 450));
+
+        jPanelGetPart.setMinimumSize(new java.awt.Dimension(550, 350));
 
         jLabel1.setText("Part No");
 
@@ -938,7 +1346,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonAllParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanelGetPartLayout.setVerticalGroup(
             jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -970,10 +1378,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jButtonGetPart)
                     .addComponent(jButtonClear)
                     .addComponent(jButtonDeletePart))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Parts", jPanelGetPart);
+
+        jPanelGetVogn.setMinimumSize(new java.awt.Dimension(550, 350));
 
         jLabel27.setText("Truck No");
 
@@ -1063,7 +1473,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jButtonNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonAllVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(87, 107, Short.MAX_VALUE))
+                .addGap(87, 109, Short.MAX_VALUE))
         );
 
         jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
@@ -1107,7 +1517,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGetVogn)
                     .addComponent(jButtonVognClear))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
@@ -1138,7 +1548,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pnum = Integer.parseInt(jTextFieldPartNo.getText());
         }
 
-        clearGetFields();
+        clearPartGetFields();
         Part p = pc.getPart(pnum);
 
         if (p != null) {
@@ -1167,10 +1577,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 Part p = new Part(newName, newDesc, newQty);
                 pc.saveNewPart(p);
-                clearNewFields();
+                clearPartNewFields();
                 jLabelSaved.setText("Saved");
-            } catch (NumberFormatException | SQLException ex) {
-                ex.
+            } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -1181,9 +1590,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 Part p = new Part(Integer.parseInt(jTextFieldNewPartNo.getText()), newName, newDesc, newQty);
                 pc.saveNewPartWitnum(p);
-                clearNewFields();
+                clearPartNewFields();
                 jLabelSaved.setText("Saved");
-            } catch (NumberFormatException | SQLException ex) {
+            } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -1197,7 +1606,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameNewPart.setVisible(false);
         jFrameNewPart.dispose();
-        clearNewFields();
+        clearPartNewFields();
     }//GEN-LAST:event_jButtonNewPartBackActionPerformed
 
     private void jButtonUpdatePartUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartUpdateActionPerformed
@@ -1210,7 +1619,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         pc.updatePart(p);
 
-        clearUpdateFields();
+        clearPartUpdateFields();
         jLabelUpdated.setText("Updated");
     }//GEN-LAST:event_jButtonUpdatePartUpdateActionPerformed
 
@@ -1218,7 +1627,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameUpdatePart.setVisible(false);
         jFrameUpdatePart.dispose();
-        clearUpdateFields();
+        clearPartUpdateFields();
     }//GEN-LAST:event_jButtonUpdatePartBackActionPerformed
 
     private void jButtonUpdatePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartActionPerformed
@@ -1265,7 +1674,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         pc.updatePartQty(pnum, qty);
 
-        clearUpdateQtyFields();
+        clearPartUpdateQtyFields();
         jLabelQty.setText("Updated");
     }//GEN-LAST:event_jButtonUpdateQtyUpdateActionPerformed
 
@@ -1273,7 +1682,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameUpdateQty.setVisible(false);
         jFrameUpdateQty.dispose();
-        clearUpdateQtyFields();
+        clearPartUpdateQtyFields();
     }//GEN-LAST:event_jButtonUpdateQtyBackActionPerformed
 
     private void jButtonUpdateQtyLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyLoadActionPerformed
@@ -1286,7 +1695,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
         }
 
-        clearDeleteFields();
+        clearPartDeleteFields();
 
         Part p = pc.getPart(pnum);
 
@@ -1325,7 +1734,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pc.deletePart(pnum);
         }
 
-        clearDeleteFields2();
+        clearPartDeleteFields2();
         jLabelDeleted.setText("Deleted");
     }//GEN-LAST:event_jButtonDeletePartDeleteActionPerformed
 
@@ -1333,7 +1742,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameDeletePart.setVisible(false);
         jFrameDeletePart.dispose();
-        clearDeleteFields();
+        clearPartDeleteFields();
     }//GEN-LAST:event_jButtonDeletePartBackActionPerformed
 
     private void jButtonDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLoadActionPerformed
@@ -1346,7 +1755,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
         }
 
-        clearUpdateQtyFields();
+        clearPartUpdateQtyFields();
 
         Part p = pc.getPart(pnum);
 
@@ -1362,7 +1771,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
-        clearGetFields();
+        clearPartGetFields();
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jTextFieldNewPartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNewPartNoFocusGained
@@ -1390,7 +1799,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonAllPartsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsActionPerformed
         // TODO add your handling code here:
-
+        jFrameAllParts.setVisible(true);
     }//GEN-LAST:event_jButtonAllPartsActionPerformed
 
     private void jButtonGetVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetVognActionPerformed
@@ -1403,7 +1812,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             vognID = Integer.parseInt(jTextFieldVognNo.getText());
         }
 
-        clearVognFields();
+        clearVognGetFields();
 
         Vogn v = vc.getVogn(vognID);
 
@@ -1421,40 +1830,222 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonNewVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognActionPerformed
         // TODO add your handling code here:
+        jFrameNewVogn.setVisible(true);
     }//GEN-LAST:event_jButtonNewVognActionPerformed
 
     private void jButtonUpdateVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateVognActionPerformed
         // TODO add your handling code here:
+        jFrameUpdateVogn.setVisible(true);
     }//GEN-LAST:event_jButtonUpdateVognActionPerformed
 
     private void jButtonDeleteVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteVognActionPerformed
         // TODO add your handling code here:
+        jFrameDeleteVogn.setVisible(true);
     }//GEN-LAST:event_jButtonDeleteVognActionPerformed
 
     private void jButtonVognClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognClearActionPerformed
         // TODO add your handling code here:
-        clearVognFields();
+        clearVognGetFields();
     }//GEN-LAST:event_jButtonVognClearActionPerformed
 
     private void jButtonAllVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllVognActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAllVognActionPerformed
 
-    private void jTextFieldVognNewNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewNoFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldVognNewNoFocusGained
-
     private void jButtonSaveVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveVognActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            int vognNo = Integer.parseInt(jTextFieldVognNewNo.getText());
+            String vognType = (String) jComboBoxVognNewType.getSelectedItem();
+            String vognStatus = (String) jComboBoxVognNewStatus.getSelectedItem();
+            int ono = Integer.parseInt(jTextFieldVognNewOno.getText());
+            String resFra = jTextFieldVognNewResFrom.getText();
+            String resTil = jTextFieldVognNewResUntil.getText();
+
+            Vogn v = new Vogn(vognNo, vognType, vognStatus, ono, resFra, resTil);
+
+            vc.saveVogn(v);
+
+            jLabelSavedVogn.setText("Saved");
+
+            clearVognNewFields();
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonSaveVognActionPerformed
 
     private void jButtonNewVognBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognBackActionPerformed
         // TODO add your handling code here:
         jFrameNewVogn.setVisible(false);
         jFrameNewVogn.dispose();
-        clearVognFields();
+        clearVognGetFields();
     }//GEN-LAST:event_jButtonNewVognBackActionPerformed
+
+    private void jTextFieldVognNewResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusGained
+        // TODO add your handling code here:
+        jTextFieldVognNewResFrom.setText("");
+    }//GEN-LAST:event_jTextFieldVognNewResFromFocusGained
+
+    private void jTextFieldVognNewResUntilFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResUntilFocusGained
+        // TODO add your handling code here:
+        jTextFieldVognNewResUntil.setText("");
+    }//GEN-LAST:event_jTextFieldVognNewResUntilFocusGained
+
+    private void jTextFieldVognNewResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusLost
+        // TODO add your handling code here:
+        if (jTextFieldVognNewResFrom.getText().equals("")) {
+            jTextFieldVognNewResFrom.setText("dd,mm,yyyy");
+        }
+    }//GEN-LAST:event_jTextFieldVognNewResFromFocusLost
+
+    private void jTextFieldVognNewResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResUntilFocusLost
+        // TODO add your handling code here:
+        if (jTextFieldVognNewResUntil.getText().equals("")) {
+            jTextFieldVognNewResUntil.setText("dd,mm,yyyy");
+        }
+    }//GEN-LAST:event_jTextFieldVognNewResUntilFocusLost
+
+    private void jButtonVognUpdateLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateLoadActionPerformed
+        // TODO add your handling code here:
+        int vognID = 0;
+
+        if (jTextFieldVognUpdateNo.getText().equals("")) {
+            vognID = 0;
+        } else {
+            vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
+        }
+
+        clearVognUpdateFields();
+
+        Vogn v = vc.getVogn(vognID);
+
+        if (v != null) {
+            jTextFieldVognUpdateNo.setText(v.getVognID() + "");
+            jTextFieldVognUpdateOno.setText(v.getOno() + "");
+            jComboBoxVognUpdateType.setSelectedItem(v.getvType());
+            jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
+            jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
+            jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
+            jComboBoxVognUpdateType.setEnabled(false);
+        } else {
+            jLabelVognUpdated.setText("No such truck");
+        }
+    }//GEN-LAST:event_jButtonVognUpdateLoadActionPerformed
+
+    private void jButtonVognUpdateBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateBackActionPerformed
+        // TODO add your handling code here:
+        jFrameUpdateVogn.setVisible(false);
+        jFrameUpdateVogn.dispose();
+        clearVognUpdateFields();
+    }//GEN-LAST:event_jButtonVognUpdateBackActionPerformed
+
+    private void jTextFieldVognUpdateResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusGained
+        // TODO add your handling code here:
+        jTextFieldVognUpdateResFrom.setText("");
+    }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusGained
+
+    private void jTextFieldVognUpdateResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusLost
+        // TODO add your handling code here:
+        if (jTextFieldVognUpdateResFrom.getText().equals("")) {
+            jTextFieldVognUpdateResFrom.setText("dd,mm,yyyy");
+        }
+    }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusLost
+
+    private void jTextFieldVognUpdateResUntilFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusGained
+        // TODO add your handling code here:
+        jTextFieldVognUpdateResUntil.setText("");
+    }//GEN-LAST:event_jTextFieldVognUpdateResUntilFocusGained
+
+    private void jTextFieldVognUpdateResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusLost
+        // TODO add your handling code here:
+        if (jTextFieldVognUpdateResUntil.getText().equals("")) {
+            jTextFieldVognUpdateResUntil.setText("dd,mm,yyyy");
+        }
+    }//GEN-LAST:event_jTextFieldVognUpdateResUntilFocusLost
+
+    private void jButtonVognUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateActionPerformed
+        // TODO add your handling code here:
+        int vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
+        int ono = Integer.parseInt(jTextFieldVognUpdateOno.getText());
+        String status = (String) jComboBoxVognUpdateStatus.getSelectedItem();
+        String resFrom = jTextFieldVognUpdateResFrom.getText();
+        String resTo = jTextFieldVognUpdateResUntil.getText();
+
+        if (jCheckBoxOno.isSelected() == true) {
+            vc.updateVognOno(vognID, ono);
+        }
+
+        if (jCheckBoxStatus.isSelected() == true) {
+            vc.updateVognStatus(vognID, status);
+        }
+
+        if (jCheckBoxResFrom.isSelected() == true) {
+            try {
+                vc.updateVognDatoFra(vognID, resFrom);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        if (jCheckBoxResUntil.isSelected() == true) {
+            try {
+                vc.updateVognDatoTil(vognID, resTo);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonVognUpdateActionPerformed
+
+    private void jButtonVognDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteLoadActionPerformed
+        // TODO add your handling code here:
+        int vognID = 0;
+
+        if (jTextFieldVognDeleteNo.getText().equals("")) {
+            vognID = 0;
+        } else {
+            vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
+        }
+
+        clearVognDeleteFields();
+
+        Vogn v = vc.getVogn(vognID);
+
+        if (v != null) {
+            jTextFieldVognDeleteNo.setText(v.getVognID() + "");
+            jTextFieldVognDeleteOno.setText(v.getOno() + "");
+            jComboBoxVognDeleteType.setSelectedItem(v.getvType());
+            jComboBoxVognDeleteStatus.setSelectedItem(v.getStatus());
+            jTextFieldVognDeleteResFrom.setText(v.getReserveretFra());
+            jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
+            jComboBoxVognDeleteType.setEnabled(false);
+        } else {
+            jLabelVognDeleteStatus.setText("No such truck");
+        }
+    }//GEN-LAST:event_jButtonVognDeleteLoadActionPerformed
+
+    private void jButtonVognDeleteBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteBackActionPerformed
+        // TODO add your handling code here:
+        jFrameDeleteVogn.setVisible(false);
+        jFrameDeleteVogn.dispose();
+        clearVognDeleteFields();
+    }//GEN-LAST:event_jButtonVognDeleteBackActionPerformed
+
+    private void jButtonVognDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteActionPerformed
+        // TODO add your handling code here:
+        int vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
+        
+        int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
+                "Warning", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            vc.deleteVogn(vognID);
+            clearVognDeleteFields();
+            jLabelDeleted.setText("Deleted");
+        }
+    }//GEN-LAST:event_jButtonVognDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1520,12 +2111,30 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUpdateQtyUpdate;
     private javax.swing.JButton jButtonUpdateVogn;
     private javax.swing.JButton jButtonVognClear;
+    private javax.swing.JButton jButtonVognDelete;
+    private javax.swing.JButton jButtonVognDeleteBack;
+    private javax.swing.JButton jButtonVognDeleteLoad;
+    private javax.swing.JButton jButtonVognUpdate;
+    private javax.swing.JButton jButtonVognUpdateBack;
+    private javax.swing.JButton jButtonVognUpdateLoad;
+    private javax.swing.JCheckBox jCheckBoxOno;
+    private javax.swing.JCheckBox jCheckBoxResFrom;
+    private javax.swing.JCheckBox jCheckBoxResUntil;
+    private javax.swing.JCheckBox jCheckBoxStatus;
+    private javax.swing.JComboBox jComboBoxVognDeleteStatus;
+    private javax.swing.JComboBox jComboBoxVognDeleteType;
+    private javax.swing.JComboBox jComboBoxVognNewStatus;
+    private javax.swing.JComboBox jComboBoxVognNewType;
+    private javax.swing.JComboBox jComboBoxVognUpdateStatus;
+    private javax.swing.JComboBox jComboBoxVognUpdateType;
     private javax.swing.JFrame jFrameAllParts;
     private javax.swing.JFrame jFrameDeletePart;
+    private javax.swing.JFrame jFrameDeleteVogn;
     private javax.swing.JFrame jFrameNewPart;
     private javax.swing.JFrame jFrameNewVogn;
     private javax.swing.JFrame jFrameUpdatePart;
     private javax.swing.JFrame jFrameUpdateQty;
+    private javax.swing.JFrame jFrameUpdateVogn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1555,8 +2164,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1565,20 +2188,26 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDeleted;
     private javax.swing.JLabel jLabelQty;
     private javax.swing.JLabel jLabelSaved;
-    private javax.swing.JLabel jLabelSaved1;
+    private javax.swing.JLabel jLabelSavedVogn;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelUpdateQtyStatus;
     private javax.swing.JLabel jLabelUpdateStatus;
+    private javax.swing.JLabel jLabelUpdateVognStatus;
     private javax.swing.JLabel jLabelUpdated;
+    private javax.swing.JLabel jLabelVognDeleteStatus;
+    private javax.swing.JLabel jLabelVognDeleted;
     private javax.swing.JLabel jLabelVognStatus;
+    private javax.swing.JLabel jLabelVognUpdated;
     private javax.swing.JPanel jPanelAllParts;
     private javax.swing.JPanel jPanelDeletePart;
+    private javax.swing.JPanel jPanelDeleteVogn;
     private javax.swing.JPanel jPanelGetPart;
     private javax.swing.JPanel jPanelGetVogn;
     private javax.swing.JPanel jPanelNewPart;
-    private javax.swing.JPanel jPanelNewPart1;
+    private javax.swing.JPanel jPanelNewVogn;
     private javax.swing.JPanel jPanelUpdatePart;
     private javax.swing.JPanel jPanelUpdateQty;
+    private javax.swing.JPanel jPanelUpdateVogn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTable1;
@@ -1600,17 +2229,23 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUpdateQtyName;
     private javax.swing.JTextField jTextFieldUpdateQtyNo;
     private javax.swing.JTextField jTextFieldUpdateQtyQty;
+    private javax.swing.JTextField jTextFieldVognDeleteNo;
+    private javax.swing.JTextField jTextFieldVognDeleteOno;
+    private javax.swing.JTextField jTextFieldVognDeleteResFrom;
+    private javax.swing.JTextField jTextFieldVognDeleteResUntil;
     private javax.swing.JTextField jTextFieldVognNewNo;
     private javax.swing.JTextField jTextFieldVognNewOno;
     private javax.swing.JTextField jTextFieldVognNewResFrom;
     private javax.swing.JTextField jTextFieldVognNewResUntil;
-    private javax.swing.JTextField jTextFieldVognNewStatus;
-    private javax.swing.JTextField jTextFieldVognNewType;
     private javax.swing.JTextField jTextFieldVognNo;
     private javax.swing.JTextField jTextFieldVognOno;
     private javax.swing.JTextField jTextFieldVognReservedFrom;
     private javax.swing.JTextField jTextFieldVognReservedTo;
     private javax.swing.JTextField jTextFieldVognStatus;
     private javax.swing.JTextField jTextFieldVognType;
+    private javax.swing.JTextField jTextFieldVognUpdateNo;
+    private javax.swing.JTextField jTextFieldVognUpdateOno;
+    private javax.swing.JTextField jTextFieldVognUpdateResFrom;
+    private javax.swing.JTextField jTextFieldVognUpdateResUntil;
     // End of variables declaration//GEN-END:variables
 }

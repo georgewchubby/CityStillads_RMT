@@ -31,7 +31,7 @@ public class VDBFacade {
         return vm.getVogn(vognID, con);
     }
     
-    public boolean saveNewVogn(Vogn v) {
+    public boolean saveNewVogn(Vogn v) throws SQLException {
         return vm.saveNewVogn(v, con);
     }
     
@@ -39,9 +39,9 @@ public class VDBFacade {
         return vm.updateVognStatus(vognID, stat, con);
     }
     
-    public boolean updateVognNo(int vognID, int newVognNo) {
-        return vm.updateVognNO(vognID, newVognNo, con);
-    }
+//    public boolean updateVognNo(int vognID, int newVognNo) {
+//        return vm.updateVognNO(vognID, newVognNo, con);
+//    }
     
     public boolean updateVognOno(int vognID, int ono) {
         return vm.updateVognOno(vognID, ono, con);
