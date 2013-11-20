@@ -10,9 +10,6 @@ import domain.Part;
 import domain.Vogn;
 import domain.VognController;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,7 +102,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jCheckBoxResFrom.setSelected(false);
         jCheckBoxResUntil.setSelected(false);
     }
-    
+
     private void clearVognDeleteFields() {
         jTextFieldVognDeleteNo.setText("");
         jTextFieldVognDeleteOno.setText("");
@@ -1540,24 +1537,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonGetPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetPartActionPerformed
         // TODO add your handling code here:
-        int pnum = 0;
+        try {
 
-        if (jTextFieldPartNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldPartNo.getText());
-        }
+            int pnum = 0;
 
-        clearPartGetFields();
-        Part p = pc.getPart(pnum);
+            if (jTextFieldPartNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldPartNo.getText());
+            }
 
-        if (p != null) {
-            jTextFieldPartName.setText(p.getPnavn());
-            jTextFieldPartNo.setText(p.getPnum() + "");
-            jTextFieldPartQuantity.setText(p.getQty() + "");
-            jTextFieldPartDescription.setText(p.getPbeskrivelse());
-        } else {
-            jLabelStatus.setText("No such part!");
+            clearPartGetFields();
+            Part p = pc.getPart(pnum);
+
+            if (p != null) {
+                jTextFieldPartName.setText(p.getPnavn());
+                jTextFieldPartNo.setText(p.getPnum() + "");
+                jTextFieldPartQuantity.setText(p.getQty() + "");
+                jTextFieldPartDescription.setText(p.getPbeskrivelse());
+            } else {
+                jLabelStatus.setText("No such part!");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }//GEN-LAST:event_jButtonGetPartActionPerformed
@@ -1611,16 +1617,25 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonUpdatePartUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartUpdateActionPerformed
         // TODO add your handling code here:
-        String updateName = jTextFieldUpdatePartName.getText();
-        String updateDescription = jTextFieldUpdatePartDescription.getText();
-        int updatePnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
+        try {
 
-        Part p = new Part(updatePnum, updateName, updateDescription, 0);
+            String updateName = jTextFieldUpdatePartName.getText();
+            String updateDescription = jTextFieldUpdatePartDescription.getText();
+            int updatePnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
 
-        pc.updatePart(p);
+            Part p = new Part(updatePnum, updateName, updateDescription, 0);
 
-        clearPartUpdateFields();
-        jLabelUpdated.setText("Updated");
+            pc.updatePart(p);
+
+            clearPartUpdateFields();
+            jLabelUpdated.setText("Updated");
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonUpdatePartUpdateActionPerformed
 
     private void jButtonUpdatePartBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartBackActionPerformed
@@ -1637,45 +1652,63 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonUpdatePartLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartLoadActionPerformed
         // TODO add your handling code here:
-        int pnum = 0;
+        try {
 
-        if (jTextFieldUpdatePartNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
-        }
+            int pnum = 0;
 
-        Part p = pc.getPart(pnum);
+            if (jTextFieldUpdatePartNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
+            }
 
-        if (p != null) {
-            jTextFieldUpdatePartName.setText(p.getPnavn());
-            jTextFieldUpdatePartNo.setText(p.getPnum() + "");
-            jTextFieldUpdatePartDescription.setText(p.getPbeskrivelse());
-        } else {
-            jLabelUpdateStatus.setText("No such part!");
+            Part p = pc.getPart(pnum);
+
+            if (p != null) {
+                jTextFieldUpdatePartName.setText(p.getPnavn());
+                jTextFieldUpdatePartNo.setText(p.getPnum() + "");
+                jTextFieldUpdatePartDescription.setText(p.getPbeskrivelse());
+            } else {
+                jLabelUpdateStatus.setText("No such part!");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonUpdatePartLoadActionPerformed
 
     private void jButtonUpdateQtyUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyUpdateActionPerformed
         // TODO add your handling code here:
-        int pnum, qty;
+        try {
 
-        if (jTextFieldUpdateQtyNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
+            int pnum, qty;
+
+            if (jTextFieldUpdateQtyNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
+            }
+
+            if (jTextFieldUpdateQtyQty.getText().equals("")) {
+                qty = 0;
+            } else {
+                qty = Integer.parseInt(jTextFieldUpdateQtyQty.getText());
+            }
+
+            pc.updatePartQty(pnum, qty);
+
+            clearPartUpdateQtyFields();
+            jLabelQty.setText("Updated");
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
-        if (jTextFieldUpdateQtyQty.getText().equals("")) {
-            qty = 0;
-        } else {
-            qty = Integer.parseInt(jTextFieldUpdateQtyQty.getText());
-        }
-
-        pc.updatePartQty(pnum, qty);
-
-        clearPartUpdateQtyFields();
-        jLabelQty.setText("Updated");
     }//GEN-LAST:event_jButtonUpdateQtyUpdateActionPerformed
 
     private void jButtonUpdateQtyBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyBackActionPerformed
@@ -1687,24 +1720,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonUpdateQtyLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyLoadActionPerformed
         // TODO add your handling code here:
-        int pnum = 0;
+        try {
 
-        if (jTextFieldUpdateQtyNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
-        }
+            int pnum = 0;
 
-        clearPartDeleteFields();
+            if (jTextFieldUpdateQtyNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
+            }
 
-        Part p = pc.getPart(pnum);
+            clearPartDeleteFields();
 
-        if (p != null) {
-            jTextFieldUpdateQtyName.setText(p.getPnavn());
-            jTextFieldUpdateQtyNo.setText(p.getPnum() + "");
-            jTextFieldUpdateQtyQty.setText(p.getQty() + "");
-        } else {
-            jLabelUpdateQtyStatus.setText("No such part!");
+            Part p = pc.getPart(pnum);
+
+            if (p != null) {
+                jTextFieldUpdateQtyName.setText(p.getPnavn());
+                jTextFieldUpdateQtyNo.setText(p.getPnum() + "");
+                jTextFieldUpdateQtyQty.setText(p.getQty() + "");
+            } else {
+                jLabelUpdateQtyStatus.setText("No such part!");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonUpdateQtyLoadActionPerformed
 
@@ -1720,22 +1762,31 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonDeletePartDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartDeleteActionPerformed
         // TODO add your handling code here:
-        int pnum;
+        try {
 
-        if (jTextFieldDeletePartNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
+            int pnum;
+
+            if (jTextFieldDeletePartNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
+            }
+
+            int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                pc.deletePart(pnum);
+            }
+
+            clearPartDeleteFields2();
+            jLabelDeleted.setText("Deleted");
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
-        int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
-                "Warning", JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION) {
-            pc.deletePart(pnum);
-        }
-
-        clearPartDeleteFields2();
-        jLabelDeleted.setText("Deleted");
     }//GEN-LAST:event_jButtonDeletePartDeleteActionPerformed
 
     private void jButtonDeletePartBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartBackActionPerformed
@@ -1747,25 +1798,34 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLoadActionPerformed
         // TODO add your handling code here:
-        int pnum = 0;
+        try {
 
-        if (jTextFieldDeletePartNo.getText().equals("")) {
-            pnum = 0;
-        } else {
-            pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
-        }
+            int pnum = 0;
 
-        clearPartUpdateQtyFields();
+            if (jTextFieldDeletePartNo.getText().equals("")) {
+                pnum = 0;
+            } else {
+                pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
+            }
 
-        Part p = pc.getPart(pnum);
+            clearPartUpdateQtyFields();
 
-        if (p != null) {
-            jTextFieldDeletePartName.setText(p.getPnavn());
-            jTextFieldDeletePartNo.setText(p.getPnum() + "");
-            jTextFieldDeletePartQuantity.setText(p.getQty() + "");
-            jTextFieldDeletePartDescription.setText(p.getPbeskrivelse());
-        } else {
-            jLabelDeleteStatus.setText("No such part!");
+            Part p = pc.getPart(pnum);
+
+            if (p != null) {
+                jTextFieldDeletePartName.setText(p.getPnavn());
+                jTextFieldDeletePartNo.setText(p.getPnum() + "");
+                jTextFieldDeletePartQuantity.setText(p.getQty() + "");
+                jTextFieldDeletePartDescription.setText(p.getPbeskrivelse());
+            } else {
+                jLabelDeleteStatus.setText("No such part!");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonDeleteLoadActionPerformed
 
@@ -1804,27 +1864,36 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonGetVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetVognActionPerformed
         // TODO add your handling code here:
-        int vognID = 0;
+        try {
 
-        if (jTextFieldVognNo.getText().equals("")) {
-            vognID = 0;
-        } else {
-            vognID = Integer.parseInt(jTextFieldVognNo.getText());
-        }
+            int vognID = 0;
 
-        clearVognGetFields();
+            if (jTextFieldVognNo.getText().equals("")) {
+                vognID = 0;
+            } else {
+                vognID = Integer.parseInt(jTextFieldVognNo.getText());
+            }
 
-        Vogn v = vc.getVogn(vognID);
+            clearVognGetFields();
 
-        if (v != null) {
-            jTextFieldVognNo.setText(v.getVognID() + "");
-            jTextFieldVognOno.setText(v.getOno() + "");
-            jTextFieldVognType.setText(v.getvType());
-            jTextFieldVognStatus.setText(v.getStatus());
-            jTextFieldVognReservedFrom.setText(v.getReserveretFra());
-            jTextFieldVognReservedTo.setText(v.getReserveretTil());
-        } else {
-            jLabelVognStatus.setText("No such truck");
+            Vogn v = vc.getVogn(vognID);
+
+            if (v != null) {
+                jTextFieldVognNo.setText(v.getVognID() + "");
+                jTextFieldVognOno.setText(v.getOno() + "");
+                jTextFieldVognType.setText(v.getvType());
+                jTextFieldVognStatus.setText(v.getStatus());
+                jTextFieldVognReservedFrom.setText(v.getReserveretFra());
+                jTextFieldVognReservedTo.setText(v.getReserveretTil());
+            } else {
+                jLabelVognStatus.setText("No such truck");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonGetVognActionPerformed
 
@@ -1853,8 +1922,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAllVognActionPerformed
 
     private void jButtonSaveVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveVognActionPerformed
+        // TODO add your handling code here:
         try {
-            // TODO add your handling code here:
+
             int vognNo = Integer.parseInt(jTextFieldVognNewNo.getText());
             String vognType = (String) jComboBoxVognNewType.getSelectedItem();
             String vognStatus = (String) jComboBoxVognNewStatus.getSelectedItem();
@@ -1911,28 +1981,37 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonVognUpdateLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateLoadActionPerformed
         // TODO add your handling code here:
-        int vognID = 0;
+        try {
 
-        if (jTextFieldVognUpdateNo.getText().equals("")) {
-            vognID = 0;
-        } else {
-            vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
-        }
+            int vognID = 0;
 
-        clearVognUpdateFields();
+            if (jTextFieldVognUpdateNo.getText().equals("")) {
+                vognID = 0;
+            } else {
+                vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
+            }
 
-        Vogn v = vc.getVogn(vognID);
+            clearVognUpdateFields();
 
-        if (v != null) {
-            jTextFieldVognUpdateNo.setText(v.getVognID() + "");
-            jTextFieldVognUpdateOno.setText(v.getOno() + "");
-            jComboBoxVognUpdateType.setSelectedItem(v.getvType());
-            jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
-            jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
-            jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
-            jComboBoxVognUpdateType.setEnabled(false);
-        } else {
-            jLabelVognUpdated.setText("No such truck");
+            Vogn v = vc.getVogn(vognID);
+
+            if (v != null) {
+                jTextFieldVognUpdateNo.setText(v.getVognID() + "");
+                jTextFieldVognUpdateOno.setText(v.getOno() + "");
+                jComboBoxVognUpdateType.setSelectedItem(v.getvType());
+                jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
+                jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
+                jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
+                jComboBoxVognUpdateType.setEnabled(false);
+            } else {
+                jLabelVognUpdated.setText("No such truck");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonVognUpdateLoadActionPerformed
 
@@ -1976,11 +2055,19 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         String resTo = jTextFieldVognUpdateResUntil.getText();
 
         if (jCheckBoxOno.isSelected() == true) {
-            vc.updateVognOno(vognID, ono);
+            try {
+                vc.updateVognOno(vognID, ono);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
         if (jCheckBoxStatus.isSelected() == true) {
-            vc.updateVognStatus(vognID, status);
+            try {
+                vc.updateVognStatus(vognID, status);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
         if (jCheckBoxResFrom.isSelected() == true) {
@@ -2002,28 +2089,36 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonVognDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteLoadActionPerformed
         // TODO add your handling code here:
-        int vognID = 0;
+        try {
+            int vognID = 0;
 
-        if (jTextFieldVognDeleteNo.getText().equals("")) {
-            vognID = 0;
-        } else {
-            vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
-        }
+            if (jTextFieldVognDeleteNo.getText().equals("")) {
+                vognID = 0;
+            } else {
+                vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
+            }
 
-        clearVognDeleteFields();
+            clearVognDeleteFields();
 
-        Vogn v = vc.getVogn(vognID);
+            Vogn v = vc.getVogn(vognID);
 
-        if (v != null) {
-            jTextFieldVognDeleteNo.setText(v.getVognID() + "");
-            jTextFieldVognDeleteOno.setText(v.getOno() + "");
-            jComboBoxVognDeleteType.setSelectedItem(v.getvType());
-            jComboBoxVognDeleteStatus.setSelectedItem(v.getStatus());
-            jTextFieldVognDeleteResFrom.setText(v.getReserveretFra());
-            jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
-            jComboBoxVognDeleteType.setEnabled(false);
-        } else {
-            jLabelVognDeleteStatus.setText("No such truck");
+            if (v != null) {
+                jTextFieldVognDeleteNo.setText(v.getVognID() + "");
+                jTextFieldVognDeleteOno.setText(v.getOno() + "");
+                jComboBoxVognDeleteType.setSelectedItem(v.getvType());
+                jComboBoxVognDeleteStatus.setSelectedItem(v.getStatus());
+                jTextFieldVognDeleteResFrom.setText(v.getReserveretFra());
+                jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
+                jComboBoxVognDeleteType.setEnabled(false);
+            } else {
+                jLabelVognDeleteStatus.setText("No such truck");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonVognDeleteLoadActionPerformed
 
@@ -2036,14 +2131,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     private void jButtonVognDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteActionPerformed
         // TODO add your handling code here:
-        int vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
-        
-        int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
-                "Warning", JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION) {
-            vc.deleteVogn(vognID);
-            clearVognDeleteFields();
-            jLabelDeleted.setText("Deleted");
+        try {
+            int vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
+
+            int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                vc.deleteVogn(vognID);
+                clearVognDeleteFields();
+                jLabelDeleted.setText("Deleted");
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonVognDeleteActionPerformed
 

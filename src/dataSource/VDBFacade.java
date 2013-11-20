@@ -9,53 +9,49 @@ import java.sql.SQLException;
  * @author joachim
  */
 public class VDBFacade {
-    
+
     private final VognMapper vm;
     private final Connection con;
-    
+
     private static VDBFacade instance;
-    
+
     private VDBFacade() {
         vm = new VognMapper();
         con = new DBConnector().getConnection();
     }
-    
+
     public static VDBFacade getInstance() {
         if (instance == null) {
             instance = new VDBFacade();
         }
         return instance;
     }
-    
-    public Vogn getVogn(int vognID) {
+
+    public Vogn getVogn(int vognID) throws SQLException {
         return vm.getVogn(vognID, con);
     }
-    
+
     public boolean saveNewVogn(Vogn v) throws SQLException {
         return vm.saveNewVogn(v, con);
     }
-    
-    public boolean updateVognStatus(int vognID, String stat) {
+
+    public boolean updateVognStatus(int vognID, String stat) throws SQLException {
         return vm.updateVognStatus(vognID, stat, con);
     }
-    
-//    public boolean updateVognNo(int vognID, int newVognNo) {
-//        return vm.updateVognNO(vognID, newVognNo, con);
-//    }
-    
-    public boolean updateVognOno(int vognID, int ono) {
+
+    public boolean updateVognOno(int vognID, int ono) throws SQLException {
         return vm.updateVognOno(vognID, ono, con);
     }
-    
+
     public boolean updateVognDatoFra(int vognID, String from) throws SQLException {
         return vm.updateVognDatoFra(vognID, from, con);
     }
-    
+
     public boolean updateVognDatoTil(int vognID, String to) throws SQLException {
         return vm.updateVognDatoTil(vognID, to, con);
     }
-    
-    public boolean deleteVogn(int vognID) {
+
+    public boolean deleteVogn(int vognID) throws SQLException {
         return vm.deleteVogn(vognID, con);
     }
 }

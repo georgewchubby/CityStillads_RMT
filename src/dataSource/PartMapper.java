@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,8 +13,8 @@ import java.util.logging.Logger;
 // hau
 public class PartMapper {
 
-    //== load an order and the associated order details
-    public Part getPart(int pno, Connection con) {
+    //== Load a part
+    public Part getPart(int pno, Connection con) throws SQLException {
         Part part = null;
         String SQLString1 = // get order
                 "select * "
@@ -25,22 +23,17 @@ public class PartMapper {
 
         PreparedStatement statement = null;
 
-        try {
-            //=== get Part
-            statement = con.prepareStatement(SQLString1);
-            statement.setInt(1, pno);     // primary key value
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                part = new Part(pno,
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getInt(4));
-            }
+        //=== get Part
+        statement = con.prepareStatement(SQLString1);
+        statement.setInt(1, pno);     // primary key value
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            part = new Part(pno,
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getInt(4));
+        }
 
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - getPart");
-            System.out.println(e.getMessage());
-        } finally // must close statement
         {
             try {
                 statement.close();
@@ -53,7 +46,7 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple)
-    public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException, NumberFormatException {
+    public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString
                 = "insert into parts "
@@ -79,7 +72,7 @@ public class PartMapper {
     }
 
     //== Insert new Part (tuple) auto part number assigned
-    public boolean saveNewPart(Part p, Connection con) throws SQLException, NumberFormatException {
+    public boolean saveNewPart(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString = "insert into parts (pno, pname, description, qty) "
                 + "values (part_seq.nextval,?,?,?)";
@@ -114,23 +107,19 @@ public class PartMapper {
     }
 
     //== Update Part qty
-    public boolean updatePartQty(int pnum, int qty, Connection con) {
+    public boolean updatePartQty(int pnum, int qty, Connection con) throws SQLException {
         int partUpdated = 0;
         String SQLString
                 = "Update Parts "
                 + "set qty = ? where pno = ?";
         PreparedStatement statement = null;
 
-        try {
-            //== insert tuple
-            statement = con.prepareStatement(SQLString);
-            statement.setInt(1, qty);
-            statement.setInt(2, pnum);
-            partUpdated = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - updatePartQty");
-            System.out.println(e.getMessage());
-        } finally // must close statement
+        //== insert tuple
+        statement = con.prepareStatement(SQLString);
+        statement.setInt(1, qty);
+        statement.setInt(2, pnum);
+        partUpdated = statement.executeUpdate();
+
         {
             try {
                 statement.close();
@@ -143,7 +132,7 @@ public class PartMapper {
     }
 
     //== Update part
-    public boolean updatePart(Part p, Connection con) {
+    public boolean updatePart(Part p, Connection con) throws SQLException {
         int rowUpdated = 0;
         String SQLString = "";
         Part origPart = getPart(p.getPnum(), con);
@@ -164,14 +153,10 @@ public class PartMapper {
 
         PreparedStatement statement = null;
 
-        try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            rowUpdated = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - updatePart");
-            System.out.println(e.getMessage());
-        } finally // must close statement
+        //== insert value
+        statement = con.prepareStatement(SQLString);
+        rowUpdated = statement.executeUpdate();
+
         {
             try {
                 statement.close();
@@ -184,19 +169,15 @@ public class PartMapper {
     }
 
     //== Delete part
-    public boolean deletePart(int pnum, Connection con) {
+    public boolean deletePart(int pnum, Connection con) throws SQLException {
         int partDeleted = 0;
         String SQLString = "Delete from parts where pno = " + pnum;
         PreparedStatement statement = null;
 
-        try {
-            //== insert value
-            statement = con.prepareStatement(SQLString);
-            partDeleted = statement.executeUpdate(); // delete order
-        } catch (Exception e) {
-            System.out.println("Fail in PartMapper - deletePart");
-            System.out.println(e.getMessage());
-        } finally // must close statement
+        //== insert value
+        statement = con.prepareStatement(SQLString);
+        partDeleted = statement.executeUpdate(); // delete order
+
         {
             try {
                 statement.close();

@@ -27,27 +27,27 @@ public class PDBFacade {
         return instance;
     }
 
-    public Part getPart(int pno) {
+    public Part getPart(int pno) throws SQLException {
         return pm.getPart(pno, con);
     }
 
-    public boolean saveNewPartWitnum(Part p) throws SQLException, NumberFormatException {
+    public boolean saveNewPartWitnum(Part p) throws SQLException {
         return pm.saveNewPartWitnum(p, con);
     }
 
-    public boolean saveNewPart(Part p) throws SQLException, NumberFormatException {
+    public boolean saveNewPart(Part p) throws SQLException {
         return pm.saveNewPart(p, con);
     }
 
-    public boolean updatePartQty(int pnum, int qty) {
+    public boolean updatePartQty(int pnum, int qty) throws SQLException {
         return pm.updatePartQty(pnum, qty, con);
     }
 
-    public boolean updatePart(Part p) {
+    public boolean updatePart(Part p) throws SQLException {
         return pm.updatePart(p, con);
     }
 
-    public boolean deletePart(int pnum) {
+    public boolean deletePart(int pnum) throws SQLException {
         return pm.deletePart(pnum, con);
     }
 }

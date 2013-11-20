@@ -17,12 +17,12 @@ public class PartController {
         pf = PDBFacade.getInstance();
     }
 
-    public Part getPart(int pno) {
+    public Part getPart(int pno) throws SQLException {
         currentPart = pf.getPart(pno);
         return currentPart;
     }
 
-    public boolean saveNewPartWitnum(Part p) throws SQLException, NumberFormatException {
+    public boolean saveNewPartWitnum(Part p) throws SQLException {
         currentPart = p;
 
         boolean saved = pf.saveNewPartWitnum(currentPart);
@@ -30,7 +30,7 @@ public class PartController {
         return saved;
     }
 
-    public boolean saveNewPart(Part p) throws SQLException, NumberFormatException {
+    public boolean saveNewPart(Part p) throws SQLException {
         currentPart = p;
 
         boolean saved = pf.saveNewPart(currentPart);
@@ -38,13 +38,13 @@ public class PartController {
         return saved;
     }
 
-    public boolean updatePartQty(int pnum, int qty) {
+    public boolean updatePartQty(int pnum, int qty) throws SQLException {
         boolean updated = pf.updatePartQty(pnum, qty);
 
         return updated;
     }
 
-    public boolean updatePart(Part p) {
+    public boolean updatePart(Part p) throws SQLException {
         currentPart = p;
 
         boolean updated = pf.updatePart(currentPart);
@@ -52,7 +52,7 @@ public class PartController {
         return updated;
     }
 
-    public boolean deletePart(int pnum) {
+    public boolean deletePart(int pnum) throws SQLException {
         boolean deleted = pf.deletePart(pnum);
 
         return deleted;
