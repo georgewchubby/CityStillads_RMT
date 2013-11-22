@@ -132,10 +132,16 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldNewPartNoFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc17 = (PlainDocument) jTextFieldNewPartNo.getDocument();&#xa;doc17.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNewPartName">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNewPartQuantity">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc18 = (PlainDocument) jTextFieldNewPartQuantity.getDocument();&#xa;doc18.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNewPartDescription">
             </Component>
@@ -200,7 +206,6 @@
                                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelUpdateStatus" min="-2" pref="108" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -209,9 +214,9 @@
                                           <Component id="jLabelUpdated" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButtonUpdatePartLoad" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jButtonUpdatePartUpdate" min="-2" max="-2" attributes="0"/>
@@ -233,9 +238,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="jLabelUpdateStatus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldUpdatePartNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -294,6 +297,9 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdatePartNoFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc15 = (PlainDocument) jTextFieldUpdatePartNo.getDocument();&#xa;doc15.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdatePartName">
             </Component>
@@ -322,8 +328,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdatePartLoadActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelUpdateStatus">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelUpdated">
             </Component>
@@ -375,7 +379,6 @@
                                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelUpdateQtyStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   </Group>
@@ -409,9 +412,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelUpdateQtyStatus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldUpdateQtyNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -470,10 +471,16 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdateQtyNoFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc13 = (PlainDocument) jTextFieldUpdateQtyNo.getDocument();&#xa;doc13.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdateQtyName">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdateQtyQty">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc14 = (PlainDocument) jTextFieldUpdateQtyQty.getDocument();&#xa;doc14.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdateQtyUpdate">
               <Properties>
@@ -500,8 +507,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelQty">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelUpdateQtyStatus">
             </Component>
           </SubComponents>
         </Container>
@@ -534,33 +539,30 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelDeleteStatus" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jButtonDeleteLoad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButtonDeletePartDelete" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="89" max="32767" attributes="0"/>
-                                  <Component id="jButtonDeletePartBack" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextFieldDeletePartName" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldDeletePartNo" alignment="0" pref="207" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldDeletePartQuantity" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldDeletePartDescription" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonDeleteLoad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButtonDeletePartDelete" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="89" max="32767" attributes="0"/>
+                              <Component id="jButtonDeletePartBack" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jTextFieldDeletePartName" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldDeletePartNo" alignment="0" pref="207" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldDeletePartQuantity" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldDeletePartDescription" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -574,9 +576,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="jLabelDeleteStatus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldDeletePartNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -645,10 +645,16 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDeletePartNoFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc11 = (PlainDocument) jTextFieldDeletePartNo.getDocument();&#xa;doc11.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartName">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartQuantity">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc12 = (PlainDocument) jTextFieldDeletePartQuantity.getDocument();&#xa;doc12.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartDescription">
             </Component>
@@ -677,8 +683,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteLoadActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelDeleteStatus">
             </Component>
           </SubComponents>
         </Container>
@@ -757,8 +761,11 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="jTableAllParts">
                   <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="0" rowCount="0"/>
+                    </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0"/>
                     </Property>
@@ -773,11 +780,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Load Part"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllPartsLoadActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAllPartsBack">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllPartsBackActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -927,8 +940,14 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc9 = (PlainDocument) jTextFieldVognNewNo.getDocument();&#xa;doc9.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognNewOno">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc10 = (PlainDocument) jTextFieldVognNewOno.getDocument();&#xa;doc10.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSaveVogn">
               <Properties>
@@ -1068,7 +1087,6 @@
                                   </Group>
                                   <Component id="jLabelVognUpdated" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelUpdateVognStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1081,9 +1099,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelUpdateVognStatus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldVognUpdateNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1163,8 +1179,14 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc7 = (PlainDocument) jTextFieldVognUpdateNo.getDocument();&#xa;doc7.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateOno">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc8 = (PlainDocument) jTextFieldVognUpdateOno.getDocument();&#xa;doc8.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognUpdateLoad">
               <Properties>
@@ -1233,8 +1255,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelUpdateVognStatus">
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBoxStatus">
               <Properties>
@@ -1327,7 +1347,6 @@
                                   </Group>
                                   <Component id="jLabelVognDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelVognDeleteStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1340,9 +1359,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelVognDeleteStatus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldVognDeleteNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1418,8 +1435,14 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc5 = (PlainDocument) jTextFieldVognDeleteNo.getDocument();&#xa;doc5.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognDeleteOno">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc6 = (PlainDocument) jTextFieldVognDeleteOno.getDocument();&#xa;doc6.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognDeleteLoad">
               <Properties>
@@ -1480,8 +1503,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelVognDeleteStatus">
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognDelete">
               <Properties>
@@ -1559,37 +1580,32 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextFieldPartNo" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPartName" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPartQuantity" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPartDescription" pref="166" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButtonGetPart" min="-2" pref="91" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButtonClear" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonUpdatePart" max="32767" attributes="0"/>
-                                  <Component id="jButtonNewPart" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonUpdateQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonDeletePart" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonAllParts" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPartNo" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPartName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPartQuantity" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPartDescription" pref="166" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jLabelStatus" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonGetPart" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButtonClear" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonUpdatePart" max="32767" attributes="0"/>
+                          <Component id="jButtonNewPart" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonUpdateQty" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonDeletePart" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonAllParts" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="112" max="32767" attributes="0"/>
                   </Group>
@@ -1598,9 +1614,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelStatus" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldPartNo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1657,10 +1671,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPartNo">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc3 = (PlainDocument) jTextFieldPartNo.getDocument();&#xa;doc3.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPartName">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPartQuantity">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc4 = (PlainDocument) jTextFieldPartQuantity.getDocument();&#xa;doc4.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonGetPart">
               <Properties>
@@ -1669,8 +1689,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetPartActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelStatus">
             </Component>
             <Component class="javax.swing.JButton" name="jButtonNewPart">
               <Properties>
@@ -1744,7 +1762,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelVognStatus" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jButtonGetVogn" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1784,9 +1801,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelVognStatus" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldVognNo" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1852,6 +1867,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognNo">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc1 = (PlainDocument) jTextFieldVognNo.getDocument();&#xa;doc1.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognType">
             </Component>
@@ -1864,8 +1882,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetVognActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelVognStatus">
             </Component>
             <Component class="javax.swing.JButton" name="jButtonNewVogn">
               <Properties>
@@ -1892,6 +1908,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognOno">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc2 = (PlainDocument) jTextFieldVognOno.getDocument();&#xa;doc2.setDocumentFilter(new MyIntFilter());"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognClear">
               <Properties>

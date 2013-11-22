@@ -11,6 +11,12 @@ import domain.Vogn;
 import domain.VognController;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.DocumentFilter.FilterBypass;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -28,12 +34,39 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    class MyIntFilter extends DocumentFilter {
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string,
+                AttributeSet attr) throws BadLocationException {
+
+            Document doc = fb.getDocument();
+            StringBuilder sb = new StringBuilder();
+            sb.append(doc.getText(0, doc.getLength()));
+            sb.insert(offset, string);
+
+            if (test(sb.toString())) {
+                super.insertString(fb, offset, string, attr);
+            } else {
+                // warn the user and don't allow the insert
+            }
+        }
+
+        private boolean test(String text) {
+            try {
+                Integer.parseInt(text);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    }
+
     private void clearPartGetFields() {
         jTextFieldPartNo.setText("");
         jTextFieldPartName.setText("");
         jTextFieldPartQuantity.setText("");
         jTextFieldPartDescription.setText("");
-        jLabelStatus.setText("");
     }
 
     private void clearPartNewFields() {
@@ -66,13 +99,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelDeleted.setText("");
     }
 
-    private void clearPartDeleteFields2() {
-        jTextFieldDeletePartNo.setText("");
-        jTextFieldDeletePartName.setText("");
-        jTextFieldDeletePartQuantity.setText("");
-        jTextFieldDeletePartDescription.setText("");
-    }
-
     private void clearVognGetFields() {
         jTextFieldVognNo.setText("");
         jTextFieldVognOno.setText("");
@@ -80,14 +106,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognStatus.setText("");
         jTextFieldVognReservedFrom.setText("");
         jTextFieldVognReservedTo.setText("");
-        jLabelVognStatus.setText("");
-    }
-
-    private void clearVognNewFields() {
-        jTextFieldVognNewNo.setText("");
-        jTextFieldVognNewOno.setText("");
-        jTextFieldVognNewResFrom.setText("");
-        jTextFieldVognNewResUntil.setText("");
     }
 
     private void clearVognUpdateFields() {
@@ -110,7 +128,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognDeleteResUntil.setText("");
         jComboBoxVognDeleteStatus.setSelectedIndex(0);
         jComboBoxVognDeleteType.setSelectedIndex(0);
-        jLabelVognDeleteStatus.setText("");
         jLabelVognDeleted.setText("");
     }
 
@@ -149,7 +166,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonUpdatePartUpdate = new javax.swing.JButton();
         jButtonUpdatePartBack = new javax.swing.JButton();
         jButtonUpdatePartLoad = new javax.swing.JButton();
-        jLabelUpdateStatus = new javax.swing.JLabel();
         jLabelUpdated = new javax.swing.JLabel();
         jFrameUpdateQty = new javax.swing.JFrame();
         jPanelUpdateQty = new javax.swing.JPanel();
@@ -164,7 +180,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonUpdateQtyBack = new javax.swing.JButton();
         jButtonUpdateQtyLoad = new javax.swing.JButton();
         jLabelQty = new javax.swing.JLabel();
-        jLabelUpdateQtyStatus = new javax.swing.JLabel();
         jFrameDeletePart = new javax.swing.JFrame();
         jPanelDeletePart = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -180,11 +195,10 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonDeletePartBack = new javax.swing.JButton();
         jLabelDeleted = new javax.swing.JLabel();
         jButtonDeleteLoad = new javax.swing.JButton();
-        jLabelDeleteStatus = new javax.swing.JLabel();
         jFrameAllParts = new javax.swing.JFrame();
         jPanelAllParts = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAllParts = new javax.swing.JTable();
         jButtonAllPartsLoad = new javax.swing.JButton();
         jButtonAllPartsBack = new javax.swing.JButton();
         jFrameNewVogn = new javax.swing.JFrame();
@@ -223,7 +237,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognUpdateResUntil = new javax.swing.JTextField();
         jComboBoxVognUpdateStatus = new javax.swing.JComboBox();
         jComboBoxVognUpdateType = new javax.swing.JComboBox();
-        jLabelUpdateVognStatus = new javax.swing.JLabel();
         jCheckBoxStatus = new javax.swing.JCheckBox();
         jCheckBoxOno = new javax.swing.JCheckBox();
         jCheckBoxResFrom = new javax.swing.JCheckBox();
@@ -247,7 +260,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognDeleteResUntil = new javax.swing.JTextField();
         jComboBoxVognDeleteStatus = new javax.swing.JComboBox();
         jComboBoxVognDeleteType = new javax.swing.JComboBox();
-        jLabelVognDeleteStatus = new javax.swing.JLabel();
         jButtonVognDelete = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelGetPart = new javax.swing.JPanel();
@@ -259,7 +271,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldPartName = new javax.swing.JTextField();
         jTextFieldPartQuantity = new javax.swing.JTextField();
         jButtonGetPart = new javax.swing.JButton();
-        jLabelStatus = new javax.swing.JLabel();
         jButtonNewPart = new javax.swing.JButton();
         jButtonUpdatePart = new javax.swing.JButton();
         jButtonUpdateQty = new javax.swing.JButton();
@@ -276,7 +287,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognType = new javax.swing.JTextField();
         jTextFieldVognStatus = new javax.swing.JTextField();
         jButtonGetVogn = new javax.swing.JButton();
-        jLabelVognStatus = new javax.swing.JLabel();
         jButtonNewVogn = new javax.swing.JButton();
         jButtonUpdateVogn = new javax.swing.JButton();
         jButtonDeleteVogn = new javax.swing.JButton();
@@ -380,6 +390,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+        PlainDocument doc17 = (PlainDocument) jTextFieldNewPartNo.getDocument();
+        doc17.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc18 = (PlainDocument) jTextFieldNewPartQuantity.getDocument();
+        doc18.setDocumentFilter(new MyIntFilter());
+
         javax.swing.GroupLayout jFrameNewPartLayout = new javax.swing.GroupLayout(jFrameNewPart.getContentPane());
         jFrameNewPart.getContentPane().setLayout(jFrameNewPartLayout);
         jFrameNewPartLayout.setHorizontalGroup(
@@ -446,14 +461,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel12)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabelUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel14)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpdatePartLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelUpdated)
-                                    .addComponent(jButtonUpdatePartLoad))
-                                .addGap(32, 32, 32)))
+                                    .addComponent(jButtonUpdatePartLoad))))
+                        .addGap(32, 32, 32)
                         .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelUpdatePartLayout.createSequentialGroup()
                                 .addComponent(jButtonUpdatePartUpdate)
@@ -469,9 +483,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelUpdatePartLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(9, 9, 9)
-                .addComponent(jLabelUpdateStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jTextFieldUpdatePartNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -492,6 +504,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addComponent(jLabelUpdated)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
+
+        PlainDocument doc15 = (PlainDocument) jTextFieldUpdatePartNo.getDocument();
+        doc15.setDocumentFilter(new MyIntFilter());
 
         javax.swing.GroupLayout jFrameUpdatePartLayout = new javax.swing.GroupLayout(jFrameUpdatePart.getContentPane());
         jFrameUpdatePart.getContentPane().setLayout(jFrameUpdatePartLayout);
@@ -561,8 +576,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabelUpdateQtyStatus))
+                                    .addComponent(jLabel17))
                                 .addGap(43, 43, 43))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpdateQtyLayout.createSequentialGroup()
                                 .addContainerGap()
@@ -585,9 +599,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelUpdateQtyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelUpdateQtyStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextFieldUpdateQtyNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -608,6 +620,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addComponent(jLabelQty)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
+
+        PlainDocument doc13 = (PlainDocument) jTextFieldUpdateQtyNo.getDocument();
+        doc13.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc14 = (PlainDocument) jTextFieldUpdateQtyQty.getDocument();
+        doc14.setDocumentFilter(new MyIntFilter());
 
         javax.swing.GroupLayout jFrameUpdateQtyLayout = new javax.swing.GroupLayout(jFrameUpdateQty.getContentPane());
         jFrameUpdateQty.getContentPane().setLayout(jFrameUpdateQtyLayout);
@@ -667,30 +684,28 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDeletePartLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDeleteStatus)
-                    .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanelDeletePartLayout.createSequentialGroup()
+                        .addComponent(jButtonDeleteLoad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonDeletePartDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addComponent(jButtonDeletePartBack))
+                    .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelDeleted)
+                        .addComponent(jLabel18)
                         .addGroup(jPanelDeletePartLayout.createSequentialGroup()
-                            .addComponent(jButtonDeleteLoad)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButtonDeletePartDelete)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                            .addComponent(jButtonDeletePartBack))
-                        .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDeleted)
-                            .addComponent(jLabel18)
-                            .addGroup(jPanelDeletePartLayout.createSequentialGroup()
-                                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jLabel22))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldDeletePartName)
-                                    .addComponent(jTextFieldDeletePartNo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldDeletePartQuantity)
-                                    .addComponent(jTextFieldDeletePartDescription))))))
+                            .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel22))
+                            .addGap(21, 21, 21)
+                            .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldDeletePartName)
+                                .addComponent(jTextFieldDeletePartNo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                                .addComponent(jTextFieldDeletePartQuantity)
+                                .addComponent(jTextFieldDeletePartDescription)))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanelDeletePartLayout.setVerticalGroup(
@@ -698,9 +713,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelDeletePartLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-                .addGap(9, 9, 9)
-                .addComponent(jLabelDeleteStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jTextFieldDeletePartNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -726,6 +739,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
+        PlainDocument doc11 = (PlainDocument) jTextFieldDeletePartNo.getDocument();
+        doc11.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc12 = (PlainDocument) jTextFieldDeletePartQuantity.getDocument();
+        doc12.setDocumentFilter(new MyIntFilter());
+
         javax.swing.GroupLayout jFrameDeletePartLayout = new javax.swing.GroupLayout(jFrameDeletePart.getContentPane());
         jFrameDeletePart.getContentPane().setLayout(jFrameDeletePartLayout);
         jFrameDeletePartLayout.setHorizontalGroup(
@@ -739,11 +757,29 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jFrameAllParts.setMinimumSize(new java.awt.Dimension(550, 450));
 
-        jScrollPane1.setViewportView(jTable1);
+        jTableAllParts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTableAllParts);
 
         jButtonAllPartsLoad.setText("Load Part");
+        jButtonAllPartsLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAllPartsLoadActionPerformed(evt);
+            }
+        });
 
         jButtonAllPartsBack.setText("Back");
+        jButtonAllPartsBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAllPartsBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAllPartsLayout = new javax.swing.GroupLayout(jPanelAllParts);
         jPanelAllParts.setLayout(jPanelAllPartsLayout);
@@ -928,6 +964,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil});
 
+        PlainDocument doc9 = (PlainDocument) jTextFieldVognNewNo.getDocument();
+        doc9.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc10 = (PlainDocument) jTextFieldVognNewOno.getDocument();
+        doc10.setDocumentFilter(new MyIntFilter());
+
         javax.swing.GroupLayout jFrameNewVognLayout = new javax.swing.GroupLayout(jFrameNewVogn.getContentPane());
         jFrameNewVogn.getContentPane().setLayout(jFrameNewVognLayout);
         jFrameNewVognLayout.setHorizontalGroup(
@@ -1050,8 +1091,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                                 .addComponent(jButtonVognUpdateBack))
                             .addComponent(jLabelVognUpdated)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabelUpdateVognStatus))))
+                            .addComponent(jLabel36))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanelUpdateVognLayout.setVerticalGroup(
@@ -1059,9 +1099,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelUpdateVognStatus)
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
                     .addComponent(jTextFieldVognUpdateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1098,6 +1136,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jButtonVognUpdate))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        PlainDocument doc7 = (PlainDocument) jTextFieldVognUpdateNo.getDocument();
+        doc7.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc8 = (PlainDocument) jTextFieldVognUpdateOno.getDocument();
+        doc8.setDocumentFilter(new MyIntFilter());
 
         javax.swing.GroupLayout jFrameUpdateVognLayout = new javax.swing.GroupLayout(jFrameUpdateVogn.getContentPane());
         jFrameUpdateVogn.getContentPane().setLayout(jFrameUpdateVognLayout);
@@ -1191,8 +1234,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                 .addComponent(jButtonVognDeleteBack))
                             .addComponent(jLabelVognDeleted)
-                            .addComponent(jLabel48)
-                            .addComponent(jLabelVognDeleteStatus))))
+                            .addComponent(jLabel48))))
                 .addContainerGap(147, Short.MAX_VALUE))
         );
         jPanelDeleteVognLayout.setVerticalGroup(
@@ -1200,9 +1242,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel48)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelVognDeleteStatus)
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel49)
                     .addComponent(jTextFieldVognDeleteNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1235,6 +1275,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jButtonVognDelete))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        PlainDocument doc5 = (PlainDocument) jTextFieldVognDeleteNo.getDocument();
+        doc5.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc6 = (PlainDocument) jTextFieldVognDeleteOno.getDocument();
+        doc6.setDocumentFilter(new MyIntFilter());
 
         javax.swing.GroupLayout jFrameDeleteVognLayout = new javax.swing.GroupLayout(jFrameDeleteVogn.getContentPane());
         jFrameDeleteVogn.getContentPane().setLayout(jFrameDeleteVognLayout);
@@ -1319,38 +1364,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGetPartLayout.createSequentialGroup()
                         .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldPartNo)
-                                    .addComponent(jTextFieldPartName)
-                                    .addComponent(jTextFieldPartQuantity)
-                                    .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
-                            .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                                .addComponent(jButtonGetPart, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonClear)))
-                        .addGap(40, 40, 40)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAllParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldPartNo)
+                            .addComponent(jTextFieldPartName)
+                            .addComponent(jTextFieldPartQuantity)
+                            .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                    .addGroup(jPanelGetPartLayout.createSequentialGroup()
+                        .addComponent(jButtonGetPart, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonClear)))
+                .addGap(40, 40, 40)
+                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAllParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanelGetPartLayout.setVerticalGroup(
             jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldPartNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1377,6 +1417,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jButtonDeletePart))
                 .addContainerGap(206, Short.MAX_VALUE))
         );
+
+        PlainDocument doc3 = (PlainDocument) jTextFieldPartNo.getDocument();
+        doc3.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc4 = (PlainDocument) jTextFieldPartQuantity.getDocument();
+        doc4.setDocumentFilter(new MyIntFilter());
 
         jTabbedPane.addTab("Parts", jPanelGetPart);
 
@@ -1443,7 +1488,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelGetVognLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelGetVognLayout.createSequentialGroup()
                         .addComponent(jButtonGetVogn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -1480,9 +1524,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jPanelGetVognLayout.setVerticalGroup(
             jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGetVognLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(jTextFieldVognNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1518,6 +1560,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         );
 
         jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
+
+        PlainDocument doc1 = (PlainDocument) jTextFieldVognNo.getDocument();
+        doc1.setDocumentFilter(new MyIntFilter());
+        PlainDocument doc2 = (PlainDocument) jTextFieldVognOno.getDocument();
+        doc2.setDocumentFilter(new MyIntFilter());
 
         jTabbedPane.addTab("Fleet", jPanelGetVogn);
 
@@ -1556,13 +1603,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldPartQuantity.setText(p.getQty() + "");
                 jTextFieldPartDescription.setText(p.getPbeskrivelse());
             } else {
-                jLabelStatus.setText("No such part!");
+                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -1589,7 +1636,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
@@ -1602,7 +1649,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 if (ex.getErrorCode() == 1) {
                     JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -1633,7 +1680,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonUpdatePartUpdateActionPerformed
@@ -1669,13 +1716,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldUpdatePartNo.setText(p.getPnum() + "");
                 jTextFieldUpdatePartDescription.setText(p.getPbeskrivelse());
             } else {
-                jLabelUpdateStatus.setText("No such part!");
+                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonUpdatePartLoadActionPerformed
@@ -1706,7 +1753,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonUpdateQtyUpdateActionPerformed
@@ -1739,13 +1786,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldUpdateQtyNo.setText(p.getPnum() + "");
                 jTextFieldUpdateQtyQty.setText(p.getQty() + "");
             } else {
-                jLabelUpdateQtyStatus.setText("No such part!");
+                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonUpdateQtyLoadActionPerformed
@@ -1758,6 +1805,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void jButtonDeletePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartActionPerformed
         // TODO add your handling code here:
         jFrameDeletePart.setVisible(true);
+        jButtonDeletePartDelete.setEnabled(false);
     }//GEN-LAST:event_jButtonDeletePartActionPerformed
 
     private void jButtonDeletePartDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartDeleteActionPerformed
@@ -1778,13 +1826,17 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 pc.deletePart(pnum);
             }
 
-            clearPartDeleteFields2();
+            jTextFieldDeletePartNo.setText("");
+            jTextFieldDeletePartName.setText("");
+            jTextFieldDeletePartQuantity.setText("");
+            jTextFieldDeletePartDescription.setText("");
             jLabelDeleted.setText("Deleted");
+            jButtonDeletePartDelete.setEnabled(false);
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonDeletePartDeleteActionPerformed
@@ -1817,14 +1869,15 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldDeletePartNo.setText(p.getPnum() + "");
                 jTextFieldDeletePartQuantity.setText(p.getQty() + "");
                 jTextFieldDeletePartDescription.setText(p.getPbeskrivelse());
+                jButtonDeletePartDelete.setEnabled(true);
             } else {
-                jLabelDeleteStatus.setText("No such part!");
+                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonDeleteLoadActionPerformed
@@ -1842,24 +1895,26 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void jTextFieldUpdatePartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUpdatePartNoFocusGained
         // TODO add your handling code here:
         jLabelUpdated.setText("");
-        jLabelUpdateStatus.setText("");
     }//GEN-LAST:event_jTextFieldUpdatePartNoFocusGained
 
     private void jTextFieldUpdateQtyNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUpdateQtyNoFocusGained
         // TODO add your handling code here:
-        jLabelUpdateQtyStatus.setText("");
         jLabelQty.setText("");
     }//GEN-LAST:event_jTextFieldUpdateQtyNoFocusGained
 
     private void jTextFieldDeletePartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDeletePartNoFocusGained
         // TODO add your handling code here:
-        jLabelDeleteStatus.setText("");
         jLabelDeleted.setText("");
     }//GEN-LAST:event_jTextFieldDeletePartNoFocusGained
 
     private void jButtonAllPartsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsActionPerformed
         // TODO add your handling code here:
         jFrameAllParts.setVisible(true);
+        try {
+            jTableAllParts.setModel(pc.getAllParts());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAllPartsActionPerformed
 
     private void jButtonGetVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetVognActionPerformed
@@ -1886,13 +1941,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldVognReservedFrom.setText(v.getReserveretFra());
                 jTextFieldVognReservedTo.setText(v.getReserveretTil());
             } else {
-                jLabelVognStatus.setText("No such truck");
+                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonGetVognActionPerformed
@@ -1936,14 +1991,16 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
             vc.saveVogn(v);
 
+            jTextFieldVognNewNo.setText("");
+            jTextFieldVognNewOno.setText("");
+            jTextFieldVognNewResFrom.setText("");
+            jTextFieldVognNewResUntil.setText("");
             jLabelSavedVogn.setText("Saved");
-
-            clearVognNewFields();
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonSaveVognActionPerformed
@@ -2004,13 +2061,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
                 jComboBoxVognUpdateType.setEnabled(false);
             } else {
-                jLabelVognUpdated.setText("No such truck");
+                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonVognUpdateLoadActionPerformed
@@ -2058,7 +2115,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognOno(vognID, ono);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2066,7 +2123,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognStatus(vognID, status);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2074,7 +2131,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognDatoFra(vognID, resFrom);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2082,7 +2139,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognDatoTil(vognID, resTo);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonVognUpdateActionPerformed
@@ -2111,13 +2168,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
                 jComboBoxVognDeleteType.setEnabled(false);
             } else {
-                jLabelVognDeleteStatus.setText("No such truck");
+                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonVognDeleteLoadActionPerformed
@@ -2145,10 +2202,45 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             if (ex.getErrorCode() == 1) {
                 JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonVognDeleteActionPerformed
+
+    private void jButtonAllPartsLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsLoadActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTableAllParts.getSelectedRow();
+        int partNo = Integer.parseInt((jTableAllParts.getValueAt(selectedRow, 0).toString()));
+
+        try {
+
+            clearPartGetFields();
+            Part p = pc.getPart(partNo);
+
+            if (p != null) {
+                jTextFieldPartName.setText(p.getPnavn());
+                jTextFieldPartNo.setText(p.getPnum() + "");
+                jTextFieldPartQuantity.setText(p.getQty() + "");
+                jTextFieldPartDescription.setText(p.getPbeskrivelse());
+                jFrameAllParts.setVisible(false);
+                jFrameAllParts.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1) {
+                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonAllPartsLoadActionPerformed
+
+    private void jButtonAllPartsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsBackActionPerformed
+        // TODO add your handling code here:
+        jFrameAllParts.setVisible(false);
+        jFrameAllParts.dispose();
+    }//GEN-LAST:event_jButtonAllPartsBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2287,19 +2379,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelDeleteStatus;
     private javax.swing.JLabel jLabelDeleted;
     private javax.swing.JLabel jLabelQty;
     private javax.swing.JLabel jLabelSaved;
     private javax.swing.JLabel jLabelSavedVogn;
-    private javax.swing.JLabel jLabelStatus;
-    private javax.swing.JLabel jLabelUpdateQtyStatus;
-    private javax.swing.JLabel jLabelUpdateStatus;
-    private javax.swing.JLabel jLabelUpdateVognStatus;
     private javax.swing.JLabel jLabelUpdated;
-    private javax.swing.JLabel jLabelVognDeleteStatus;
     private javax.swing.JLabel jLabelVognDeleted;
-    private javax.swing.JLabel jLabelVognStatus;
     private javax.swing.JLabel jLabelVognUpdated;
     private javax.swing.JPanel jPanelAllParts;
     private javax.swing.JPanel jPanelDeletePart;
@@ -2313,7 +2398,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelUpdateVogn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAllParts;
     private javax.swing.JTextField jTextFieldDeletePartDescription;
     private javax.swing.JTextField jTextFieldDeletePartName;
     private javax.swing.JTextField jTextFieldDeletePartNo;

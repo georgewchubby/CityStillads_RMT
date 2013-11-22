@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dataSource;
 
 import domain.Part;
 import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,24 +21,24 @@ import static org.junit.Assert.*;
  * @author joachim
  */
 public class PartMapperTest {
-    
+
     public PartMapperTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
 //        instance.deletePart(70000, con);
@@ -47,25 +48,30 @@ public class PartMapperTest {
 
     /**
      * Test of getPart method, of class PartMapper.
+     * The method saveNewPartWitnum is also tested here.
+     *
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testGetPart() {
+    public void testGetPart() throws SQLException {
         System.out.println("getPart");
         Part p = new Part(30, "GetPart", "Get this part", 10);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
         instance.saveNewPartWitnum(p, con);
         Part result = instance.getPart(p.getPnum(), con);
-        assertEquals(result.getPnum(),p.getPnum());
+        assertEquals(result.getPnum(), p.getPnum());
         // TODO review the generated test code and remove the default call to fail.
         // fail("testGetPart failed");
     }
 
     /**
      * Test of saveNewPart method, of class PartMapper.
+     *
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testSaveNewPart() {
+    public void testSaveNewPart() throws SQLException {
         System.out.println("saveNewPart");
         Part p = new Part("NewPart", "Save this part", 10);
         Connection con = new DBConnector().getConnection();
@@ -79,9 +85,11 @@ public class PartMapperTest {
 
     /**
      * Test of updatePartQty method, of class PartMapper.
+     *
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdatePartQty() {
+    public void testUpdatePartQty() throws SQLException {
         System.out.println("updatePartQty");
         int pnum = 30;
         int qty = 150;
@@ -97,9 +105,11 @@ public class PartMapperTest {
 
     /**
      * Test of updatePart method, of class PartMapper.
+     *
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdatePart() {
+    public void testUpdatePart() throws SQLException {
         System.out.println("updatePart");
         Part p1 = new Part(30, "Update", "Update this", 10);
         Part p2 = new Part(30, "Updated", "Updated this", 10);
@@ -114,9 +124,11 @@ public class PartMapperTest {
 
     /**
      * Test of deletePart method, of class PartMapper.
+     *
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testDeletePart() {
+    public void testDeletePart() throws SQLException {
         System.out.println("deletePart");
         int pnum = 30;
         Part p = new Part(pnum, "Delete", "Del del del", 100);
@@ -129,5 +141,19 @@ public class PartMapperTest {
         //fail("The test case is a prototype.");
     }
 
-    
+    /**
+     * Test of getAllParts method, of class PartMapper.
+     * @throws java.sql.SQLException
+     */
+    @Test
+    public void testGetAllParts() throws SQLException {
+        System.out.println("getAllParts");
+        Connection con = new DBConnector().getConnection();
+        PartMapper instance = new PartMapper();
+        int expResult = 4;
+        int result = instance.getAllParts(con).getColumnCount();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 }

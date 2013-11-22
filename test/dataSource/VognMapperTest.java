@@ -23,14 +23,14 @@ public class VognMapperTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
         Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
         instance.deleteVogn(12000000, con);
         
     }
     @After
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
         instance.deleteVogn(12000000, con);
@@ -39,9 +39,10 @@ public class VognMapperTest {
 
     /**
      * Test of saveNewVogn method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testSaveNewVogn() {
+    public void testSaveNewVogn() throws SQLException {
         System.out.println("saveNewVogn");
        String s = "Stor";
         String h = "Hjemme";
@@ -56,9 +57,10 @@ public class VognMapperTest {
 
     /**
      * Test of getVogn method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testGetVogn() {
+    public void testGetVogn() throws SQLException {
         System.out.println("getVogn");
         String s = "Stor";
         String h = "Hjemme";
@@ -77,9 +79,10 @@ public class VognMapperTest {
 
     /**
      * Test of updateVognStatus method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdateVognStatus() {
+    public void testUpdateVognStatus() throws SQLException {
         System.out.println("updateVognStatus");
         String type = "Stor";
         String stat = "Hjemme";
@@ -100,9 +103,10 @@ public class VognMapperTest {
 
     /**
      * Test of updateVognDatoFra method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdateVognDatoFra() throws Exception {
+    public void testUpdateVognDatoFra() throws SQLException {
         System.out.println("updateVognDatoFra");
 
         String type = "Stor";
@@ -122,9 +126,10 @@ public class VognMapperTest {
 
     /**
      * Test of updateVognDatoTil method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdateVognDatoTil() throws Exception {
+    public void testUpdateVognDatoTil() throws SQLException {
         System.out.println("updateVognDatoTil");
 
 
@@ -144,9 +149,10 @@ public class VognMapperTest {
 
     /**
      * Test of updateVognOno method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testUpdateVognOno() throws Exception {
+    public void testUpdateVognOno() throws SQLException {
         System.out.println("updateVognOno");
         String type = "Stor";
         String stat = "Hjemme";
@@ -162,31 +168,13 @@ public class VognMapperTest {
         boolean result = instance.updateVognOno(12000000,Ono, con);
         assertEquals(expResult, result);
     }
-    
-    
-       @Test
-    public void testUpdateVognNO() throws Exception {
-        System.out.println("updateVognNO");
-        String type = "Stor";
-        String stat = "Hjemme";
-       
-        String fra = "20-04-2012";
-        String til = "20-12-2012";
-        int vognno = 12121212;
-        Vogn v = new Vogn(12000000,type,stat,1,fra,til);
-        Connection con =  new DBConnector().getConnection();
-        VognMapper instance = new VognMapper();
-        instance.saveNewVogn(v, con);
-        boolean expResult = true;
-        boolean result = instance.updateVognNO(12000000, vognno, con);
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of deleteVogn method, of class VognMapper.
+     * @throws java.sql.SQLException
      */
     @Test
-    public void testDeleteVogn() {
+    public void testDeleteVogn() throws SQLException {
         System.out.println("deleteVogn");
         String type = "Stor";
         String stat = "Hjemme";

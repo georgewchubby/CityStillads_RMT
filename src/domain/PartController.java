@@ -2,6 +2,7 @@ package domain;
 
 import dataSource.*;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +16,10 @@ public class PartController {
     public PartController() {
         currentPart = null;
         pf = PDBFacade.getInstance();
+    }
+    
+    public DefaultTableModel getAllParts() throws SQLException {
+        return pf.getAllParts();
     }
 
     public Part getPart(int pno) throws SQLException {

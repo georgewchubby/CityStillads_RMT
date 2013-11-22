@@ -3,6 +3,7 @@ package dataSource;
 import domain.*;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +26,10 @@ public class PDBFacade {
             instance = new PDBFacade();
         }
         return instance;
+    }
+    
+    public DefaultTableModel getAllParts() throws SQLException {
+        return pm.getAllParts(con);
     }
 
     public Part getPart(int pno) throws SQLException {
