@@ -48,6 +48,11 @@ public class StartFrame extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         jButton2.setText("RMS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Order Management");
@@ -95,13 +100,22 @@ public class StartFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       OrderManagementSystemFrame oms = new OrderManagementSystemFrame();
-       oms.setVisible(true);
-       
-       oms.setEnabled(true);
-       this.setVisible(false);
-        
+        OrderManagementSystemFrame oms = new OrderManagementSystemFrame();
+        oms.setVisible(true);
+
+        oms.setEnabled(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ResourceManagementSystemFrame rms = new ResourceManagementSystemFrame();
+        rms.setVisible(true);
+
+        rms.setEnabled(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

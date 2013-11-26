@@ -17,10 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class PartMapper {
 
     //== Get all parts
-    public DefaultTableModel getAllParts(Connection con) throws SQLException {
+    public static DefaultTableModel getAllParts(Connection con) throws SQLException {
         DefaultTableModel dtm = null;
 
-        String SQLString = "select * from parts ";
+        String SQLString = "select * from parts";
 
         PreparedStatement statement = null;
 

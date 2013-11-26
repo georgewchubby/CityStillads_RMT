@@ -35,7 +35,7 @@
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButtonSavePart" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="170" max="32767" attributes="0"/>
+                                  <EmptySpace pref="161" max="32767" attributes="0"/>
                                   <Component id="jButtonNewPartBack" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -55,7 +55,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="98" max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -102,27 +102,27 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Create new part"/>
+                <Property name="text" type="java.lang.String" value="Opret ny del"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part No"/>
+                <Property name="text" type="java.lang.String" value="Del nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Name"/>
+                <Property name="text" type="java.lang.String" value="Del navn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Quantity"/>
+                <Property name="text" type="java.lang.String" value="Del antal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Description"/>
+                <Property name="text" type="java.lang.String" value="Del beskrivelse"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNewPartNo">
@@ -147,7 +147,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSavePart">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save Part"/>
+                <Property name="text" type="java.lang.String" value="Gem del"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSavePartActionPerformed"/>
@@ -155,7 +155,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonNewPartBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNewPartBackActionPerformed"/>
@@ -200,30 +200,25 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabelUpdated" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonUpdatePartUpdate" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelUpdated" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButtonUpdatePartLoad" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButtonUpdatePartUpdate" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="61" max="32767" attributes="0"/>
-                                      <Component id="jButtonUpdatePartBack" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTextFieldUpdatePartName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonUpdatePartBack" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldUpdatePartName" alignment="0" pref="207" max="32767" attributes="0"/>
                                   <Component id="jTextFieldUpdatePartNo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldUpdatePartDescription" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -255,7 +250,6 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonUpdatePartLoad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdatePartUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdatePartBack" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -272,27 +266,28 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Update part"/>
+                <Property name="text" type="java.lang.String" value="Opdater del"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part No"/>
+                <Property name="text" type="java.lang.String" value="Del nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Name"/>
+                <Property name="text" type="java.lang.String" value="Del navn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Description"/>
+                <Property name="text" type="java.lang.String" value="Del beskrivelse"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdatePartNo">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdatePartNoFocusGained"/>
@@ -307,7 +302,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdatePartUpdate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Part"/>
+                <Property name="text" type="java.lang.String" value="Opdater del"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdatePartUpdateActionPerformed"/>
@@ -315,18 +310,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdatePartBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdatePartBackActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonUpdatePartLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load part"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdatePartLoadActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelUpdated">
@@ -379,31 +366,25 @@
                                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonUpdateQtyUpdate" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButtonUpdateQtyLoad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelQty" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="jLabelQty" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButtonUpdateQtyUpdate" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="61" max="32767" attributes="0"/>
-                                      <Component id="jButtonUpdateQtyBack" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTextFieldUpdateQtyName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonUpdateQtyBack" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldUpdateQtyName" alignment="0" pref="205" max="32767" attributes="0"/>
                                   <Component id="jTextFieldUpdateQtyNo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldUpdateQtyQty" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="106" max="32767" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -429,7 +410,6 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonUpdateQtyLoad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdateQtyUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdateQtyBack" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -446,27 +426,28 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Update quantity"/>
+                <Property name="text" type="java.lang.String" value="Opdater antal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part No"/>
+                <Property name="text" type="java.lang.String" value="Del nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Name"/>
+                <Property name="text" type="java.lang.String" value="Del navn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Quantity"/>
+                <Property name="text" type="java.lang.String" value="Del antal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUpdateQtyNo">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldUpdateQtyNoFocusGained"/>
@@ -484,7 +465,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdateQtyUpdate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Qty"/>
+                <Property name="text" type="java.lang.String" value="Opdater antal"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateQtyUpdateActionPerformed"/>
@@ -492,18 +473,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdateQtyBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateQtyBackActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonUpdateQtyLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load part"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateQtyLoadActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelQty">
@@ -538,18 +511,16 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jButtonDeleteLoad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonDeletePartDelete" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="89" max="32767" attributes="0"/>
-                              <Component id="jButtonDeletePartBack" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jButtonDeletePartDelete" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="165" max="32767" attributes="0"/>
+                                  <Component id="jButtonDeletePartBack" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -567,7 +538,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="98" max="32767" attributes="0"/>
+                      <EmptySpace pref="104" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -600,7 +571,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonDeletePartDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonDeletePartBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonDeleteLoad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelDeleted" min="-2" max="-2" attributes="0"/>
@@ -615,32 +585,33 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Delete part"/>
+                <Property name="text" type="java.lang.String" value="Slet del"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part No"/>
+                <Property name="text" type="java.lang.String" value="Del nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel20">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Name"/>
+                <Property name="text" type="java.lang.String" value="Del navn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel21">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Quantity"/>
+                <Property name="text" type="java.lang.String" value="Del antal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Part Description"/>
+                <Property name="text" type="java.lang.String" value="Del beskrivelse"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartNo">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDeletePartNoFocusGained"/>
@@ -650,17 +621,26 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartName">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartQuantity">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc12 = (PlainDocument) jTextFieldDeletePartQuantity.getDocument();&#xa;doc12.setDocumentFilter(new MyIntFilter());"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldDeletePartDescription">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonDeletePartDelete">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete Part"/>
+                <Property name="text" type="java.lang.String" value="Slet del"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeletePartDeleteActionPerformed"/>
@@ -668,129 +648,13 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonDeletePartBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeletePartBackActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelDeleted">
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonDeleteLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteLoadActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JFrame" name="jFrameAllParts">
-      <Properties>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[550, 450]"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jPanelAllParts" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jPanelAllParts" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanelAllParts">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jButtonAllPartsLoad" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonAllPartsBack" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="312" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonAllPartsLoad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonAllPartsBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="jTableAllParts">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="0"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="jButtonAllPartsLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load Part"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllPartsLoadActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonAllPartsBack">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllPartsBackActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1078,11 +942,9 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButtonVognUpdateLoad" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Component id="jButtonVognUpdate" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jButtonVognUpdateBack" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabelVognUpdated" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1090,7 +952,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="96" max="32767" attributes="0"/>
+                      <EmptySpace pref="122" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1137,7 +999,6 @@
                       <Component id="jLabelVognUpdated" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonVognUpdateLoad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonVognUpdateBack" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonVognUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1152,32 +1013,33 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Update truck"/>
+                <Property name="text" type="java.lang.String" value="Opdater vogn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel37">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck No"/>
+                <Property name="text" type="java.lang.String" value="Vogn nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel38">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck Type"/>
+                <Property name="text" type="java.lang.String" value="Vogn type"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel39">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck Status"/>
+                <Property name="text" type="java.lang.String" value="Vogn status"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel40">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Order No"/>
+                <Property name="text" type="java.lang.String" value="Ordre nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateNo">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc7 = (PlainDocument) jTextFieldVognUpdateNo.getDocument();&#xa;doc7.setDocumentFilter(new MyIntFilter());"/>
@@ -1188,17 +1050,9 @@
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc8 = (PlainDocument) jTextFieldVognUpdateOno.getDocument();&#xa;doc8.setDocumentFilter(new MyIntFilter());"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonVognUpdateLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load Truck"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognUpdateLoadActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="jButtonVognUpdateBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognUpdateBackActionPerformed"/>
@@ -1208,17 +1062,17 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel41">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved From"/>
+                <Property name="text" type="java.lang.String" value="Reserveret fra"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel42">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved Until"/>
+                <Property name="text" type="java.lang.String" value="Reserveret til"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateResFrom">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognUpdateResFromFocusGained"/>
@@ -1227,7 +1081,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateResUntil">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognUpdateResUntilFocusGained"/>
@@ -1278,7 +1132,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognUpdate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Truck"/>
+                <Property name="text" type="java.lang.String" value="Opdater vogn"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognUpdateActionPerformed"/>
@@ -1338,19 +1192,22 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButtonVognDeleteLoad" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Component id="jButtonVognDelete" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jButtonVognDeleteBack" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabelVognDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelVognDeleted" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="147" max="32767" attributes="0"/>
+                      <EmptySpace pref="149" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1391,13 +1248,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jLabelVognDeleted" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonVognDeleteLoad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonVognDeleteBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonVognDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonVognDeleteBack" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonVognDelete" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1408,53 +1264,49 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Delete truck"/>
+                <Property name="text" type="java.lang.String" value="Slet vogn"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel49">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck No"/>
+                <Property name="text" type="java.lang.String" value="Vogn nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel50">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck Type"/>
+                <Property name="text" type="java.lang.String" value="Vogn type"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel51">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck Status"/>
+                <Property name="text" type="java.lang.String" value="Vogn status"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel52">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Order No"/>
+                <Property name="text" type="java.lang.String" value="Ordre nummer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognDeleteNo">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc5 = (PlainDocument) jTextFieldVognDeleteNo.getDocument();&#xa;doc5.setDocumentFilter(new MyIntFilter());"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognDeleteOno">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc6 = (PlainDocument) jTextFieldVognDeleteOno.getDocument();&#xa;doc6.setDocumentFilter(new MyIntFilter());"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonVognDeleteLoad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load Truck"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognDeleteLoadActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="jButtonVognDeleteBack">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Back"/>
+                <Property name="text" type="java.lang.String" value="Tilbage"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognDeleteBackActionPerformed"/>
@@ -1464,22 +1316,22 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel53">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved From"/>
+                <Property name="text" type="java.lang.String" value="Reserveret til"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel54">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved Until"/>
+                <Property name="text" type="java.lang.String" value="Reserveret fra"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognDeleteResFrom">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognDeleteResUntil">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxVognDeleteStatus">
@@ -1491,6 +1343,7 @@
                     <StringItem index="2" value="Nedrivning"/>
                   </StringArray>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxVognDeleteType">
@@ -1502,11 +1355,12 @@
                     <StringItem index="2" value="Stor"/>
                   </StringArray>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVognDelete">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete Truck"/>
+                <Property name="text" type="java.lang.String" value="Slet vogn"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognDeleteActionPerformed"/>
@@ -1559,15 +1413,10 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanelGetPart">
-          <Properties>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[550, 350]"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Parts">
-                <Property name="tabTitle" type="java.lang.String" value="Parts"/>
+              <JTabbedPaneConstraints tabName="Dele">
+                <Property name="tabTitle" type="java.lang.String" value="Dele"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1575,124 +1424,51 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonLoadParts" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldPartNo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldPartName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldPartQuantity" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldPartDescription" pref="166" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneAllParts" min="-2" pref="752" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jButtonUpdateQty" max="32767" attributes="0"/>
+                                  <Component id="jButtonUpdatePart" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jButtonNewPart" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jButtonDeletePart" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jButtonGetPart" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonClear" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButtonUpdatePart" max="32767" attributes="0"/>
-                          <Component id="jButtonNewPart" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButtonUpdateQty" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButtonDeletePart" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButtonAllParts" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPartNo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonAllParts" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonNewPart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonUpdatePart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonUpdateQty" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonDeletePart" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPaneAllParts" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPartName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonNewPart" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPartQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonUpdatePart" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPartDescription" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonUpdateQty" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonGetPart" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonClear" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonDeletePart" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="206" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonLoadParts" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Part No"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Part Name"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Quantity"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Part Description"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPartNo">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc3 = (PlainDocument) jTextFieldPartNo.getDocument();&#xa;doc3.setDocumentFilter(new MyIntFilter());"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPartName">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPartQuantity">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc4 = (PlainDocument) jTextFieldPartQuantity.getDocument();&#xa;doc4.setDocumentFilter(new MyIntFilter());"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonGetPart">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Get Part"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetPartActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="jButtonNewPart">
               <Properties>
-                <Property name="text" type="java.lang.String" value="New Part"/>
+                <Property name="text" type="java.lang.String" value="Opret ny del"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNewPartActionPerformed"/>
@@ -1700,7 +1476,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdatePart">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Part"/>
+                <Property name="text" type="java.lang.String" value="Opdater del"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdatePartActionPerformed"/>
@@ -1708,7 +1485,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdateQty">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Qty"/>
+                <Property name="text" type="java.lang.String" value="Opdater antal"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateQtyActionPerformed"/>
@@ -1716,28 +1494,45 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonDeletePart">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete Part"/>
+                <Property name="text" type="java.lang.String" value="Slet del"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeletePartActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPartDescription">
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonClear">
+            <Container class="javax.swing.JScrollPane" name="jScrollPaneAllParts">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ResourceManagementSystemFrame_jScrollPaneAllParts"/>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTableParts">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="0" rowCount="4"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jTableParts.setAutoCreateRowSorter(true);"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="jButtonLoadParts">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Clear"/>
+                <Property name="text" type="java.lang.String" value="Indl&#xe6;s dele"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonClearActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonAllParts">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="All Parts"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllPartsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoadPartsActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1750,8 +1545,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Fleet">
-                <Property name="tabTitle" type="java.lang.String" value="Fleet"/>
+              <JTabbedPaneConstraints tabName="Vognpark">
+                <Property name="tabTitle" type="java.lang.String" value="Vognpark"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1759,133 +1554,59 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButtonGetVogn" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonVognClear" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="752" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonNewVogn" max="32767" attributes="0"/>
+                                  <Component id="jButtonUpdateVogn" max="32767" attributes="0"/>
+                                  <Component id="jButtonDeleteVogn" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel24" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel30" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel29" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel28" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel27" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldVognReservedFrom" linkSize="1" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldVognNo" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldVognType" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldVognStatus" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldVognOno" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldVognReservedTo" linkSize="1" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonUpdateVogn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonNewVogn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonDeleteVogn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonAllVogn" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jButtonLoadVogne" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="87" pref="109" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldVognNo" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonAllVogn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="380" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonNewVogn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonUpdateVogn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonDeleteVogn" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldVognType" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonNewVogn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldVognStatus" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonUpdateVogn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldVognOno" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonDeleteVogn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldVognReservedFrom" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldVognReservedTo" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonGetVogn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonVognClear" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonLoadVogne" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel27">
+            <Component class="javax.swing.JButton" name="jButtonLoadVogne">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Truck No"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel28">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Truck Type"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel29">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Status"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel30">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Order No"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognNo">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc1 = (PlainDocument) jTextFieldVognNo.getDocument();&#xa;doc1.setDocumentFilter(new MyIntFilter());"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognType">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognStatus">
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonGetVogn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Get Truck"/>
+                <Property name="text" type="java.lang.String" value="Indl&#xe6;s vogne"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetVognActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoadVogneActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonNewVogn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="New Truck"/>
+                <Property name="text" type="java.lang.String" value="Opret ny vogn"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNewVognActionPerformed"/>
@@ -1893,7 +1614,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonUpdateVogn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Truck"/>
+                <Property name="text" type="java.lang.String" value="Opdater vogn"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateVognActionPerformed"/>
@@ -1901,47 +1623,38 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonDeleteVogn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete Truck"/>
+                <Property name="text" type="java.lang.String" value="Slet vogn"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteVognActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognOno">
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc2 = (PlainDocument) jTextFieldVognOno.getDocument();&#xa;doc2.setDocumentFilter(new MyIntFilter());"/>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonVognClear">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Clear"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVognClearActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonAllVogn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="All Trucks"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAllVognActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel23">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved From"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel24">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reserved Until"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognReservedFrom">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldVognReservedTo">
-            </Component>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTableVogne">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="0" rowCount="4"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jTableVogne.setAutoCreateRowSorter(true);"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

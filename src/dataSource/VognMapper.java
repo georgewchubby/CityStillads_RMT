@@ -4,12 +4,47 @@ import domain.Vogn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 //=== Maps between objects and tables
 //=== Encapsulates SQL-statements
 // hau
 public class VognMapper {
+    
+    //== Get all vogne
+    public DefaultTableModel getAllVogn(Connection con) throws SQLException {
+        DefaultTableModel dtm = null;
+
+        String SQLString = "select * from vogn";
+
+        PreparedStatement statement = null;
+
+        statement = con.prepareStatement(SQLString);
+        ResultSet rs = statement.executeQuery();
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+    }
 
     //== Save a new vogn
     public boolean saveNewVogn(Vogn v, Connection con) throws SQLException {
@@ -96,7 +131,6 @@ public class VognMapper {
 
         if (rs.next()) {
             origStat = rs.getString(1);
-            System.out.println("origstat   " + origStat);
             if (origStat.compareTo(stat) != 0) {
                 statement = con.prepareStatement(SQLString2);
                 statement.setString(1, stat);

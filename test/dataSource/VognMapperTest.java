@@ -7,10 +7,13 @@ package dataSource;
 import domain.Vogn;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -20,6 +23,14 @@ public class VognMapperTest {
     
     public VognMapperTest() {
         
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
     
     @Before
@@ -191,5 +202,20 @@ public class VognMapperTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
       
+    }
+
+    /**
+     * Test of getAllVogn method, of class VognMapper.
+     */
+    @Test
+    public void testGetAllVogn() throws Exception {
+        System.out.println("getAllVogn");
+        Connection con = new DBConnector().getConnection();
+        VognMapper instance = new VognMapper();
+        int expResult = 6;
+        int result = instance.getAllVogn(con).getColumnCount();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

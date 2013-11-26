@@ -11,6 +11,9 @@ import domain.Vogn;
 import domain.VognController;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -32,6 +35,28 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
     public ResourceManagementSystemFrame() {
         initComponents();
+
+        ListSelectionModel listSelectionModelParts = jTableParts.getSelectionModel();
+        ListSelectionModel listSelectionModelVogne = jTableVogne.getSelectionModel();
+        listSelectionModelParts.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+                jButtonUpdatePart.setEnabled(!lsm.isSelectionEmpty());
+                jButtonUpdateQty.setEnabled(!lsm.isSelectionEmpty());
+                jButtonDeletePart.setEnabled(!lsm.isSelectionEmpty());
+            }
+        });
+        listSelectionModelVogne.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                ListSelectionModel lsm2 = (ListSelectionModel) e.getSource();
+                jButtonDeleteVogn.setEnabled(!lsm2.isSelectionEmpty());
+                jButtonUpdateVogn.setEnabled(!lsm2.isSelectionEmpty());
+            }
+        });
     }
 
     class MyIntFilter extends DocumentFilter {
@@ -62,13 +87,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         }
     }
 
-    private void clearPartGetFields() {
-        jTextFieldPartNo.setText("");
-        jTextFieldPartName.setText("");
-        jTextFieldPartQuantity.setText("");
-        jTextFieldPartDescription.setText("");
-    }
-
     private void clearPartNewFields() {
         jTextFieldNewPartNo.setText("");
         jTextFieldNewPartName.setText("");
@@ -97,15 +115,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldDeletePartQuantity.setText("");
         jTextFieldDeletePartDescription.setText("");
         jLabelDeleted.setText("");
-    }
-
-    private void clearVognGetFields() {
-        jTextFieldVognNo.setText("");
-        jTextFieldVognOno.setText("");
-        jTextFieldVognType.setText("");
-        jTextFieldVognStatus.setText("");
-        jTextFieldVognReservedFrom.setText("");
-        jTextFieldVognReservedTo.setText("");
     }
 
     private void clearVognUpdateFields() {
@@ -165,7 +174,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldUpdatePartDescription = new javax.swing.JTextField();
         jButtonUpdatePartUpdate = new javax.swing.JButton();
         jButtonUpdatePartBack = new javax.swing.JButton();
-        jButtonUpdatePartLoad = new javax.swing.JButton();
         jLabelUpdated = new javax.swing.JLabel();
         jFrameUpdateQty = new javax.swing.JFrame();
         jPanelUpdateQty = new javax.swing.JPanel();
@@ -178,7 +186,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldUpdateQtyQty = new javax.swing.JTextField();
         jButtonUpdateQtyUpdate = new javax.swing.JButton();
         jButtonUpdateQtyBack = new javax.swing.JButton();
-        jButtonUpdateQtyLoad = new javax.swing.JButton();
         jLabelQty = new javax.swing.JLabel();
         jFrameDeletePart = new javax.swing.JFrame();
         jPanelDeletePart = new javax.swing.JPanel();
@@ -194,13 +201,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonDeletePartDelete = new javax.swing.JButton();
         jButtonDeletePartBack = new javax.swing.JButton();
         jLabelDeleted = new javax.swing.JLabel();
-        jButtonDeleteLoad = new javax.swing.JButton();
-        jFrameAllParts = new javax.swing.JFrame();
-        jPanelAllParts = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableAllParts = new javax.swing.JTable();
-        jButtonAllPartsLoad = new javax.swing.JButton();
-        jButtonAllPartsBack = new javax.swing.JButton();
         jFrameNewVogn = new javax.swing.JFrame();
         jPanelNewVogn = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -228,7 +228,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jTextFieldVognUpdateNo = new javax.swing.JTextField();
         jTextFieldVognUpdateOno = new javax.swing.JTextField();
-        jButtonVognUpdateLoad = new javax.swing.JButton();
         jButtonVognUpdateBack = new javax.swing.JButton();
         jLabelVognUpdated = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -251,7 +250,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         jTextFieldVognDeleteNo = new javax.swing.JTextField();
         jTextFieldVognDeleteOno = new javax.swing.JTextField();
-        jButtonVognDeleteLoad = new javax.swing.JButton();
         jButtonVognDeleteBack = new javax.swing.JButton();
         jLabelVognDeleted = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -263,53 +261,35 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonVognDelete = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelGetPart = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextFieldPartNo = new javax.swing.JTextField();
-        jTextFieldPartName = new javax.swing.JTextField();
-        jTextFieldPartQuantity = new javax.swing.JTextField();
-        jButtonGetPart = new javax.swing.JButton();
         jButtonNewPart = new javax.swing.JButton();
         jButtonUpdatePart = new javax.swing.JButton();
         jButtonUpdateQty = new javax.swing.JButton();
         jButtonDeletePart = new javax.swing.JButton();
-        jTextFieldPartDescription = new javax.swing.JTextField();
-        jButtonClear = new javax.swing.JButton();
-        jButtonAllParts = new javax.swing.JButton();
+        jScrollPaneAllParts = new javax.swing.JScrollPane();
+        jTableParts = new javax.swing.JTable();
+        jTableParts.setAutoCreateRowSorter(true);
+        jButtonLoadParts = new javax.swing.JButton();
         jPanelGetVogn = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jTextFieldVognNo = new javax.swing.JTextField();
-        jTextFieldVognType = new javax.swing.JTextField();
-        jTextFieldVognStatus = new javax.swing.JTextField();
-        jButtonGetVogn = new javax.swing.JButton();
+        jButtonLoadVogne = new javax.swing.JButton();
         jButtonNewVogn = new javax.swing.JButton();
         jButtonUpdateVogn = new javax.swing.JButton();
         jButtonDeleteVogn = new javax.swing.JButton();
-        jTextFieldVognOno = new javax.swing.JTextField();
-        jButtonVognClear = new javax.swing.JButton();
-        jButtonAllVogn = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jTextFieldVognReservedFrom = new javax.swing.JTextField();
-        jTextFieldVognReservedTo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableVogne = new javax.swing.JTable();
+        jTableVogne.setAutoCreateRowSorter(true);
 
         jFrameNewPart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Create new part");
+        jLabel5.setText("Opret ny del");
 
-        jLabel6.setText("Part No");
+        jLabel6.setText("Del nummer");
 
-        jLabel7.setText("Part Name");
+        jLabel7.setText("Del navn");
 
-        jLabel8.setText("Part Quantity");
+        jLabel8.setText("Del antal");
 
-        jLabel9.setText("Part Description");
+        jLabel9.setText("Del beskrivelse");
 
         jTextFieldNewPartNo.setToolTipText("Leave empty for auto-number");
         jTextFieldNewPartNo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -318,14 +298,14 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonSavePart.setText("Save Part");
+        jButtonSavePart.setText("Gem del");
         jButtonSavePart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSavePartActionPerformed(evt);
             }
         });
 
-        jButtonNewPartBack.setText("Back");
+        jButtonNewPartBack.setText("Tilbage");
         jButtonNewPartBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNewPartBackActionPerformed(evt);
@@ -344,7 +324,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addGroup(jPanelNewPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNewPartLayout.createSequentialGroup()
                             .addComponent(jButtonSavePart)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                             .addComponent(jButtonNewPartBack))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNewPartLayout.createSequentialGroup()
                             .addGroup(jPanelNewPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +338,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addComponent(jTextFieldNewPartNo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                                 .addComponent(jTextFieldNewPartQuantity)
                                 .addComponent(jTextFieldNewPartDescription)))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanelNewPartLayout.setVerticalGroup(
             jPanelNewPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,39 +389,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameUpdatePart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Update part");
+        jLabel10.setText("Opdater del");
 
-        jLabel11.setText("Part No");
+        jLabel11.setText("Del nummer");
 
-        jLabel12.setText("Part Name");
+        jLabel12.setText("Del navn");
 
-        jLabel14.setText("Part Description");
+        jLabel14.setText("Del beskrivelse");
 
         jTextFieldUpdatePartNo.setToolTipText("");
+        jTextFieldUpdatePartNo.setEnabled(false);
         jTextFieldUpdatePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldUpdatePartNoFocusGained(evt);
             }
         });
 
-        jButtonUpdatePartUpdate.setText("Update Part");
+        jButtonUpdatePartUpdate.setText("Opdater del");
         jButtonUpdatePartUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdatePartUpdateActionPerformed(evt);
             }
         });
 
-        jButtonUpdatePartBack.setText("Back");
+        jButtonUpdatePartBack.setText("Tilbage");
         jButtonUpdatePartBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdatePartBackActionPerformed(evt);
-            }
-        });
-
-        jButtonUpdatePartLoad.setText("Load part");
-        jButtonUpdatePartLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdatePartLoadActionPerformed(evt);
             }
         });
 
@@ -456,24 +430,21 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                         .addComponent(jLabel10))
                     .addGroup(jPanelUpdatePartLayout.createSequentialGroup()
                         .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpdatePartLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelUpdated)
+                                .addGap(111, 111, 111))
                             .addGroup(jPanelUpdatePartLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel12)
-                                    .addComponent(jLabel14)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpdatePartLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelUpdated)
-                                    .addComponent(jButtonUpdatePartLoad))))
-                        .addGap(32, 32, 32)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jButtonUpdatePartUpdate))
+                                .addGap(12, 12, 12)))
                         .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelUpdatePartLayout.createSequentialGroup()
-                                .addComponent(jButtonUpdatePartUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                                .addComponent(jButtonUpdatePartBack))
-                            .addComponent(jTextFieldUpdatePartName)
+                            .addComponent(jButtonUpdatePartBack, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldUpdatePartName, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                             .addComponent(jTextFieldUpdatePartNo)
                             .addComponent(jTextFieldUpdatePartDescription))))
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -497,7 +468,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldUpdatePartDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelUpdatePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonUpdatePartLoad)
                     .addComponent(jButtonUpdatePartUpdate)
                     .addComponent(jButtonUpdatePartBack))
                 .addGap(18, 18, 18)
@@ -524,39 +494,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jPanelUpdateQty.setMinimumSize(new java.awt.Dimension(410, 225));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Update quantity");
+        jLabel13.setText("Opdater antal");
 
-        jLabel15.setText("Part No");
+        jLabel15.setText("Del nummer");
 
-        jLabel16.setText("Part Name");
+        jLabel16.setText("Del navn");
 
-        jLabel17.setText("Part Quantity");
+        jLabel17.setText("Del antal");
 
         jTextFieldUpdateQtyNo.setToolTipText("");
+        jTextFieldUpdateQtyNo.setEnabled(false);
         jTextFieldUpdateQtyNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldUpdateQtyNoFocusGained(evt);
             }
         });
 
-        jButtonUpdateQtyUpdate.setText("Update Qty");
+        jButtonUpdateQtyUpdate.setText("Opdater antal");
         jButtonUpdateQtyUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateQtyUpdateActionPerformed(evt);
             }
         });
 
-        jButtonUpdateQtyBack.setText("Back");
+        jButtonUpdateQtyBack.setText("Tilbage");
         jButtonUpdateQtyBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateQtyBackActionPerformed(evt);
-            }
-        });
-
-        jButtonUpdateQtyLoad.setText("Load part");
-        jButtonUpdateQtyLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateQtyLoadActionPerformed(evt);
             }
         });
 
@@ -576,23 +540,19 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
-                                    .addComponent(jLabel17))
-                                .addGap(43, 43, 43))
+                                    .addComponent(jLabel17)
+                                    .addComponent(jButtonUpdateQtyUpdate))
+                                .addGap(19, 19, 19))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpdateQtyLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonUpdateQtyLoad)
-                                    .addComponent(jLabelQty))
-                                .addGap(32, 32, 32)))
+                                .addComponent(jLabelQty)
+                                .addGap(111, 111, 111)))
                         .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelUpdateQtyLayout.createSequentialGroup()
-                                .addComponent(jButtonUpdateQtyUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                                .addComponent(jButtonUpdateQtyBack))
-                            .addComponent(jTextFieldUpdateQtyName)
+                            .addComponent(jButtonUpdateQtyBack, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldUpdateQtyName, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                             .addComponent(jTextFieldUpdateQtyNo)
                             .addComponent(jTextFieldUpdateQtyQty))))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanelUpdateQtyLayout.setVerticalGroup(
             jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,7 +573,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldUpdateQtyQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelUpdateQtyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonUpdateQtyLoad)
                     .addComponent(jButtonUpdateQtyUpdate)
                     .addComponent(jButtonUpdateQtyBack))
                 .addGap(24, 24, 24)
@@ -640,41 +599,41 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameDeletePart.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("Delete part");
+        jLabel18.setText("Slet del");
 
-        jLabel19.setText("Part No");
+        jLabel19.setText("Del nummer");
 
-        jLabel20.setText("Part Name");
+        jLabel20.setText("Del navn");
 
-        jLabel21.setText("Part Quantity");
+        jLabel21.setText("Del antal");
 
-        jLabel22.setText("Part Description");
+        jLabel22.setText("Del beskrivelse");
 
         jTextFieldDeletePartNo.setToolTipText("");
+        jTextFieldDeletePartNo.setEnabled(false);
         jTextFieldDeletePartNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldDeletePartNoFocusGained(evt);
             }
         });
 
-        jButtonDeletePartDelete.setText("Delete Part");
+        jTextFieldDeletePartName.setEnabled(false);
+
+        jTextFieldDeletePartQuantity.setEnabled(false);
+
+        jTextFieldDeletePartDescription.setEnabled(false);
+
+        jButtonDeletePartDelete.setText("Slet del");
         jButtonDeletePartDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeletePartDeleteActionPerformed(evt);
             }
         });
 
-        jButtonDeletePartBack.setText("Back");
+        jButtonDeletePartBack.setText("Tilbage");
         jButtonDeletePartBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeletePartBackActionPerformed(evt);
-            }
-        });
-
-        jButtonDeleteLoad.setText("Load");
-        jButtonDeleteLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteLoadActionPerformed(evt);
             }
         });
 
@@ -683,18 +642,16 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jPanelDeletePartLayout.setHorizontalGroup(
             jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDeletePartLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanelDeletePartLayout.createSequentialGroup()
-                        .addComponent(jButtonDeleteLoad)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDeletePartDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addComponent(jButtonDeletePartBack))
-                    .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelDeleted)
-                        .addComponent(jLabel18)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelDeleted)
+                    .addComponent(jLabel18)
+                    .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanelDeletePartLayout.createSequentialGroup()
+                            .addComponent(jButtonDeletePartDelete)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                            .addComponent(jButtonDeletePartBack))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDeletePartLayout.createSequentialGroup()
                             .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel19)
                                 .addComponent(jLabel20)
@@ -706,7 +663,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addComponent(jTextFieldDeletePartNo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                                 .addComponent(jTextFieldDeletePartQuantity)
                                 .addComponent(jTextFieldDeletePartDescription)))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanelDeletePartLayout.setVerticalGroup(
             jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,8 +689,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDeletePartDelete)
-                    .addComponent(jButtonDeletePartBack)
-                    .addComponent(jButtonDeleteLoad))
+                    .addComponent(jButtonDeletePartBack))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDeleted)
                 .addContainerGap(58, Short.MAX_VALUE))
@@ -753,77 +709,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameDeletePartLayout.setVerticalGroup(
             jFrameDeletePartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jFrameAllParts.setMinimumSize(new java.awt.Dimension(550, 450));
-
-        jTableAllParts.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTableAllParts);
-
-        jButtonAllPartsLoad.setText("Load Part");
-        jButtonAllPartsLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAllPartsLoadActionPerformed(evt);
-            }
-        });
-
-        jButtonAllPartsBack.setText("Back");
-        jButtonAllPartsBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAllPartsBackActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelAllPartsLayout = new javax.swing.GroupLayout(jPanelAllParts);
-        jPanelAllParts.setLayout(jPanelAllPartsLayout);
-        jPanelAllPartsLayout.setHorizontalGroup(
-            jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
-                .addComponent(jButtonAllPartsLoad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAllPartsBack)
-                .addContainerGap())
-        );
-        jPanelAllPartsLayout.setVerticalGroup(
-            jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAllPartsLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(jPanelAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAllPartsLoad)
-                    .addComponent(jButtonAllPartsBack))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jFrameAllPartsLayout = new javax.swing.GroupLayout(jFrameAllParts.getContentPane());
-        jFrameAllParts.getContentPane().setLayout(jFrameAllPartsLayout);
-        jFrameAllPartsLayout.setHorizontalGroup(
-            jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrameAllPartsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jFrameAllPartsLayout.setVerticalGroup(
-            jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jFrameAllPartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrameAllPartsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jFrameNewVogn.setMinimumSize(new java.awt.Dimension(550, 450));
@@ -983,37 +868,31 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameUpdateVogn.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel36.setText("Update truck");
+        jLabel36.setText("Opdater vogn");
 
-        jLabel37.setText("Truck No");
+        jLabel37.setText("Vogn nummer");
 
-        jLabel38.setText("Truck Type");
+        jLabel38.setText("Vogn type");
 
-        jLabel39.setText("Truck Status");
+        jLabel39.setText("Vogn status");
 
-        jLabel40.setText("Order No");
+        jLabel40.setText("Ordre nummer");
 
         jTextFieldVognUpdateNo.setToolTipText("");
+        jTextFieldVognUpdateNo.setEnabled(false);
 
-        jButtonVognUpdateLoad.setText("Load Truck");
-        jButtonVognUpdateLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVognUpdateLoadActionPerformed(evt);
-            }
-        });
-
-        jButtonVognUpdateBack.setText("Back");
+        jButtonVognUpdateBack.setText("Tilbage");
         jButtonVognUpdateBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVognUpdateBackActionPerformed(evt);
             }
         });
 
-        jLabel41.setText("Reserved From");
+        jLabel41.setText("Reserveret fra");
 
-        jLabel42.setText("Reserved Until");
+        jLabel42.setText("Reserveret til");
 
-        jTextFieldVognUpdateResFrom.setText("dd,mm,yyyy");
+        jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
         jTextFieldVognUpdateResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResFromFocusGained(evt);
@@ -1023,7 +902,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldVognUpdateResUntil.setText("dd,mm,yyyy");
+        jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
         jTextFieldVognUpdateResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResUntilFocusGained(evt);
@@ -1045,7 +924,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jCheckBoxResUntil.setToolTipText("Check box to update this");
 
-        jButtonVognUpdate.setText("Update Truck");
+        jButtonVognUpdate.setText("Opdater vogn");
         jButtonVognUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVognUpdateActionPerformed(evt);
@@ -1085,14 +964,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
-                                .addComponent(jButtonVognUpdateLoad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonVognUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonVognUpdateBack))
                             .addComponent(jLabelVognUpdated)
                             .addComponent(jLabel36))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanelUpdateVognLayout.setVerticalGroup(
             jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1131,7 +1008,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 .addComponent(jLabelVognUpdated)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVognUpdateLoad)
                     .addComponent(jButtonVognUpdateBack)
                     .addComponent(jButtonVognUpdate))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -1156,45 +1032,43 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameDeleteVogn.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel48.setText("Delete truck");
+        jLabel48.setText("Slet vogn");
 
-        jLabel49.setText("Truck No");
+        jLabel49.setText("Vogn nummer");
 
-        jLabel50.setText("Truck Type");
+        jLabel50.setText("Vogn type");
 
-        jLabel51.setText("Truck Status");
+        jLabel51.setText("Vogn status");
 
-        jLabel52.setText("Order No");
+        jLabel52.setText("Ordre nummer");
 
         jTextFieldVognDeleteNo.setToolTipText("");
+        jTextFieldVognDeleteNo.setEnabled(false);
 
-        jButtonVognDeleteLoad.setText("Load Truck");
-        jButtonVognDeleteLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVognDeleteLoadActionPerformed(evt);
-            }
-        });
+        jTextFieldVognDeleteOno.setEnabled(false);
 
-        jButtonVognDeleteBack.setText("Back");
+        jButtonVognDeleteBack.setText("Tilbage");
         jButtonVognDeleteBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVognDeleteBackActionPerformed(evt);
             }
         });
 
-        jLabel53.setText("Reserved From");
+        jLabel53.setText("Reserveret til");
 
-        jLabel54.setText("Reserved Until");
+        jLabel54.setText("Reserveret fra");
 
-        jTextFieldVognDeleteResFrom.setText("dd,mm,yyyy");
+        jTextFieldVognDeleteResFrom.setEnabled(false);
 
-        jTextFieldVognDeleteResUntil.setText("dd,mm,yyyy");
+        jTextFieldVognDeleteResUntil.setEnabled(false);
 
         jComboBoxVognDeleteStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
+        jComboBoxVognDeleteStatus.setEnabled(false);
 
         jComboBoxVognDeleteType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
+        jComboBoxVognDeleteType.setEnabled(false);
 
-        jButtonVognDelete.setText("Delete Truck");
+        jButtonVognDelete.setText("Slet vogn");
         jButtonVognDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVognDeleteActionPerformed(evt);
@@ -1228,14 +1102,15 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
-                                .addComponent(jButtonVognDeleteLoad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonVognDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonVognDeleteBack))
-                            .addComponent(jLabelVognDeleted)
-                            .addComponent(jLabel48))))
-                .addContainerGap(147, Short.MAX_VALUE))
+                            .addGroup(jPanelDeleteVognLayout.createSequentialGroup()
+                                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelVognDeleted)
+                                    .addComponent(jLabel48))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         jPanelDeleteVognLayout.setVerticalGroup(
             jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1268,12 +1143,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jLabel54))
                 .addGap(35, 35, 35)
                 .addComponent(jLabelVognDeleted)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVognDeleteLoad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDeleteVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonVognDeleteBack)
                     .addComponent(jButtonVognDelete))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         PlainDocument doc5 = (PlainDocument) jTextFieldVognDeleteNo.getDocument();
@@ -1296,62 +1170,56 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jTabbedPane.setMinimumSize(new java.awt.Dimension(550, 450));
 
-        jPanelGetPart.setMinimumSize(new java.awt.Dimension(550, 350));
+        jPanelGetPart.setMinimumSize(null);
 
-        jLabel1.setText("Part No");
-
-        jLabel2.setText("Part Name");
-
-        jLabel3.setText("Quantity");
-
-        jLabel4.setText("Part Description");
-
-        jButtonGetPart.setText("Get Part");
-        jButtonGetPart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGetPartActionPerformed(evt);
-            }
-        });
-
-        jButtonNewPart.setText("New Part");
+        jButtonNewPart.setText("Opret ny del");
         jButtonNewPart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNewPartActionPerformed(evt);
             }
         });
 
-        jButtonUpdatePart.setText("Update Part");
+        jButtonUpdatePart.setText("Opdater del");
+        jButtonUpdatePart.setEnabled(false);
         jButtonUpdatePart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdatePartActionPerformed(evt);
             }
         });
 
-        jButtonUpdateQty.setText("Update Qty");
+        jButtonUpdateQty.setText("Opdater antal");
+        jButtonUpdateQty.setEnabled(false);
         jButtonUpdateQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateQtyActionPerformed(evt);
             }
         });
 
-        jButtonDeletePart.setText("Delete Part");
+        jButtonDeletePart.setText("Slet del");
+        jButtonDeletePart.setEnabled(false);
         jButtonDeletePart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeletePartActionPerformed(evt);
             }
         });
 
-        jButtonClear.setText("Clear");
-        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClearActionPerformed(evt);
-            }
-        });
+        jTableParts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        jButtonAllParts.setText("All Parts");
-        jButtonAllParts.addActionListener(new java.awt.event.ActionListener() {
+            }
+        ));
+        jScrollPaneAllParts.setViewportView(jTableParts);
+
+        jButtonLoadParts.setText("Indlæs dele");
+        jButtonLoadParts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAllPartsActionPerformed(evt);
+                jButtonLoadPartsActionPerformed(evt);
             }
         });
 
@@ -1360,213 +1228,120 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jPanelGetPartLayout.setHorizontalGroup(
             jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonLoadParts)
                     .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                        .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPartNo)
-                            .addComponent(jTextFieldPartName)
-                            .addComponent(jTextFieldPartQuantity)
-                            .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
-                    .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                        .addComponent(jButtonGetPart, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonClear)))
-                .addGap(40, 40, 40)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAllParts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonUpdateQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonUpdatePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonNewPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeletePart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelGetPartLayout.setVerticalGroup(
             jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGetPartLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldPartNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAllParts))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldPartName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNewPart))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldPartQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUpdatePart))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldPartDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUpdateQty))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGetPart)
-                    .addComponent(jButtonClear)
-                    .addComponent(jButtonDeletePart))
-                .addContainerGap(206, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGetPartLayout.createSequentialGroup()
+                .addGroup(jPanelGetPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGetPartLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonNewPart)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUpdatePart)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUpdateQty)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeletePart))
+                    .addComponent(jScrollPaneAllParts, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonLoadParts)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        PlainDocument doc3 = (PlainDocument) jTextFieldPartNo.getDocument();
-        doc3.setDocumentFilter(new MyIntFilter());
-        PlainDocument doc4 = (PlainDocument) jTextFieldPartQuantity.getDocument();
-        doc4.setDocumentFilter(new MyIntFilter());
-
-        jTabbedPane.addTab("Parts", jPanelGetPart);
+        jTabbedPane.addTab("Dele", jPanelGetPart);
 
         jPanelGetVogn.setMinimumSize(new java.awt.Dimension(550, 350));
 
-        jLabel27.setText("Truck No");
-
-        jLabel28.setText("Truck Type");
-
-        jLabel29.setText("Status");
-
-        jLabel30.setText("Order No");
-
-        jButtonGetVogn.setText("Get Truck");
-        jButtonGetVogn.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLoadVogne.setText("Indlæs vogne");
+        jButtonLoadVogne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGetVognActionPerformed(evt);
+                jButtonLoadVogneActionPerformed(evt);
             }
         });
 
-        jButtonNewVogn.setText("New Truck");
+        jButtonNewVogn.setText("Opret ny vogn");
         jButtonNewVogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNewVognActionPerformed(evt);
             }
         });
 
-        jButtonUpdateVogn.setText("Update Truck");
+        jButtonUpdateVogn.setText("Opdater vogn");
+        jButtonUpdateVogn.setEnabled(false);
         jButtonUpdateVogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateVognActionPerformed(evt);
             }
         });
 
-        jButtonDeleteVogn.setText("Delete Truck");
+        jButtonDeleteVogn.setText("Slet vogn");
+        jButtonDeleteVogn.setEnabled(false);
         jButtonDeleteVogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeleteVognActionPerformed(evt);
             }
         });
 
-        jButtonVognClear.setText("Clear");
-        jButtonVognClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVognClearActionPerformed(evt);
+        jTableVogne.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
             }
-        });
-
-        jButtonAllVogn.setText("All Trucks");
-        jButtonAllVogn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAllVognActionPerformed(evt);
-            }
-        });
-
-        jLabel23.setText("Reserved From");
-
-        jLabel24.setText("Reserved Until");
+        ));
+        jScrollPane1.setViewportView(jTableVogne);
 
         javax.swing.GroupLayout jPanelGetVognLayout = new javax.swing.GroupLayout(jPanelGetVogn);
         jPanelGetVogn.setLayout(jPanelGetVognLayout);
         jPanelGetVognLayout.setHorizontalGroup(
             jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGetVognLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGetVognLayout.createSequentialGroup()
-                        .addComponent(jButtonGetVogn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonVognClear))
-                    .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel27))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldVognReservedFrom)
-                            .addComponent(jTextFieldVognNo)
-                            .addComponent(jTextFieldVognType)
-                            .addComponent(jTextFieldVognStatus)
-                            .addComponent(jTextFieldVognOno)
-                            .addComponent(jTextFieldVognReservedTo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonUpdateVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAllVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(87, 109, Short.MAX_VALUE))
+                            .addComponent(jButtonUpdateVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeleteVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                        .addComponent(jButtonLoadVogne)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(10, 10, 10))
         );
-
-        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
-
-        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel23, jLabel24, jLabel27, jLabel28, jLabel29, jLabel30});
-
         jPanelGetVognLayout.setVerticalGroup(
             jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGetVognLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jTextFieldVognNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAllVogn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jTextFieldVognType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNewVogn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(jTextFieldVognStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonUpdateVogn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTextFieldVognOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDeleteVogn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognReservedFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognReservedTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGetVogn)
-                    .addComponent(jButtonVognClear))
-                .addContainerGap(144, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGetVognLayout.createSequentialGroup()
+                .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelGetVognLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonNewVogn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUpdateVogn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeleteVogn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonLoadVogne)
+                .addGap(56, 56, 56))
         );
 
-        jPanelGetVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNo, jTextFieldVognOno, jTextFieldVognReservedFrom, jTextFieldVognReservedTo, jTextFieldVognStatus, jTextFieldVognType});
-
-        PlainDocument doc1 = (PlainDocument) jTextFieldVognNo.getDocument();
-        doc1.setDocumentFilter(new MyIntFilter());
-        PlainDocument doc2 = (PlainDocument) jTextFieldVognOno.getDocument();
-        doc2.setDocumentFilter(new MyIntFilter());
-
-        jTabbedPane.addTab("Fleet", jPanelGetVogn);
+        jTabbedPane.addTab("Vognpark", jPanelGetVogn);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1582,44 +1357,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGetPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetPartActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int pnum = 0;
-
-            if (jTextFieldPartNo.getText().equals("")) {
-                pnum = 0;
-            } else {
-                pnum = Integer.parseInt(jTextFieldPartNo.getText());
-            }
-
-            clearPartGetFields();
-            Part p = pc.getPart(pnum);
-
-            if (p != null) {
-                jTextFieldPartName.setText(p.getPnavn());
-                jTextFieldPartNo.setText(p.getPnum() + "");
-                jTextFieldPartQuantity.setText(p.getQty() + "");
-                jTextFieldPartDescription.setText(p.getPbeskrivelse());
-            } else {
-                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-    }//GEN-LAST:event_jButtonGetPartActionPerformed
-
-    private void jButtonNewPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPartActionPerformed
-        // TODO add your handling code here:
-        jFrameNewPart.setVisible(true);
-    }//GEN-LAST:event_jButtonNewPartActionPerformed
-
     private void jButtonSavePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavePartActionPerformed
         // TODO add your handling code here:
         String newName = jTextFieldNewPartName.getText();
@@ -1631,12 +1368,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 Part p = new Part(newName, newDesc, newQty);
                 pc.saveNewPart(p);
                 clearPartNewFields();
-                jLabelSaved.setText("Saved");
+                jLabelSaved.setText("Gemt");
             } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1) {
-                    JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Del nummeret er allerede i brug, vælg venligst et andet", "Fejl", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
@@ -1644,12 +1381,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 Part p = new Part(Integer.parseInt(jTextFieldNewPartNo.getText()), newName, newDesc, newQty);
                 pc.saveNewPartWitnum(p);
                 clearPartNewFields();
-                jLabelSaved.setText("Saved");
+                jLabelSaved.setText("Gemt");
             } catch (SQLException ex) {
                 if (ex.getErrorCode() == 1) {
-                    JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Del nummeret er allerede i brug, vælg venligst et andet", "Fejl", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -1659,13 +1396,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameNewPart.setVisible(false);
         jFrameNewPart.dispose();
-        clearPartNewFields();
+        jButtonLoadParts.doClick();
     }//GEN-LAST:event_jButtonNewPartBackActionPerformed
 
     private void jButtonUpdatePartUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartUpdateActionPerformed
         // TODO add your handling code here:
         try {
-
             String updateName = jTextFieldUpdatePartName.getText();
             String updateDescription = jTextFieldUpdatePartDescription.getText();
             int updatePnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
@@ -1675,13 +1411,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pc.updatePart(p);
 
             clearPartUpdateFields();
-            jLabelUpdated.setText("Updated");
+            jFrameUpdatePart.setVisible(false);
+            jFrameUpdatePart.dispose();
+            jButtonLoadParts.doClick();
         } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonUpdatePartUpdateActionPerformed
 
@@ -1692,45 +1426,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         clearPartUpdateFields();
     }//GEN-LAST:event_jButtonUpdatePartBackActionPerformed
 
-    private void jButtonUpdatePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartActionPerformed
-        // TODO add your handling code here:
-        jFrameUpdatePart.setVisible(true);
-    }//GEN-LAST:event_jButtonUpdatePartActionPerformed
-
-    private void jButtonUpdatePartLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartLoadActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int pnum = 0;
-
-            if (jTextFieldUpdatePartNo.getText().equals("")) {
-                pnum = 0;
-            } else {
-                pnum = Integer.parseInt(jTextFieldUpdatePartNo.getText());
-            }
-
-            Part p = pc.getPart(pnum);
-
-            if (p != null) {
-                jTextFieldUpdatePartName.setText(p.getPnavn());
-                jTextFieldUpdatePartNo.setText(p.getPnum() + "");
-                jTextFieldUpdatePartDescription.setText(p.getPbeskrivelse());
-            } else {
-                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonUpdatePartLoadActionPerformed
-
     private void jButtonUpdateQtyUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyUpdateActionPerformed
         // TODO add your handling code here:
         try {
-
             int pnum, qty;
 
             if (jTextFieldUpdateQtyNo.getText().equals("")) {
@@ -1748,13 +1446,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             pc.updatePartQty(pnum, qty);
 
             clearPartUpdateQtyFields();
-            jLabelQty.setText("Updated");
+            jFrameUpdateQty.setVisible(false);
+            jFrameUpdateQty.dispose();
+            jButtonLoadParts.doClick();
         } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonUpdateQtyUpdateActionPerformed
 
@@ -1765,53 +1461,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         clearPartUpdateQtyFields();
     }//GEN-LAST:event_jButtonUpdateQtyBackActionPerformed
 
-    private void jButtonUpdateQtyLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyLoadActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int pnum = 0;
-
-            if (jTextFieldUpdateQtyNo.getText().equals("")) {
-                pnum = 0;
-            } else {
-                pnum = Integer.parseInt(jTextFieldUpdateQtyNo.getText());
-            }
-
-            clearPartDeleteFields();
-
-            Part p = pc.getPart(pnum);
-
-            if (p != null) {
-                jTextFieldUpdateQtyName.setText(p.getPnavn());
-                jTextFieldUpdateQtyNo.setText(p.getPnum() + "");
-                jTextFieldUpdateQtyQty.setText(p.getQty() + "");
-            } else {
-                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonUpdateQtyLoadActionPerformed
-
-    private void jButtonUpdateQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyActionPerformed
-        // TODO add your handling code here:
-        jFrameUpdateQty.setVisible(true);
-    }//GEN-LAST:event_jButtonUpdateQtyActionPerformed
-
-    private void jButtonDeletePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartActionPerformed
-        // TODO add your handling code here:
-        jFrameDeletePart.setVisible(true);
-        jButtonDeletePartDelete.setEnabled(false);
-    }//GEN-LAST:event_jButtonDeletePartActionPerformed
-
     private void jButtonDeletePartDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartDeleteActionPerformed
         // TODO add your handling code here:
         try {
-
             int pnum;
 
             if (jTextFieldDeletePartNo.getText().equals("")) {
@@ -1820,8 +1472,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
             }
 
-            int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null, "Sletning er permanent. Er du sikker på at du vil fortsætte?",
+                    "Advarsel", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 pc.deletePart(pnum);
             }
@@ -1830,14 +1482,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             jTextFieldDeletePartName.setText("");
             jTextFieldDeletePartQuantity.setText("");
             jTextFieldDeletePartDescription.setText("");
-            jLabelDeleted.setText("Deleted");
-            jButtonDeletePartDelete.setEnabled(false);
+            jFrameDeletePart.setVisible(false);
+            jFrameDeletePart.dispose();
+            jButtonLoadParts.doClick();
         } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonDeletePartDeleteActionPerformed
 
@@ -1847,45 +1496,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameDeletePart.dispose();
         clearPartDeleteFields();
     }//GEN-LAST:event_jButtonDeletePartBackActionPerformed
-
-    private void jButtonDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLoadActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int pnum = 0;
-
-            if (jTextFieldDeletePartNo.getText().equals("")) {
-                pnum = 0;
-            } else {
-                pnum = Integer.parseInt(jTextFieldDeletePartNo.getText());
-            }
-
-            clearPartUpdateQtyFields();
-
-            Part p = pc.getPart(pnum);
-
-            if (p != null) {
-                jTextFieldDeletePartName.setText(p.getPnavn());
-                jTextFieldDeletePartNo.setText(p.getPnum() + "");
-                jTextFieldDeletePartQuantity.setText(p.getQty() + "");
-                jTextFieldDeletePartDescription.setText(p.getPbeskrivelse());
-                jButtonDeletePartDelete.setEnabled(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonDeleteLoadActionPerformed
-
-    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
-        // TODO add your handling code here:
-        clearPartGetFields();
-    }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jTextFieldNewPartNoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNewPartNoFocusGained
         // TODO add your handling code here:
@@ -1907,79 +1517,9 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelDeleted.setText("");
     }//GEN-LAST:event_jTextFieldDeletePartNoFocusGained
 
-    private void jButtonAllPartsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsActionPerformed
-        // TODO add your handling code here:
-        jFrameAllParts.setVisible(true);
-        try {
-            jTableAllParts.setModel(pc.getAllParts());
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonAllPartsActionPerformed
-
-    private void jButtonGetVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetVognActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int vognID = 0;
-
-            if (jTextFieldVognNo.getText().equals("")) {
-                vognID = 0;
-            } else {
-                vognID = Integer.parseInt(jTextFieldVognNo.getText());
-            }
-
-            clearVognGetFields();
-
-            Vogn v = vc.getVogn(vognID);
-
-            if (v != null) {
-                jTextFieldVognNo.setText(v.getVognID() + "");
-                jTextFieldVognOno.setText(v.getOno() + "");
-                jTextFieldVognType.setText(v.getvType());
-                jTextFieldVognStatus.setText(v.getStatus());
-                jTextFieldVognReservedFrom.setText(v.getReserveretFra());
-                jTextFieldVognReservedTo.setText(v.getReserveretTil());
-            } else {
-                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonGetVognActionPerformed
-
-    private void jButtonNewVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognActionPerformed
-        // TODO add your handling code here:
-        jFrameNewVogn.setVisible(true);
-    }//GEN-LAST:event_jButtonNewVognActionPerformed
-
-    private void jButtonUpdateVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateVognActionPerformed
-        // TODO add your handling code here:
-        jFrameUpdateVogn.setVisible(true);
-    }//GEN-LAST:event_jButtonUpdateVognActionPerformed
-
-    private void jButtonDeleteVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteVognActionPerformed
-        // TODO add your handling code here:
-        jFrameDeleteVogn.setVisible(true);
-    }//GEN-LAST:event_jButtonDeleteVognActionPerformed
-
-    private void jButtonVognClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognClearActionPerformed
-        // TODO add your handling code here:
-        clearVognGetFields();
-    }//GEN-LAST:event_jButtonVognClearActionPerformed
-
-    private void jButtonAllVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllVognActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAllVognActionPerformed
-
     private void jButtonSaveVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveVognActionPerformed
         // TODO add your handling code here:
         try {
-
             int vognNo = Integer.parseInt(jTextFieldVognNewNo.getText());
             String vognType = (String) jComboBoxVognNewType.getSelectedItem();
             String vognStatus = (String) jComboBoxVognNewStatus.getSelectedItem();
@@ -1995,12 +1535,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             jTextFieldVognNewOno.setText("");
             jTextFieldVognNewResFrom.setText("");
             jTextFieldVognNewResUntil.setText("");
-            jLabelSavedVogn.setText("Saved");
+            jLabelSavedVogn.setText("Gemt");
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Vogn nummeret er allerede i brug, vælg venligst et andet", "Fejl", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonSaveVognActionPerformed
@@ -2009,7 +1549,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jFrameNewVogn.setVisible(false);
         jFrameNewVogn.dispose();
-        clearVognGetFields();
+        jButtonLoadVogne.doClick();
     }//GEN-LAST:event_jButtonNewVognBackActionPerformed
 
     private void jTextFieldVognNewResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusGained
@@ -2025,58 +1565,21 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void jTextFieldVognNewResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusLost
         // TODO add your handling code here:
         if (jTextFieldVognNewResFrom.getText().equals("")) {
-            jTextFieldVognNewResFrom.setText("dd,mm,yyyy");
+            jTextFieldVognNewResFrom.setText("dd,mm,åååå");
         }
     }//GEN-LAST:event_jTextFieldVognNewResFromFocusLost
 
     private void jTextFieldVognNewResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResUntilFocusLost
         // TODO add your handling code here:
         if (jTextFieldVognNewResUntil.getText().equals("")) {
-            jTextFieldVognNewResUntil.setText("dd,mm,yyyy");
+            jTextFieldVognNewResUntil.setText("dd,mm,åååå");
         }
     }//GEN-LAST:event_jTextFieldVognNewResUntilFocusLost
-
-    private void jButtonVognUpdateLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateLoadActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int vognID = 0;
-
-            if (jTextFieldVognUpdateNo.getText().equals("")) {
-                vognID = 0;
-            } else {
-                vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
-            }
-
-            clearVognUpdateFields();
-
-            Vogn v = vc.getVogn(vognID);
-
-            if (v != null) {
-                jTextFieldVognUpdateNo.setText(v.getVognID() + "");
-                jTextFieldVognUpdateOno.setText(v.getOno() + "");
-                jComboBoxVognUpdateType.setSelectedItem(v.getvType());
-                jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
-                jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
-                jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
-                jComboBoxVognUpdateType.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonVognUpdateLoadActionPerformed
 
     private void jButtonVognUpdateBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateBackActionPerformed
         // TODO add your handling code here:
         jFrameUpdateVogn.setVisible(false);
         jFrameUpdateVogn.dispose();
-        clearVognUpdateFields();
     }//GEN-LAST:event_jButtonVognUpdateBackActionPerformed
 
     private void jTextFieldVognUpdateResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusGained
@@ -2087,7 +1590,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void jTextFieldVognUpdateResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusLost
         // TODO add your handling code here:
         if (jTextFieldVognUpdateResFrom.getText().equals("")) {
-            jTextFieldVognUpdateResFrom.setText("dd,mm,yyyy");
+            jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
         }
     }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusLost
 
@@ -2099,7 +1602,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void jTextFieldVognUpdateResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusLost
         // TODO add your handling code here:
         if (jTextFieldVognUpdateResUntil.getText().equals("")) {
-            jTextFieldVognUpdateResUntil.setText("dd,mm,yyyy");
+            jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
         }
     }//GEN-LAST:event_jTextFieldVognUpdateResUntilFocusLost
 
@@ -2111,11 +1614,16 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         String resFrom = jTextFieldVognUpdateResFrom.getText();
         String resTo = jTextFieldVognUpdateResUntil.getText();
 
+        if (jCheckBoxOno.isSelected() == false && jCheckBoxResFrom.isSelected() == false
+                && jCheckBoxResUntil.isSelected() == false && jCheckBoxStatus.isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Sæt hak i en boks for at opdatere vognen", "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+
         if (jCheckBoxOno.isSelected() == true) {
             try {
                 vc.updateVognOno(vognID, ono);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2123,7 +1631,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognStatus(vognID, status);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2131,7 +1639,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognDatoFra(vognID, resFrom);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -2139,51 +1647,19 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             try {
                 vc.updateVognDatoTil(vognID, resTo);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         }
+
+        jFrameUpdateVogn.setVisible(false);
+        jFrameUpdateVogn.dispose();
+        jButtonLoadVogne.doClick();
     }//GEN-LAST:event_jButtonVognUpdateActionPerformed
-
-    private void jButtonVognDeleteLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteLoadActionPerformed
-        // TODO add your handling code here:
-        try {
-            int vognID = 0;
-
-            if (jTextFieldVognDeleteNo.getText().equals("")) {
-                vognID = 0;
-            } else {
-                vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
-            }
-
-            clearVognDeleteFields();
-
-            Vogn v = vc.getVogn(vognID);
-
-            if (v != null) {
-                jTextFieldVognDeleteNo.setText(v.getVognID() + "");
-                jTextFieldVognDeleteOno.setText(v.getOno() + "");
-                jComboBoxVognDeleteType.setSelectedItem(v.getvType());
-                jComboBoxVognDeleteStatus.setSelectedItem(v.getStatus());
-                jTextFieldVognDeleteResFrom.setText(v.getReserveretFra());
-                jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
-                jComboBoxVognDeleteType.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "No such vogn!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonVognDeleteLoadActionPerformed
 
     private void jButtonVognDeleteBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteBackActionPerformed
         // TODO add your handling code here:
         jFrameDeleteVogn.setVisible(false);
         jFrameDeleteVogn.dispose();
-        clearVognDeleteFields();
     }//GEN-LAST:event_jButtonVognDeleteBackActionPerformed
 
     private void jButtonVognDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteActionPerformed
@@ -2191,56 +1667,181 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         try {
             int vognID = Integer.parseInt(jTextFieldVognDeleteNo.getText());
 
-            int reply = JOptionPane.showConfirmDialog(null, "Deleting cannot be undone. Are you sure you want to delete this part?",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null, "Sletning er permanent. Er du sikker på at du vil fortsætte?",
+                    "Advarsel", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 vc.deleteVogn(vognID);
                 clearVognDeleteFields();
-                jLabelDeleted.setText("Deleted");
+                jFrameDeleteVogn.setVisible(false);
+                jFrameDeleteVogn.dispose();
+                jButtonLoadVogne.doClick();
             }
         } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Truck No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonVognDeleteActionPerformed
 
-    private void jButtonAllPartsLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsLoadActionPerformed
+    private void jButtonDeletePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePartActionPerformed
         // TODO add your handling code here:
-        int selectedRow = jTableAllParts.getSelectedRow();
-        int partNo = Integer.parseInt((jTableAllParts.getValueAt(selectedRow, 0).toString()));
+        jFrameDeletePart.setVisible(true);
+
+        int selectedRow = jTableParts.getSelectedRow();
+        int partNo = Integer.parseInt((jTableParts.getValueAt(selectedRow, 0).toString()));
 
         try {
+            clearPartDeleteFields();
 
-            clearPartGetFields();
             Part p = pc.getPart(partNo);
 
             if (p != null) {
-                jTextFieldPartName.setText(p.getPnavn());
-                jTextFieldPartNo.setText(p.getPnum() + "");
-                jTextFieldPartQuantity.setText(p.getQty() + "");
-                jTextFieldPartDescription.setText(p.getPbeskrivelse());
-                jFrameAllParts.setVisible(false);
-                jFrameAllParts.dispose();
+                jTextFieldDeletePartName.setText(p.getPnavn());
+                jTextFieldDeletePartNo.setText(p.getPnum() + "");
+                jTextFieldDeletePartQuantity.setText(p.getQty() + "");
+                jTextFieldDeletePartDescription.setText(p.getPbeskrivelse());
             } else {
-                JOptionPane.showMessageDialog(null, "No such part!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Delen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "The Part No is already in use, please use another", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please contact the system administrator and provide them with the following message:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonAllPartsLoadActionPerformed
+    }//GEN-LAST:event_jButtonDeletePartActionPerformed
 
-    private void jButtonAllPartsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllPartsBackActionPerformed
+    private void jButtonUpdateQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateQtyActionPerformed
         // TODO add your handling code here:
-        jFrameAllParts.setVisible(false);
-        jFrameAllParts.dispose();
-    }//GEN-LAST:event_jButtonAllPartsBackActionPerformed
+        jFrameUpdateQty.setVisible(true);
+
+        int selectedRow = jTableParts.getSelectedRow();
+        int partNo = Integer.parseInt((jTableParts.getValueAt(selectedRow, 0).toString()));
+
+        try {
+            clearPartUpdateQtyFields();
+
+            Part p = pc.getPart(partNo);
+
+            if (p != null) {
+                jTextFieldUpdateQtyName.setText(p.getPnavn());
+                jTextFieldUpdateQtyNo.setText(p.getPnum() + "");
+                jTextFieldUpdateQtyQty.setText(p.getQty() + "");
+            } else {
+                JOptionPane.showMessageDialog(null, "Delen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonUpdateQtyActionPerformed
+
+    private void jButtonUpdatePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePartActionPerformed
+        // TODO add your handling code here:
+        jFrameUpdatePart.setVisible(true);
+
+        int selectedRow = jTableParts.getSelectedRow();
+        int partNo = Integer.parseInt((jTableParts.getValueAt(selectedRow, 0).toString()));
+
+        try {
+            clearPartUpdateFields();
+
+            Part p = pc.getPart(partNo);
+
+            if (p != null) {
+                jTextFieldUpdatePartName.setText(p.getPnavn());
+                jTextFieldUpdatePartNo.setText(p.getPnum() + "");
+                jTextFieldUpdatePartDescription.setText(p.getPbeskrivelse());
+            } else {
+                JOptionPane.showMessageDialog(null, "Delen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonUpdatePartActionPerformed
+
+    private void jButtonNewPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewPartActionPerformed
+        // TODO add your handling code here:
+        jFrameNewPart.setVisible(true);
+    }//GEN-LAST:event_jButtonNewPartActionPerformed
+
+    private void jButtonDeleteVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteVognActionPerformed
+        // TODO add your handling code here:
+        jFrameDeleteVogn.setVisible(true);
+
+        int selectedRow = jTableVogne.getSelectedRow();
+        int vognNo = Integer.parseInt((jTableVogne.getValueAt(selectedRow, 0).toString()));
+
+        try {
+            clearVognDeleteFields();
+
+            Vogn v = vc.getVogn(vognNo);
+
+            if (v != null) {
+                jTextFieldVognDeleteNo.setText(vognNo + "");
+                jTextFieldVognDeleteOno.setText(v.getOno() + "");
+                jComboBoxVognDeleteType.setSelectedItem(v.getvType());
+                jComboBoxVognDeleteStatus.setSelectedItem(v.getStatus());
+                jTextFieldVognDeleteResFrom.setText(v.getReserveretFra());
+                jTextFieldVognDeleteResUntil.setText(v.getReserveretTil());
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Vognen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonDeleteVognActionPerformed
+
+    private void jButtonUpdateVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateVognActionPerformed
+        // TODO add your handling code here:
+        jFrameUpdateVogn.setVisible(true);
+
+        int selectedRow = jTableVogne.getSelectedRow();
+        int vognNo = Integer.parseInt((jTableVogne.getValueAt(selectedRow, 0).toString()));
+
+        try {
+            clearVognUpdateFields();
+
+            Vogn v = vc.getVogn(vognNo);
+
+            if (v != null) {
+                jTextFieldVognUpdateNo.setText(v.getVognID() + "");
+                jTextFieldVognUpdateOno.setText(v.getOno() + "");
+                jComboBoxVognUpdateType.setSelectedItem(v.getvType());
+                jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
+                jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
+                jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
+                jComboBoxVognUpdateType.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Vognen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonUpdateVognActionPerformed
+
+    private void jButtonNewVognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewVognActionPerformed
+        // TODO add your handling code here:
+        jFrameNewVogn.setVisible(true);
+    }//GEN-LAST:event_jButtonNewVognActionPerformed
+
+    private void jButtonLoadVogneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadVogneActionPerformed
+        // TODO add your handling code here:
+        try {
+            jTableVogne.setModel(vc.getAllVogn());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+
+        jButtonLoadVogne.setText("Genindlæs vogne");
+    }//GEN-LAST:event_jButtonLoadVogneActionPerformed
+
+    private void jButtonLoadPartsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadPartsActionPerformed
+        // TODO add your handling code here:
+        try {
+            jTableParts.setModel(pc.getAllParts());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
+
+        jButtonLoadParts.setText("Genindlæs dele");
+    }//GEN-LAST:event_jButtonLoadPartsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2256,16 +1857,21 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResourceManagementSystemFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -2278,18 +1884,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAllParts;
-    private javax.swing.JButton jButtonAllPartsBack;
-    private javax.swing.JButton jButtonAllPartsLoad;
-    private javax.swing.JButton jButtonAllVogn;
-    private javax.swing.JButton jButtonClear;
-    private javax.swing.JButton jButtonDeleteLoad;
     private javax.swing.JButton jButtonDeletePart;
     private javax.swing.JButton jButtonDeletePartBack;
     private javax.swing.JButton jButtonDeletePartDelete;
     private javax.swing.JButton jButtonDeleteVogn;
-    private javax.swing.JButton jButtonGetPart;
-    private javax.swing.JButton jButtonGetVogn;
+    private javax.swing.JButton jButtonLoadParts;
+    private javax.swing.JButton jButtonLoadVogne;
     private javax.swing.JButton jButtonNewPart;
     private javax.swing.JButton jButtonNewPartBack;
     private javax.swing.JButton jButtonNewVogn;
@@ -2298,20 +1898,15 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSaveVogn;
     private javax.swing.JButton jButtonUpdatePart;
     private javax.swing.JButton jButtonUpdatePartBack;
-    private javax.swing.JButton jButtonUpdatePartLoad;
     private javax.swing.JButton jButtonUpdatePartUpdate;
     private javax.swing.JButton jButtonUpdateQty;
     private javax.swing.JButton jButtonUpdateQtyBack;
-    private javax.swing.JButton jButtonUpdateQtyLoad;
     private javax.swing.JButton jButtonUpdateQtyUpdate;
     private javax.swing.JButton jButtonUpdateVogn;
-    private javax.swing.JButton jButtonVognClear;
     private javax.swing.JButton jButtonVognDelete;
     private javax.swing.JButton jButtonVognDeleteBack;
-    private javax.swing.JButton jButtonVognDeleteLoad;
     private javax.swing.JButton jButtonVognUpdate;
     private javax.swing.JButton jButtonVognUpdateBack;
-    private javax.swing.JButton jButtonVognUpdateLoad;
     private javax.swing.JCheckBox jCheckBoxOno;
     private javax.swing.JCheckBox jCheckBoxResFrom;
     private javax.swing.JCheckBox jCheckBoxResUntil;
@@ -2322,7 +1917,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxVognNewType;
     private javax.swing.JComboBox jComboBoxVognUpdateStatus;
     private javax.swing.JComboBox jComboBoxVognUpdateType;
-    private javax.swing.JFrame jFrameAllParts;
     private javax.swing.JFrame jFrameDeletePart;
     private javax.swing.JFrame jFrameDeleteVogn;
     private javax.swing.JFrame jFrameNewPart;
@@ -2330,7 +1924,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JFrame jFrameUpdatePart;
     private javax.swing.JFrame jFrameUpdateQty;
     private javax.swing.JFrame jFrameUpdateVogn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2341,19 +1934,11 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -2363,7 +1948,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -2386,7 +1970,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUpdated;
     private javax.swing.JLabel jLabelVognDeleted;
     private javax.swing.JLabel jLabelVognUpdated;
-    private javax.swing.JPanel jPanelAllParts;
     private javax.swing.JPanel jPanelDeletePart;
     private javax.swing.JPanel jPanelDeleteVogn;
     private javax.swing.JPanel jPanelGetPart;
@@ -2397,8 +1980,10 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelUpdateQty;
     private javax.swing.JPanel jPanelUpdateVogn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneAllParts;
     private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JTable jTableAllParts;
+    private javax.swing.JTable jTableParts;
+    private javax.swing.JTable jTableVogne;
     private javax.swing.JTextField jTextFieldDeletePartDescription;
     private javax.swing.JTextField jTextFieldDeletePartName;
     private javax.swing.JTextField jTextFieldDeletePartNo;
@@ -2407,10 +1992,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNewPartName;
     private javax.swing.JTextField jTextFieldNewPartNo;
     private javax.swing.JTextField jTextFieldNewPartQuantity;
-    private javax.swing.JTextField jTextFieldPartDescription;
-    private javax.swing.JTextField jTextFieldPartName;
-    private javax.swing.JTextField jTextFieldPartNo;
-    private javax.swing.JTextField jTextFieldPartQuantity;
     private javax.swing.JTextField jTextFieldUpdatePartDescription;
     private javax.swing.JTextField jTextFieldUpdatePartName;
     private javax.swing.JTextField jTextFieldUpdatePartNo;
@@ -2425,12 +2006,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldVognNewOno;
     private javax.swing.JTextField jTextFieldVognNewResFrom;
     private javax.swing.JTextField jTextFieldVognNewResUntil;
-    private javax.swing.JTextField jTextFieldVognNo;
-    private javax.swing.JTextField jTextFieldVognOno;
-    private javax.swing.JTextField jTextFieldVognReservedFrom;
-    private javax.swing.JTextField jTextFieldVognReservedTo;
-    private javax.swing.JTextField jTextFieldVognStatus;
-    private javax.swing.JTextField jTextFieldVognType;
     private javax.swing.JTextField jTextFieldVognUpdateNo;
     private javax.swing.JTextField jTextFieldVognUpdateOno;
     private javax.swing.JTextField jTextFieldVognUpdateResFrom;

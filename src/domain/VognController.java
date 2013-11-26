@@ -2,6 +2,7 @@ package domain;
 
 import dataSource.*;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +16,10 @@ public class VognController {
     public VognController() {
         currentVogn = null;
         vf = VDBFacade.getInstance();
+    }
+    
+    public DefaultTableModel getAllVogn() throws SQLException {
+        return vf.getAllVogn();
     }
 
     public Vogn getVogn(int vognID) throws SQLException {
