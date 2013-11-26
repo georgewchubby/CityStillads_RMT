@@ -57,6 +57,13 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jButtonUpdateVogn.setEnabled(!lsm2.isSelectionEmpty());
             }
         });
+        
+        try {
+            jTableVogne.setModel(vc.getAllVogn());
+            jTableParts.setModel(pc.getAllParts());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     class MyIntFilter extends DocumentFilter {
@@ -274,7 +281,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonNewVogn = new javax.swing.JButton();
         jButtonUpdateVogn = new javax.swing.JButton();
         jButtonDeleteVogn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneAllVogne = new javax.swing.JScrollPane();
         jTableVogne = new javax.swing.JTable();
         jTableVogne.setAutoCreateRowSorter(true);
 
@@ -714,33 +721,33 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameNewVogn.setMinimumSize(new java.awt.Dimension(550, 450));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel25.setText("Create new truck");
+        jLabel25.setText("Opret ny vogn");
 
-        jLabel26.setText("Truck No");
+        jLabel26.setText("Vogn nummer");
 
-        jLabel31.setText("Truck Type");
+        jLabel31.setText("Vogn type");
 
-        jLabel32.setText("Truck Status");
+        jLabel32.setText("Vogn status");
 
-        jLabel33.setText("Order No");
+        jLabel33.setText("Ordre nummer");
 
-        jButtonSaveVogn.setText("Save Truck");
+        jButtonSaveVogn.setText("Gem vogn");
         jButtonSaveVogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveVognActionPerformed(evt);
             }
         });
 
-        jButtonNewVognBack.setText("Back");
+        jButtonNewVognBack.setText("Tilbage");
         jButtonNewVognBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNewVognBackActionPerformed(evt);
             }
         });
 
-        jLabel34.setText("Reserved From");
+        jLabel34.setText("Reserveret fra");
 
-        jLabel35.setText("Reserved Until");
+        jLabel35.setText("Reserveret til");
 
         jTextFieldVognNewResFrom.setText("dd,mm,åååå");
         jTextFieldVognNewResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
@@ -800,7 +807,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addComponent(jButtonNewVognBack))
                             .addComponent(jLabelSavedVogn)
                             .addComponent(jLabel25))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
@@ -895,9 +902,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
         jTextFieldVognUpdateResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognUpdateResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldVognUpdateResFromFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResFromFocusLost(evt);
             }
@@ -906,9 +910,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
         jTextFieldVognUpdateResUntil.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognUpdateResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldVognUpdateResUntilFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResUntilFocusLost(evt);
             }
@@ -1228,7 +1229,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         });
         jScrollPaneAllParts.setViewportView(jTableParts);
 
-        jButtonLoadParts.setText("Indlæs dele");
+        jButtonLoadParts.setText("Genindlæs dele");
         jButtonLoadParts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLoadPartsActionPerformed(evt);
@@ -1275,7 +1276,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jPanelGetVogn.setMinimumSize(new java.awt.Dimension(550, 350));
 
-        jButtonLoadVogne.setText("Indlæs vogne");
+        jButtonLoadVogne.setText("Genindlæs vogne");
         jButtonLoadVogne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLoadVogneActionPerformed(evt);
@@ -1328,7 +1329,15 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableVogne);
+        jScrollPaneAllVogne.setViewportView(jTableVogne);
+        if (jTableVogne.getColumnModel().getColumnCount() > 0) {
+            jTableVogne.getColumnModel().getColumn(0).setHeaderValue("Vogn nummer");
+            jTableVogne.getColumnModel().getColumn(1).setHeaderValue("Vogn type");
+            jTableVogne.getColumnModel().getColumn(2).setHeaderValue("Status");
+            jTableVogne.getColumnModel().getColumn(3).setHeaderValue("Ordre nummer");
+            jTableVogne.getColumnModel().getColumn(4).setHeaderValue("Reserveret fra");
+            jTableVogne.getColumnModel().getColumn(5).setHeaderValue("Reserveret til");
+        }
 
         javax.swing.GroupLayout jPanelGetVognLayout = new javax.swing.GroupLayout(jPanelGetVogn);
         jPanelGetVogn.setLayout(jPanelGetVognLayout);
@@ -1337,7 +1346,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             .addGroup(jPanelGetVognLayout.createSequentialGroup()
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGetVognLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPaneAllVogne, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonNewVogn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1352,7 +1361,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGetVognLayout.createSequentialGroup()
                 .addGroup(jPanelGetVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPaneAllVogne, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelGetVognLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButtonNewVogn)
@@ -1606,22 +1615,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jFrameUpdateVogn.dispose();
     }//GEN-LAST:event_jButtonVognUpdateBackActionPerformed
 
-    private void jTextFieldVognUpdateResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusGained
-        // TODO add your handling code here:
-        jTextFieldVognUpdateResFrom.setText("");
-    }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusGained
-
     private void jTextFieldVognUpdateResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusLost
         // TODO add your handling code here:
         if (jTextFieldVognUpdateResFrom.getText().equals("")) {
             jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
         }
     }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusLost
-
-    private void jTextFieldVognUpdateResUntilFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusGained
-        // TODO add your handling code here:
-        jTextFieldVognUpdateResUntil.setText("");
-    }//GEN-LAST:event_jTextFieldVognUpdateResUntilFocusGained
 
     private void jTextFieldVognUpdateResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusLost
         // TODO add your handling code here:
@@ -2003,8 +2002,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelUpdatePart;
     private javax.swing.JPanel jPanelUpdateQty;
     private javax.swing.JPanel jPanelUpdateVogn;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneAllParts;
+    private javax.swing.JScrollPane jScrollPaneAllVogne;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTableParts;
     private javax.swing.JTable jTableVogne;
