@@ -801,9 +801,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognNewNo">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PlainDocument doc9 = (PlainDocument) jTextFieldVognNewNo.getDocument();&#xa;doc9.setDocumentFilter(new MyIntFilter());"/>
               </AuxValues>
@@ -843,7 +840,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognNewResFrom">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Hvis ingen dato &#xf8;nskes, skriv 0"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognNewResFromFocusGained"/>
@@ -852,7 +850,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldVognNewResUntil">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dd,mm,yyyy"/>
+                <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Hvis ingen dato &#xf8;nskes, skriv 0"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognNewResUntilFocusGained"/>
@@ -1073,6 +1072,7 @@
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateResFrom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Hvis ingen dato &#xf8;nskes, skriv 0"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognUpdateResFromFocusGained"/>
@@ -1082,6 +1082,7 @@
             <Component class="javax.swing.JTextField" name="jTextFieldVognUpdateResUntil">
               <Properties>
                 <Property name="text" type="java.lang.String" value="dd,mm,&#xe5;&#xe5;&#xe5;&#xe5;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Hvis ingen dato &#xf8;nskes, skriv 0"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldVognUpdateResUntilFocusGained"/>
@@ -1512,10 +1513,36 @@
                 <Component class="javax.swing.JTable" name="jTableParts">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="4"/>
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="Del nummer" type="java.lang.Integer"/>
+                        <Column editable="false" title="Navn" type="java.lang.String"/>
+                        <Column editable="false" title="Beskrivelse" type="java.lang.String"/>
+                        <Column editable="false" title="Antal" type="java.lang.Integer"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -1640,10 +1667,48 @@
                 <Component class="javax.swing.JTable" name="jTableVogne">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="4"/>
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="false" title="Vogn nummer" type="java.lang.Integer"/>
+                        <Column editable="false" title="Vogn type" type="java.lang.String"/>
+                        <Column editable="false" title="Status" type="java.lang.String"/>
+                        <Column editable="false" title="Ordre nummer" type="java.lang.Integer"/>
+                        <Column editable="true" title="Reserveret fra" type="java.lang.String"/>
+                        <Column editable="false" title="Reserveret til" type="java.lang.String"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

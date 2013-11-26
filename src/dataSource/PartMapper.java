@@ -30,10 +30,14 @@ public class PartMapper {
 
         // names of columns
         Vector<String> columnNames = new Vector<String>();
+        columnNames.add("Del nummer");
+        columnNames.add("Navn");
+        columnNames.add("Beskrivelse");
+        columnNames.add("Antal");
         int columnCount = metaData.getColumnCount();
-        for (int column = 1; column <= columnCount; column++) {
-            columnNames.add(metaData.getColumnName(column));
-        }
+//        for (int column = 1; column <= columnCount; column++) {
+//            columnNames.add(metaData.getColumnName(column));
+//        }
 
         // data of the table
         Vector<Vector<Object>> data = new Vector<Vector<Object>>();

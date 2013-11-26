@@ -724,8 +724,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel33.setText("Order No");
 
-        jTextFieldVognNewNo.setToolTipText("");
-
         jButtonSaveVogn.setText("Save Truck");
         jButtonSaveVogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -744,7 +742,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel35.setText("Reserved Until");
 
-        jTextFieldVognNewResFrom.setText("dd,mm,yyyy");
+        jTextFieldVognNewResFrom.setText("dd,mm,åååå");
+        jTextFieldVognNewResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognNewResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognNewResFromFocusGained(evt);
@@ -754,7 +753,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldVognNewResUntil.setText("dd,mm,yyyy");
+        jTextFieldVognNewResUntil.setText("dd,mm,åååå");
+        jTextFieldVognNewResUntil.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognNewResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognNewResUntilFocusGained(evt);
@@ -893,6 +893,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabel42.setText("Reserveret til");
 
         jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
+        jTextFieldVognUpdateResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognUpdateResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResFromFocusGained(evt);
@@ -903,6 +904,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         });
 
         jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
+        jTextFieldVognUpdateResUntil.setToolTipText("Hvis ingen dato ønskes, skriv 0");
         jTextFieldVognUpdateResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldVognUpdateResUntilFocusGained(evt);
@@ -1170,8 +1172,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jTabbedPane.setMinimumSize(new java.awt.Dimension(550, 450));
 
-        jPanelGetPart.setMinimumSize(null);
-
         jButtonNewPart.setText("Opret ny del");
         jButtonNewPart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1205,15 +1205,27 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jTableParts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Del nummer", "Navn", "Beskrivelse", "Antal"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPaneAllParts.setViewportView(jTableParts);
 
         jButtonLoadParts.setText("Indlæs dele");
@@ -1295,15 +1307,27 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jTableVogne.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Vogn nummer", "Vogn type", "Status", "Ordre nummer", "Reserveret fra", "Reserveret til"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableVogne);
 
         javax.swing.GroupLayout jPanelGetVognLayout = new javax.swing.GroupLayout(jPanelGetVogn);
@@ -1614,11 +1638,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         String resFrom = jTextFieldVognUpdateResFrom.getText();
         String resTo = jTextFieldVognUpdateResUntil.getText();
 
-        if (jCheckBoxOno.isSelected() == false && jCheckBoxResFrom.isSelected() == false
-                && jCheckBoxResUntil.isSelected() == false && jCheckBoxStatus.isSelected() == false) {
-            JOptionPane.showMessageDialog(null, "Sæt hak i en boks for at opdatere vognen", "Fejl", JOptionPane.ERROR_MESSAGE);
-        }
-
         if (jCheckBoxOno.isSelected() == true) {
             try {
                 vc.updateVognOno(vognID, ono);
@@ -1651,9 +1670,14 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         }
 
-        jFrameUpdateVogn.setVisible(false);
-        jFrameUpdateVogn.dispose();
-        jButtonLoadVogne.doClick();
+        if (jCheckBoxOno.isSelected() == false && jCheckBoxResFrom.isSelected() == false
+                && jCheckBoxResUntil.isSelected() == false && jCheckBoxStatus.isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Sæt hak i en boks for at opdatere vognen", "Fejl", JOptionPane.ERROR_MESSAGE);
+        } else {
+            jFrameUpdateVogn.setVisible(false);
+            jFrameUpdateVogn.dispose();
+            jButtonLoadVogne.doClick();
+        }
     }//GEN-LAST:event_jButtonVognUpdateActionPerformed
 
     private void jButtonVognDeleteBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognDeleteBackActionPerformed

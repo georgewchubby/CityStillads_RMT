@@ -28,10 +28,16 @@ public class VognMapper {
 
         // names of columns
         Vector<String> columnNames = new Vector<String>();
+        columnNames.add("Vogn nummer");
+        columnNames.add("Vogn type");
+        columnNames.add("Status");
+        columnNames.add("Ordre nummer");
+        columnNames.add("Reserveret fra");
+        columnNames.add("Reserveret til");
         int columnCount = metaData.getColumnCount();
-        for (int column = 1; column <= columnCount; column++) {
-            columnNames.add(metaData.getColumnName(column));
-        }
+//        for (int column = 1; column <= columnCount; column++) {
+//            columnNames.add(metaData.getColumnName(column));
+//        }
 
         // data of the table
         Vector<Vector<Object>> data = new Vector<Vector<Object>>();
