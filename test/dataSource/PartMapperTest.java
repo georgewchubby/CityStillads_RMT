@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -41,14 +43,15 @@ public class PartMapperTest {
     public void tearDown() throws SQLException {
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-//        instance.deletePart(70000, con);
         instance.deletePart(30, con);
-//        instance.deletePart(90000, con);
     }
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
     /**
-     * Test of getPart method, of class PartMapper.
-     * The method saveNewPartWitnum is also tested here.
+     * Test of getPart method, of class PartMapper. The method saveNewPartWitnum
+     * is also tested here.
      *
      * @throws java.sql.SQLException
      */
@@ -81,6 +84,22 @@ public class PartMapperTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of saveNewPartWitnum method, of class PartMapper. This test is for
+     * the exception.
+     *
+     * @throws java.sql.SQLException
+     */
+    @Test
+    public void testSaveNewPartWitnumException() throws SQLException {
+        System.out.println("saveNewPartWitnum exception");
+        Connection con = new DBConnector().getConnection();
+        PartMapper instance = new PartMapper();
+        exception.expect(SQLException.class);
+        Part p = new Part(65099, "No work", "This shouldn't work", 1);
+        instance.saveNewPartWitnum(p, con);
     }
 
     /**
@@ -143,6 +162,7 @@ public class PartMapperTest {
 
     /**
      * Test of getAllParts method, of class PartMapper.
+     *
      * @throws java.sql.SQLException
      */
     @Test
@@ -154,6 +174,6 @@ public class PartMapperTest {
         int result = instance.getAllParts(con).getColumnCount();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        
+
     }
 }

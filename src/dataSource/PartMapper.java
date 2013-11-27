@@ -73,14 +73,13 @@ public class PartMapper {
                     rs.getInt(4));
         }
 
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in partMapper - getPart");
-                System.out.println(e.getMessage());
-            }
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in partMapper - getPart");
+            System.out.println(e.getMessage());
         }
+
         return part;
     }
 

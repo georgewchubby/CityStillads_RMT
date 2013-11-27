@@ -57,7 +57,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 jButtonUpdateVogn.setEnabled(!lsm2.isSelectionEmpty());
             }
         });
-        
+
         try {
             jTableVogne.setModel(vc.getAllVogn());
             jTableParts.setModel(pc.getAllParts());
@@ -127,8 +127,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private void clearVognUpdateFields() {
         jTextFieldVognUpdateNo.setText("");
         jTextFieldVognUpdateOno.setText("");
-        jTextFieldVognUpdateResFrom.setText("");
-        jTextFieldVognUpdateResUntil.setText("");
+        jComboBoxVognUpdateDayFrom.setSelectedIndex(0);
+        jComboBoxVognUpdateDayUntil.setSelectedIndex(0);
+        jComboBoxVognUpdateMonthFrom.setSelectedIndex(0);
+        jComboBoxVognUpdateMonthUntil.setSelectedIndex(0);
+        jComboBoxVognUpdateYearFrom.setSelectedIndex(113);
+        jComboBoxVognUpdateYearUntil.setSelectedIndex(113);
         jComboBoxVognUpdateStatus.setSelectedIndex(0);
         jComboBoxVognUpdateType.setSelectedIndex(0);
         jCheckBoxOno.setSelected(false);
@@ -222,10 +226,20 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelSavedVogn = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jTextFieldVognNewResFrom = new javax.swing.JTextField();
-        jTextFieldVognNewResUntil = new javax.swing.JTextField();
         jComboBoxVognNewStatus = new javax.swing.JComboBox();
         jComboBoxVognNewType = new javax.swing.JComboBox();
+        jComboBoxVognSaveDayFrom = new javax.swing.JComboBox();
+        jComboBoxVognSaveMonthFrom = new javax.swing.JComboBox();
+        jComboBoxVognSaveYearFrom = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxVognSaveDayUntil = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
+        jComboBoxVognSaveMonthUntil = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBoxVognSaveYearUntil = new javax.swing.JComboBox();
         jFrameUpdateVogn = new javax.swing.JFrame();
         jPanelUpdateVogn = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
@@ -239,8 +253,6 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jLabelVognUpdated = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jTextFieldVognUpdateResFrom = new javax.swing.JTextField();
-        jTextFieldVognUpdateResUntil = new javax.swing.JTextField();
         jComboBoxVognUpdateStatus = new javax.swing.JComboBox();
         jComboBoxVognUpdateType = new javax.swing.JComboBox();
         jCheckBoxStatus = new javax.swing.JCheckBox();
@@ -248,6 +260,18 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jCheckBoxResFrom = new javax.swing.JCheckBox();
         jCheckBoxResUntil = new javax.swing.JCheckBox();
         jButtonVognUpdate = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        jComboBoxVognUpdateDayFrom = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        jComboBoxVognUpdateMonthFrom = new javax.swing.JComboBox();
+        jLabel29 = new javax.swing.JLabel();
+        jComboBoxVognUpdateYearFrom = new javax.swing.JComboBox();
+        jComboBoxVognUpdateYearUntil = new javax.swing.JComboBox();
+        jLabel30 = new javax.swing.JLabel();
+        jComboBoxVognUpdateMonthUntil = new javax.swing.JComboBox();
+        jLabel43 = new javax.swing.JLabel();
+        jComboBoxVognUpdateDayUntil = new javax.swing.JComboBox();
+        jLabel44 = new javax.swing.JLabel();
         jFrameDeleteVogn = new javax.swing.JFrame();
         jPanelDeleteVogn = new javax.swing.JPanel();
         jLabel48 = new javax.swing.JLabel();
@@ -298,7 +322,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Del beskrivelse");
 
-        jTextFieldNewPartNo.setToolTipText("Leave empty for auto-number");
+        jTextFieldNewPartNo.setToolTipText("Lad dette felt stå tomt for autonummerering");
         jTextFieldNewPartNo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldNewPartNoFocusGained(evt);
@@ -749,31 +773,35 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel35.setText("Reserveret til");
 
-        jTextFieldVognNewResFrom.setText("dd,mm,åååå");
-        jTextFieldVognNewResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
-        jTextFieldVognNewResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldVognNewResFromFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldVognNewResFromFocusLost(evt);
-            }
-        });
-
-        jTextFieldVognNewResUntil.setText("dd,mm,åååå");
-        jTextFieldVognNewResUntil.setToolTipText("Hvis ingen dato ønskes, skriv 0");
-        jTextFieldVognNewResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldVognNewResUntilFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldVognNewResUntilFocusLost(evt);
-            }
-        });
-
         jComboBoxVognNewStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
 
         jComboBoxVognNewType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
+
+        jComboBoxVognSaveDayFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jComboBoxVognSaveMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JAN", "FEB", "MAR", "APR", "MAJ", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC" }));
+
+        jComboBoxVognSaveYearFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
+        jComboBoxVognSaveYearFrom.setSelectedIndex(113);
+
+        jLabel1.setText("Dag:");
+
+        jLabel2.setText("Måned:");
+
+        jLabel3.setText("År:");
+
+        jLabel4.setText("Dag:");
+
+        jComboBoxVognSaveDayUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22" }));
+
+        jLabel23.setText("Måned:");
+
+        jComboBoxVognSaveMonthUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JAN", "FEB", "MAR", "APR", "MAJ", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC" }));
+
+        jLabel24.setText("År:");
+
+        jComboBoxVognSaveYearUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
+        jComboBoxVognSaveYearUntil.setSelectedIndex(113);
 
         javax.swing.GroupLayout jPanelNewVognLayout = new javax.swing.GroupLayout(jPanelNewVogn);
         jPanelNewVogn.setLayout(jPanelNewVognLayout);
@@ -792,12 +820,34 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jLabel26))
                         .addGap(10, 10, 10)
                         .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldVognNewResUntil, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVognNewResFrom, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxVognNewStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxVognNewType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxVognNewType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNewVognLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveYearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVognNewNo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNewVognLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveDayUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveMonthUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognSaveYearUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelNewVognLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -807,12 +857,10 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                                 .addComponent(jButtonNewVognBack))
                             .addComponent(jLabelSavedVogn)
                             .addComponent(jLabel25))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
-
-        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil});
 
         jPanelNewVognLayout.setVerticalGroup(
             jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -837,11 +885,22 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldVognNewOno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognNewResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34))
+                    .addComponent(jLabel34)
+                    .addComponent(jComboBoxVognSaveDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxVognSaveMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxVognSaveYearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognNewResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNewVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxVognSaveDayUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxVognSaveMonthUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxVognSaveYearUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel23)
+                        .addComponent(jLabel24))
                     .addComponent(jLabel35))
                 .addGap(36, 36, 36)
                 .addComponent(jLabelSavedVogn)
@@ -854,7 +913,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel26, jLabel31, jLabel32, jLabel33, jLabel34, jLabel35});
 
-        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno, jTextFieldVognNewResFrom, jTextFieldVognNewResUntil});
+        jPanelNewVognLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldVognNewNo, jTextFieldVognNewOno});
 
         PlainDocument doc9 = (PlainDocument) jTextFieldVognNewNo.getDocument();
         doc9.setDocumentFilter(new MyIntFilter());
@@ -899,33 +958,17 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         jLabel42.setText("Reserveret til");
 
-        jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
-        jTextFieldVognUpdateResFrom.setToolTipText("Hvis ingen dato ønskes, skriv 0");
-        jTextFieldVognUpdateResFrom.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldVognUpdateResFromFocusLost(evt);
-            }
-        });
-
-        jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
-        jTextFieldVognUpdateResUntil.setToolTipText("Hvis ingen dato ønskes, skriv 0");
-        jTextFieldVognUpdateResUntil.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldVognUpdateResUntilFocusLost(evt);
-            }
-        });
-
         jComboBoxVognUpdateStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hjemme", "Opsætning", "Nedrivning" }));
 
         jComboBoxVognUpdateType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lille", "Mellem", "Stor" }));
 
-        jCheckBoxStatus.setToolTipText("Check box to update this");
+        jCheckBoxStatus.setToolTipText("Sæt hak i boksen for at opdatere denne del");
 
-        jCheckBoxOno.setToolTipText("Check box to update this");
+        jCheckBoxOno.setToolTipText("Sæt hak i boksen for at opdatere denne del");
 
-        jCheckBoxResFrom.setToolTipText("Check box to update this");
+        jCheckBoxResFrom.setToolTipText("Sæt hak i boksen for at opdatere denne del");
 
-        jCheckBoxResUntil.setToolTipText("Check box to update this");
+        jCheckBoxResUntil.setToolTipText("Sæt hak i boksen for at opdatere denne del");
 
         jButtonVognUpdate.setText("Opdater vogn");
         jButtonVognUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -934,12 +977,46 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel27.setText("Dag:");
+
+        jComboBoxVognUpdateDayFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jLabel28.setText("Måned:");
+
+        jComboBoxVognUpdateMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JAN", "FEB", "MAR", "APR", "MAJ", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC" }));
+
+        jLabel29.setText("År:");
+
+        jComboBoxVognUpdateYearFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
+        jComboBoxVognUpdateYearFrom.setSelectedIndex(113);
+
+        jComboBoxVognUpdateYearUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
+        jComboBoxVognUpdateYearUntil.setSelectedIndex(113);
+
+        jLabel30.setText("År:");
+
+        jComboBoxVognUpdateMonthUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "JAN", "FEB", "MAR", "APR", "MAJ", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC" }));
+
+        jLabel43.setText("Måned:");
+
+        jComboBoxVognUpdateDayUntil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22" }));
+
+        jLabel44.setText("Dag:");
+
         javax.swing.GroupLayout jPanelUpdateVognLayout = new javax.swing.GroupLayout(jPanelUpdateVogn);
         jPanelUpdateVogn.setLayout(jPanelUpdateVognLayout);
         jPanelUpdateVognLayout.setHorizontalGroup(
             jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
-                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelVognUpdated)
+                            .addComponent(jLabel36)
+                            .addComponent(jButtonVognUpdate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonVognUpdateBack))
                     .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -949,30 +1026,43 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                             .addComponent(jLabel39)
                             .addComponent(jLabel38)
                             .addComponent(jLabel37))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldVognUpdateResUntil, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVognUpdateResFrom, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVognUpdateNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVognUpdateOno, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxVognUpdateStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxVognUpdateType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxStatus)
-                            .addComponent(jCheckBoxOno)
-                            .addComponent(jCheckBoxResFrom)
-                            .addComponent(jCheckBoxResUntil)))
-                    .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldVognUpdateOno)
                             .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
-                                .addComponent(jButtonVognUpdate)
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateYearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelUpdateVognLayout.createSequentialGroup()
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateDayUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonVognUpdateBack))
-                            .addComponent(jLabelVognUpdated)
-                            .addComponent(jLabel36))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                                .addComponent(jLabel43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateMonthUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxVognUpdateYearUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxVognUpdateStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxVognUpdateType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldVognUpdateNo))))
+                .addGap(16, 16, 16)
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxStatus)
+                    .addComponent(jCheckBoxOno)
+                    .addComponent(jCheckBoxResFrom)
+                    .addComponent(jCheckBoxResUntil))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanelUpdateVognLayout.setVerticalGroup(
             jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -999,14 +1089,26 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                     .addComponent(jCheckBoxOno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognUpdateResFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel41)
-                    .addComponent(jCheckBoxResFrom))
+                    .addComponent(jCheckBoxResFrom)
+                    .addComponent(jComboBoxVognUpdateDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxVognUpdateMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxVognUpdateYearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldVognUpdateResUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42)
-                    .addComponent(jCheckBoxResUntil))
+                .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxVognUpdateMonthUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxVognUpdateYearUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel43)
+                        .addComponent(jLabel30))
+                    .addGroup(jPanelUpdateVognLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel42)
+                        .addComponent(jCheckBoxResUntil)
+                        .addComponent(jLabel44)
+                        .addComponent(jComboBoxVognUpdateDayUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34)
                 .addComponent(jLabelVognUpdated)
                 .addGap(18, 18, 18)
@@ -1557,8 +1659,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
             String vognType = (String) jComboBoxVognNewType.getSelectedItem();
             String vognStatus = (String) jComboBoxVognNewStatus.getSelectedItem();
             int ono = Integer.parseInt(jTextFieldVognNewOno.getText());
-            String resFra = jTextFieldVognNewResFrom.getText();
-            String resTil = jTextFieldVognNewResUntil.getText();
+            String resFra = (String) jComboBoxVognSaveDayFrom.getSelectedItem()
+                    + "-" + jComboBoxVognSaveMonthFrom.getSelectedItem() + "-"
+                    + jComboBoxVognSaveYearFrom.getSelectedItem();
+            String resTil = (String) jComboBoxVognSaveDayUntil.getSelectedItem()
+                    + "-" + jComboBoxVognSaveMonthUntil.getSelectedItem() + "-"
+                    + jComboBoxVognSaveYearUntil.getSelectedItem();
 
             Vogn v = new Vogn(vognNo, vognType, vognStatus, ono, resFra, resTil);
 
@@ -1566,8 +1672,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
             jTextFieldVognNewNo.setText("");
             jTextFieldVognNewOno.setText("");
-            jTextFieldVognNewResFrom.setText("");
-            jTextFieldVognNewResUntil.setText("");
+            jComboBoxVognSaveDayFrom.setSelectedIndex(0);
+            jComboBoxVognSaveMonthFrom.setSelectedIndex(0);
+            jComboBoxVognSaveYearFrom.setSelectedIndex(114);
+            jComboBoxVognSaveDayUntil.setSelectedIndex(0);
+            jComboBoxVognSaveMonthUntil.setSelectedIndex(0);
+            jComboBoxVognSaveYearUntil.setSelectedIndex(114);
             jLabelSavedVogn.setText("Gemt");
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1) {
@@ -1585,57 +1695,23 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
         jButtonLoadVogne.doClick();
     }//GEN-LAST:event_jButtonNewVognBackActionPerformed
 
-    private void jTextFieldVognNewResFromFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusGained
-        // TODO add your handling code here:
-        jTextFieldVognNewResFrom.setText("");
-    }//GEN-LAST:event_jTextFieldVognNewResFromFocusGained
-
-    private void jTextFieldVognNewResUntilFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResUntilFocusGained
-        // TODO add your handling code here:
-        jTextFieldVognNewResUntil.setText("");
-    }//GEN-LAST:event_jTextFieldVognNewResUntilFocusGained
-
-    private void jTextFieldVognNewResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResFromFocusLost
-        // TODO add your handling code here:
-        if (jTextFieldVognNewResFrom.getText().equals("")) {
-            jTextFieldVognNewResFrom.setText("dd,mm,åååå");
-        }
-    }//GEN-LAST:event_jTextFieldVognNewResFromFocusLost
-
-    private void jTextFieldVognNewResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognNewResUntilFocusLost
-        // TODO add your handling code here:
-        if (jTextFieldVognNewResUntil.getText().equals("")) {
-            jTextFieldVognNewResUntil.setText("dd,mm,åååå");
-        }
-    }//GEN-LAST:event_jTextFieldVognNewResUntilFocusLost
-
     private void jButtonVognUpdateBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateBackActionPerformed
         // TODO add your handling code here:
         jFrameUpdateVogn.setVisible(false);
         jFrameUpdateVogn.dispose();
     }//GEN-LAST:event_jButtonVognUpdateBackActionPerformed
 
-    private void jTextFieldVognUpdateResFromFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResFromFocusLost
-        // TODO add your handling code here:
-        if (jTextFieldVognUpdateResFrom.getText().equals("")) {
-            jTextFieldVognUpdateResFrom.setText("dd,mm,åååå");
-        }
-    }//GEN-LAST:event_jTextFieldVognUpdateResFromFocusLost
-
-    private void jTextFieldVognUpdateResUntilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldVognUpdateResUntilFocusLost
-        // TODO add your handling code here:
-        if (jTextFieldVognUpdateResUntil.getText().equals("")) {
-            jTextFieldVognUpdateResUntil.setText("dd,mm,åååå");
-        }
-    }//GEN-LAST:event_jTextFieldVognUpdateResUntilFocusLost
-
     private void jButtonVognUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVognUpdateActionPerformed
         // TODO add your handling code here:
         int vognID = Integer.parseInt(jTextFieldVognUpdateNo.getText());
         int ono = Integer.parseInt(jTextFieldVognUpdateOno.getText());
         String status = (String) jComboBoxVognUpdateStatus.getSelectedItem();
-        String resFrom = jTextFieldVognUpdateResFrom.getText();
-        String resTo = jTextFieldVognUpdateResUntil.getText();
+        String resFra = (String) jComboBoxVognUpdateDayFrom.getSelectedItem()
+                + "-" + jComboBoxVognUpdateMonthFrom.getSelectedItem() + "-"
+                + jComboBoxVognUpdateYearFrom.getSelectedItem();
+        String resTil = (String) jComboBoxVognUpdateDayUntil.getSelectedItem()
+                + "-" + jComboBoxVognUpdateMonthUntil.getSelectedItem() + "-"
+                + jComboBoxVognUpdateYearUntil.getSelectedItem();
 
         if (jCheckBoxOno.isSelected() == true) {
             try {
@@ -1655,7 +1731,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         if (jCheckBoxResFrom.isSelected() == true) {
             try {
-                vc.updateVognDatoFra(vognID, resFrom);
+                vc.updateVognDatoFra(vognID, resFra);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
@@ -1663,7 +1739,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
         if (jCheckBoxResUntil.isSelected() == true) {
             try {
-                vc.updateVognDatoTil(vognID, resTo);
+                vc.updateVognDatoTil(vognID, resTil);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Kontakt venligst systemadministratoren og giv dem følgende fejlbesked " + ex.getMessage(), "Fejl", JOptionPane.ERROR_MESSAGE);
             }
@@ -1823,13 +1899,29 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
 
             Vogn v = vc.getVogn(vognNo);
 
+            String resFrom = v.getReserveretFra();
+            String[] partsFrom = resFrom.split("-");
+            String dayFrom = partsFrom[0];
+            String monthFrom = partsFrom[1];
+            String yearFrom = partsFrom[2];
+
+            String resUntil = v.getReserveretTil();
+            String[] partsUntil = resUntil.split("-");
+            String dayUntil = partsUntil[0];
+            String monthUntil = partsUntil[1];
+            String yearUntil = partsUntil[2];
+
             if (v != null) {
                 jTextFieldVognUpdateNo.setText(v.getVognID() + "");
                 jTextFieldVognUpdateOno.setText(v.getOno() + "");
                 jComboBoxVognUpdateType.setSelectedItem(v.getvType());
                 jComboBoxVognUpdateStatus.setSelectedItem(v.getStatus());
-                jTextFieldVognUpdateResFrom.setText(v.getReserveretFra());
-                jTextFieldVognUpdateResUntil.setText(v.getReserveretTil());
+                jComboBoxVognUpdateDayFrom.setSelectedItem(dayFrom);
+                jComboBoxVognUpdateDayUntil.setSelectedItem(dayUntil);
+                jComboBoxVognUpdateMonthFrom.setSelectedItem(monthFrom);
+                jComboBoxVognUpdateMonthUntil.setSelectedItem(monthUntil);
+                jComboBoxVognUpdateYearFrom.setSelectedItem(yearFrom);
+                jComboBoxVognUpdateYearUntil.setSelectedItem(yearUntil);
                 jComboBoxVognUpdateType.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Vognen findes ikke", "Fejl", JOptionPane.ERROR_MESSAGE);
@@ -1938,8 +2030,20 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxVognDeleteType;
     private javax.swing.JComboBox jComboBoxVognNewStatus;
     private javax.swing.JComboBox jComboBoxVognNewType;
+    private javax.swing.JComboBox jComboBoxVognSaveDayFrom;
+    private javax.swing.JComboBox jComboBoxVognSaveDayUntil;
+    private javax.swing.JComboBox jComboBoxVognSaveMonthFrom;
+    private javax.swing.JComboBox jComboBoxVognSaveMonthUntil;
+    private javax.swing.JComboBox jComboBoxVognSaveYearFrom;
+    private javax.swing.JComboBox jComboBoxVognSaveYearUntil;
+    private javax.swing.JComboBox jComboBoxVognUpdateDayFrom;
+    private javax.swing.JComboBox jComboBoxVognUpdateDayUntil;
+    private javax.swing.JComboBox jComboBoxVognUpdateMonthFrom;
+    private javax.swing.JComboBox jComboBoxVognUpdateMonthUntil;
     private javax.swing.JComboBox jComboBoxVognUpdateStatus;
     private javax.swing.JComboBox jComboBoxVognUpdateType;
+    private javax.swing.JComboBox jComboBoxVognUpdateYearFrom;
+    private javax.swing.JComboBox jComboBoxVognUpdateYearUntil;
     private javax.swing.JFrame jFrameDeletePart;
     private javax.swing.JFrame jFrameDeleteVogn;
     private javax.swing.JFrame jFrameNewPart;
@@ -1947,6 +2051,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JFrame jFrameUpdatePart;
     private javax.swing.JFrame jFrameUpdateQty;
     private javax.swing.JFrame jFrameUpdateVogn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1957,11 +2062,19 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -1971,9 +2084,12 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
@@ -2027,11 +2143,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldVognDeleteResUntil;
     private javax.swing.JTextField jTextFieldVognNewNo;
     private javax.swing.JTextField jTextFieldVognNewOno;
-    private javax.swing.JTextField jTextFieldVognNewResFrom;
-    private javax.swing.JTextField jTextFieldVognNewResUntil;
     private javax.swing.JTextField jTextFieldVognUpdateNo;
     private javax.swing.JTextField jTextFieldVognUpdateOno;
-    private javax.swing.JTextField jTextFieldVognUpdateResFrom;
-    private javax.swing.JTextField jTextFieldVognUpdateResUntil;
     // End of variables declaration//GEN-END:variables
 }
