@@ -16,7 +16,13 @@ import javax.swing.table.DefaultTableModel;
 // hau
 public class PartMapper {
 
-    //== Get all parts
+    /**
+     * Get all parts
+     *
+     * @param con
+     * @return DefaultTableModel
+     * @throws SQLException
+     */
     public static DefaultTableModel getAllParts(Connection con) throws SQLException {
         DefaultTableModel dtm = null;
 
@@ -35,9 +41,6 @@ public class PartMapper {
         columnNames.add("Beskrivelse");
         columnNames.add("Antal");
         int columnCount = metaData.getColumnCount();
-//        for (int column = 1; column <= columnCount; column++) {
-//            columnNames.add(metaData.getColumnName(column));
-//        }
 
         // data of the table
         Vector<Vector<Object>> data = new Vector<Vector<Object>>();
@@ -52,7 +55,14 @@ public class PartMapper {
         return new DefaultTableModel(data, columnNames);
     }
 
-    //== Load a part
+    /**
+     * Get a part
+     *
+     * @param pno
+     * @param con
+     * @return Part
+     * @throws SQLException
+     */
     public Part getPart(int pno, Connection con) throws SQLException {
         Part part = null;
         String SQLString1
@@ -83,7 +93,14 @@ public class PartMapper {
         return part;
     }
 
-    //== Insert new Part (tuple)
+    /**
+     * Save a new part with a specified part number
+     *
+     * @param p
+     * @param con
+     * @return boolean
+     * @throws SQLException
+     */
     public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString
@@ -98,18 +115,24 @@ public class PartMapper {
         statement.setString(3, p.getPbeskrivelse());
         statement.setInt(4, p.getQty());
         rowsInserted = statement.executeUpdate();
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - saveNewPart");
-                System.out.println(e.getMessage());
-            }
+
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - saveNewPart");
+            System.out.println(e.getMessage());
         }
         return rowsInserted == 1;
     }
 
-    //== Insert new Part (tuple) auto part number assigned
+    /**
+     * Save a new part with an automatically assigned part number
+     *
+     * @param p
+     * @param con
+     * @return boolean
+     * @throws SQLException
+     */
     public boolean saveNewPart(Part p, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString = "insert into parts (pno, pname, description, qty) "
@@ -119,32 +142,37 @@ public class PartMapper {
 
         //== insert tuple
         statement = con.prepareStatement(SQLString);
-        //statement.setInt(1, p.getPnum());
         statement.setString(1, p.getPnavn());
         statement.setString(2, p.getPbeskrivelse());
         statement.setInt(3, p.getQty());
         rowsInserted = statement.executeUpdate();
 
-        {
+        try {
+
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - saveNewPart statement close");
+            System.out.println(e.getMessage());
             try {
-
-                statement.close();
-
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - saveNewPart statement close");
-                System.out.println(e.getMessage());
-                try {
-                    throw new Exception("Informative exeption- new part number is = " + p.getPnum());
-                } catch (Exception ex) {
-                    Logger.getLogger(PartMapper.class.getName()).log(Level.FINE, null, ex);
-                }
+                throw new Exception("Informative exeption- new part number is = " + p.getPnum());
+            } catch (Exception ex) {
+                Logger.getLogger(PartMapper.class.getName()).log(Level.FINE, null, ex);
             }
         }
 
         return rowsInserted == 1;
     }
 
-    //== Update Part qty
+    /**
+     * Update qty column
+     *
+     * @param pnum
+     * @param qty
+     * @param con
+     * @return boolean
+     * @throws SQLException
+     */
     public boolean updatePartQty(int pnum, int qty, Connection con) throws SQLException {
         int partUpdated = 0;
         String SQLString
@@ -158,18 +186,24 @@ public class PartMapper {
         statement.setInt(2, pnum);
         partUpdated = statement.executeUpdate();
 
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - updatePartQty");
-                System.out.println(e.getMessage());
-            }
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - updatePartQty");
+            System.out.println(e.getMessage());
         }
+
         return partUpdated == 1;
     }
 
-    //== Update part
+    /**
+     * Update part description
+     *
+     * @param p
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean updatePart(Part p, Connection con) throws SQLException {
         int rowUpdated = 0;
         String SQLString = "";
@@ -195,35 +229,46 @@ public class PartMapper {
         statement = con.prepareStatement(SQLString);
         rowUpdated = statement.executeUpdate();
 
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - updatePart");
-                System.out.println(e.getMessage());
-            }
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - updatePart");
+            System.out.println(e.getMessage());
         }
+
         return rowUpdated == 1;
     }
 
-    //== Delete part
+    /**
+     * Moves the tuple from the parts table to partsRemoved
+     *
+     * @param pnum
+     * @param con
+     * @return boolean
+     * @throws SQLException
+     */
     public boolean deletePart(int pnum, Connection con) throws SQLException {
         int partDeleted = 0;
-        String SQLString = "Delete from parts where pno = " + pnum;
+        
+        String SQLString1 = "insert into partsRemoved " + 
+                "select * from parts where pno = " + pnum;
+        String SQLString2 = "Delete from parts where pno = " + pnum;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
 
         //== insert value
-        statement = con.prepareStatement(SQLString);
+        statement = con.prepareStatement(SQLString1);
+        statement2 = con.prepareStatement(SQLString2);
         partDeleted = statement.executeUpdate(); // delete order
+        statement2.executeUpdate();
 
-        {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println("Fail in PartMapper - deletePart");
-                System.out.println(e.getMessage());
-            }
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - deletePart");
+            System.out.println(e.getMessage());
         }
+
         return partDeleted == 1;
     }
 }

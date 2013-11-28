@@ -1329,6 +1329,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableParts.getTableHeader().setReorderingAllowed(false);
         jScrollPaneAllParts.setViewportView(jTableParts);
 
         jButtonLoadParts.setText("Genindlæs dele");
@@ -1420,7 +1421,7 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1431,15 +1432,8 @@ public class ResourceManagementSystemFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableVogne.getTableHeader().setReorderingAllowed(false);
         jScrollPaneAllVogne.setViewportView(jTableVogne);
-        if (jTableVogne.getColumnModel().getColumnCount() > 0) {
-            jTableVogne.getColumnModel().getColumn(0).setHeaderValue("Vogn nummer");
-            jTableVogne.getColumnModel().getColumn(1).setHeaderValue("Vogn type");
-            jTableVogne.getColumnModel().getColumn(2).setHeaderValue("Status");
-            jTableVogne.getColumnModel().getColumn(3).setHeaderValue("Ordre nummer");
-            jTableVogne.getColumnModel().getColumn(4).setHeaderValue("Reserveret fra");
-            jTableVogne.getColumnModel().getColumn(5).setHeaderValue("Reserveret til");
-        }
 
         javax.swing.GroupLayout jPanelGetVognLayout = new javax.swing.GroupLayout(jPanelGetVogn);
         jPanelGetVogn.setLayout(jPanelGetVognLayout);
