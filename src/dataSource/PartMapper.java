@@ -20,7 +20,7 @@ public class PartMapper {
      * Get all parts
      *
      * @param con
-     * @return DefaultTableModel
+     * @return DefaultTableModel with all rows from parts table
      * @throws SQLException
      */
     public static DefaultTableModel getAllParts(Connection con) throws SQLException {
@@ -60,7 +60,7 @@ public class PartMapper {
      *
      * @param pno
      * @param con
-     * @return Part
+     * @return The part with the part number pno
      * @throws SQLException
      */
     public Part getPart(int pno, Connection con) throws SQLException {
@@ -98,7 +98,6 @@ public class PartMapper {
      *
      * @param p
      * @param con
-     * @return boolean
      * @throws SQLException
      */
     public boolean saveNewPartWitnum(Part p, Connection con) throws SQLException {
@@ -130,7 +129,6 @@ public class PartMapper {
      *
      * @param p
      * @param con
-     * @return boolean
      * @throws SQLException
      */
     public boolean saveNewPart(Part p, Connection con) throws SQLException {
@@ -148,7 +146,6 @@ public class PartMapper {
         rowsInserted = statement.executeUpdate();
 
         try {
-
             statement.close();
 
         } catch (SQLException e) {
@@ -160,7 +157,6 @@ public class PartMapper {
                 Logger.getLogger(PartMapper.class.getName()).log(Level.FINE, null, ex);
             }
         }
-
         return rowsInserted == 1;
     }
 
@@ -170,7 +166,6 @@ public class PartMapper {
      * @param pnum
      * @param qty
      * @param con
-     * @return boolean
      * @throws SQLException
      */
     public boolean updatePartQty(int pnum, int qty, Connection con) throws SQLException {
@@ -201,7 +196,6 @@ public class PartMapper {
      *
      * @param p
      * @param con
-     * @return
      * @throws SQLException
      */
     public boolean updatePart(Part p, Connection con) throws SQLException {
@@ -244,7 +238,6 @@ public class PartMapper {
      *
      * @param pnum
      * @param con
-     * @return boolean
      * @throws SQLException
      */
     public boolean deletePart(int pnum, Connection con) throws SQLException {
