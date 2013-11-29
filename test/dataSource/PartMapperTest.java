@@ -43,6 +43,7 @@ public class PartMapperTest {
     public void tearDown() throws SQLException {
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
+        instance.removePart(30, con);
         instance.deletePart(30, con);
     }
 
@@ -142,19 +143,19 @@ public class PartMapperTest {
     }
 
     /**
-     * Test of deletePart method, of class PartMapper.
+     * Test of removePart method, of class PartMapper.
      *
      * @throws java.sql.SQLException
      */
     @Test
-    public void testDeletePart() throws SQLException {
+    public void testRemovePart() throws SQLException {
         System.out.println("deletePart");
         int pnum = 30;
         Part p = new Part(pnum, "Delete", "Del del del", 100);
         Connection con = new DBConnector().getConnection();
         PartMapper instance = new PartMapper();
-        instance.saveNewPartWitnum(p, con);
-        instance.deletePart(pnum, con);
+        //instance.saveNewPartWitnum(p, con);
+        instance.removePart(pnum, con);
         assertNull(instance.getPart(pnum, con));
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

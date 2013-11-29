@@ -43,15 +43,16 @@ public class VognMapperTest {
     public void tearDown() throws SQLException {
         Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
+        instance.removeVogn(12000000, con);
         instance.deleteVogn(12000000, con);
-
     }
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
     /**
-     * Test of saveNewVogn method, of class VognMapper.
+     * Test of saveNewVogn method, of class VognMapper. Also tests the method
+     * getVogn.
      *
      * @throws java.sql.SQLException
      */
@@ -66,7 +67,7 @@ public class VognMapperTest {
         Connection con = new DBConnector().getConnection();
         VognMapper instance = new VognMapper();
         boolean result = instance.saveNewVogn(v, con);
-        assertTrue(result);
+        assertEquals("Hjemme", instance.getVogn(12000000, con).getStatus());
     }
 
     /**
@@ -87,29 +88,6 @@ public class VognMapperTest {
         String sl = "20-12-2012";
         Vogn v = new Vogn(10000000, s, h, 1, f, sl);
         instance.saveNewVogn(v, con);
-    }
-
-    /**
-     * Test of getVogn method, of class VognMapper.
-     *
-     * @throws java.sql.SQLException
-     */
-    @Test
-    public void testGetVogn() throws SQLException {
-        System.out.println("getVogn");
-        String s = "Stor";
-        String h = "Hjemme";
-        String f = "20-04-2012";
-        String sl = "20-12-2012";
-        int vognID = 12000000;
-        Connection con = new DBConnector().getConnection();
-        VognMapper instance = new VognMapper();
-        Vogn expResult = new Vogn(12000000, s, h, 1, f, sl);
-        instance.saveNewVogn(expResult, con);
-        Vogn result = instance.getVogn(vognID, con);
-        assertEquals(expResult.getVognID(), result.getVognID());
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
@@ -208,13 +186,13 @@ public class VognMapperTest {
     }
 
     /**
-     * Test of deleteVogn method, of class VognMapper.
+     * Test of removeVogn method, of class VognMapper.
      *
      * @throws java.sql.SQLException
      */
     @Test
-    public void testDeleteVogn() throws SQLException {
-        System.out.println("deleteVogn");
+    public void testRemoveVogn() throws SQLException {
+        System.out.println("removeVogn");
         String type = "Stor";
         String stat = "Hjemme";
         String fra = "20-04-2012";
@@ -226,7 +204,7 @@ public class VognMapperTest {
         VognMapper instance = new VognMapper();
         instance.saveNewVogn(v, con);
         boolean expResult = true;
-        boolean result = instance.deleteVogn(12000000, con);
+        boolean result = instance.removeVogn(12000000, con);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 
@@ -234,7 +212,7 @@ public class VognMapperTest {
 
     /**
      * Test of getAllVogn method, of class VognMapper.
-     * 
+     *
      * @throws java.sql.SQLException
      */
     @Test

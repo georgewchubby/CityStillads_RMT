@@ -17,10 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class PartMapper {
 
     /**
-     * Get all parts
+     * Henter alle dele fra databasen
      *
      * @param con
-     * @return DefaultTableModel with all rows from parts table
+     * @return DefaultTableModel med alle rækker fra tabellen parts
      * @throws SQLException
      */
     public static DefaultTableModel getAllParts(Connection con) throws SQLException {
@@ -56,11 +56,11 @@ public class PartMapper {
     }
 
     /**
-     * Get a part
+     * Henter en tuple fra tabellen parts
      *
      * @param pno
      * @param con
-     * @return The part with the part number pno
+     * @return Et part-objekt med pno'et der bliver givet som parameter
      * @throws SQLException
      */
     public Part getPart(int pno, Connection con) throws SQLException {
@@ -75,14 +75,13 @@ public class PartMapper {
         //=== get Part
         statement = con.prepareStatement(SQLString1);
         statement.setInt(1, pno);     // primary key value
-        ResultSet rs = statement.executeQuery();
+        ResultSet rs = statement.executeQuery(); //get part
         if (rs.next()) {
             part = new Part(pno,
                     rs.getString(2),
                     rs.getString(3),
                     rs.getInt(4));
         }
-
         try {
             statement.close();
         } catch (SQLException e) {
@@ -94,7 +93,7 @@ public class PartMapper {
     }
 
     /**
-     * Save a new part with a specified part number
+     * Gemmer en tuple i databasen baseret på det part-object der bliver oprettet
      *
      * @param p
      * @param con
@@ -113,7 +112,7 @@ public class PartMapper {
         statement.setString(2, p.getPnavn());
         statement.setString(3, p.getPbeskrivelse());
         statement.setInt(4, p.getQty());
-        rowsInserted = statement.executeUpdate();
+        rowsInserted = statement.executeUpdate(); // save new part
 
         try {
             statement.close();
@@ -125,7 +124,7 @@ public class PartMapper {
     }
 
     /**
-     * Save a new part with an automatically assigned part number
+     * Gemmer en ny tuple hvor pno bliver tildelt automatisk
      *
      * @param p
      * @param con
@@ -143,11 +142,10 @@ public class PartMapper {
         statement.setString(1, p.getPnavn());
         statement.setString(2, p.getPbeskrivelse());
         statement.setInt(3, p.getQty());
-        rowsInserted = statement.executeUpdate();
+        rowsInserted = statement.executeUpdate(); // save new part
 
         try {
             statement.close();
-
         } catch (SQLException e) {
             System.out.println("Fail in PartMapper - saveNewPart statement close");
             System.out.println(e.getMessage());
@@ -161,14 +159,14 @@ public class PartMapper {
     }
 
     /**
-     * Update qty column
+     * Opdaterer qty af part-objektet og gemmer det i databasen
      *
-     * @param pnum
+     * @param pno
      * @param qty
      * @param con
      * @throws SQLException
      */
-    public boolean updatePartQty(int pnum, int qty, Connection con) throws SQLException {
+    public boolean updatePartQty(int pno, int qty, Connection con) throws SQLException {
         int partUpdated = 0;
         String SQLString
                 = "Update Parts "
@@ -178,8 +176,8 @@ public class PartMapper {
         //== insert tuple
         statement = con.prepareStatement(SQLString);
         statement.setInt(1, qty);
-        statement.setInt(2, pnum);
-        partUpdated = statement.executeUpdate();
+        statement.setInt(2, pno);
+        partUpdated = statement.executeUpdate(); // update qty
 
         try {
             statement.close();
@@ -192,7 +190,7 @@ public class PartMapper {
     }
 
     /**
-     * Update part description
+     * Opdaterer beskrivelsen af part-objektet og gemmer den i databasen
      *
      * @param p
      * @param con
@@ -221,7 +219,7 @@ public class PartMapper {
 
         //== insert value
         statement = con.prepareStatement(SQLString);
-        rowUpdated = statement.executeUpdate();
+        rowUpdated = statement.executeUpdate(); // update part
 
         try {
             statement.close();
@@ -234,26 +232,56 @@ public class PartMapper {
     }
 
     /**
-     * Moves the tuple from the parts table to partsRemoved
+     * Flytter tuplen med det givne pno til partsRemoved tabellen og 
+     * sletter den fra parts
      *
-     * @param pnum
+     * @param pno
      * @param con
      * @throws SQLException
      */
-    public boolean deletePart(int pnum, Connection con) throws SQLException {
-        int partDeleted = 0;
+    public boolean removePart(int pno, Connection con) throws SQLException {
+        int partRemoved = 0;
         
         String SQLString1 = "insert into partsRemoved " + 
-                "select * from parts where pno = " + pnum;
-        String SQLString2 = "Delete from parts where pno = " + pnum;
+                "select * from parts where pno = " + pno;
+        String SQLString2 = "Delete from parts where pno = " + pno;
         PreparedStatement statement = null;
         PreparedStatement statement2 = null;
 
         //== insert value
         statement = con.prepareStatement(SQLString1);
         statement2 = con.prepareStatement(SQLString2);
-        partDeleted = statement.executeUpdate(); // delete order
-        statement2.executeUpdate();
+        partRemoved = statement.executeUpdate(); // remove part
+        statement2.executeUpdate(); // delete part
+
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in PartMapper - removePart");
+            System.out.println(e.getMessage());
+        }
+
+        return partRemoved == 1;
+    }
+    
+    /**
+     * Sletter en tuple i partsRemoved, er kun til brug i tests.
+     * 
+     * MÅ IKKE BRUGES I PROGRAMMET!
+     *
+     * @param pno
+     * @param con
+     * @throws SQLException
+     */
+    public boolean deletePart(int pno, Connection con) throws SQLException {
+        int partDeleted = 0;
+
+        String SQLString = "Delete from partsRemoved where pno = " + pno;
+        PreparedStatement statement = null;
+
+        //== insert value
+        statement = con.prepareStatement(SQLString);
+        partDeleted = statement.executeUpdate(); // delete part
 
         try {
             statement.close();

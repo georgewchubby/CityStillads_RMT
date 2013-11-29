@@ -14,7 +14,13 @@ import javax.swing.table.DefaultTableModel;
 // hau
 public class VognMapper {
 
-    //== Get all vogne
+    /**
+     * Henter alle vogne fra databasen
+     * 
+     * @param con
+     * @return DefaultTableModel med alle rækker fra tabellen vogn
+     * @throws SQLException 
+     */
     public DefaultTableModel getAllVogn(Connection con) throws SQLException {
         DefaultTableModel dtm = null;
 
@@ -52,7 +58,13 @@ public class VognMapper {
         return new DefaultTableModel(data, columnNames);
     }
 
-    //== Save a new vogn
+    /**
+     * Gemmer en tuple i databasen baseret på det vogn-opjekt der bliver oprettet
+     * 
+     * @param v
+     * @param con
+     * @throws SQLException 
+     */
     public boolean saveNewVogn(Vogn v, Connection con) throws SQLException {
         int rowsInserted = 0;
         String SQLString2
@@ -82,16 +94,23 @@ public class VognMapper {
         }
     }
 
-    //== Load a vogn
+    /**
+     * Henter en tuple fra tabellen vogn
+     * 
+     * @param vognID
+     * @param con
+     * @return Et vogn-opjekt baseret på den hentede tuple
+     * @throws SQLException 
+     */
     public Vogn getVogn(int vognID, Connection con) throws SQLException {
         Vogn v = null;
-        String SQLString1 = // get order
+        String SQLString1 = // get vogn
                 "select * "
                 + "from vogn "
                 + "where vognno = ?";
         PreparedStatement statement = null;
 
-        //=== get order
+        //=== get vogn
         statement = con.prepareStatement(SQLString1);
         statement.setInt(1, vognID);     // primary key value
         ResultSet rs = statement.executeQuery();
@@ -114,8 +133,15 @@ public class VognMapper {
         return v;
     }
 
-    //== Update status of a vogn
-    public boolean updateVognStatus(int vognID, String stat, Connection con) throws SQLException {
+    /**
+     * Opdaterer status af vogn-opjektet og gemmer det i databasen
+     * 
+     * @param vognID
+     * @param status
+     * @param con
+     * @throws SQLException 
+     */
+    public boolean updateVognStatus(int vognID, String status, Connection con) throws SQLException {
         int rowUpdated = 0;
         String origStat;
 
@@ -137,9 +163,9 @@ public class VognMapper {
 
         if (rs.next()) {
             origStat = rs.getString(1);
-            if (origStat.compareTo(stat) != 0) {
+            if (origStat.compareTo(status) != 0) {
                 statement = con.prepareStatement(SQLString2);
-                statement.setString(1, stat);
+                statement.setString(1, status);
                 statement.setInt(2, vognID);
                 rowUpdated = statement.executeUpdate();
             }
@@ -155,7 +181,14 @@ public class VognMapper {
         return rowUpdated == 1;
     }
 
-    //== Update ono of a vogn
+    /**
+     * Opdaterer ono af vogn-opjektet og gemmer det i databasen
+     * 
+     * @param vognID
+     * @param Ono
+     * @param con
+     * @throws SQLException 
+     */
     public boolean updateVognOno(int vognID, int Ono, Connection con) throws SQLException {
         int rowUpdated = 0;
         int origOno;
@@ -178,7 +211,6 @@ public class VognMapper {
 
         if (rs.next()) {
             origOno = rs.getInt(1);
-            System.out.println("origOno   " + origOno);
             if (origOno != Ono) {
                 statement = con.prepareStatement(SQLString2);
                 statement.setInt(1, Ono);
@@ -197,7 +229,14 @@ public class VognMapper {
         return rowUpdated == 1;
     }
 
-    //== Update from date of a vogn
+    /**
+     * Opdaterer datoFra af vogn-opjektet og gemmer det i databasen
+     * 
+     * @param vognID
+     * @param From
+     * @param con
+     * @throws SQLException 
+     */
     public boolean updateVognDatoFra(int vognID, String From, Connection con) throws SQLException {
         int rowUpdated = 0;
         String origFrom;
@@ -213,7 +252,7 @@ public class VognMapper {
 
         PreparedStatement statement = null;
 
-        //=== get order
+        //=== get vogn
         statement = con.prepareStatement(SQLString1);
         statement.setInt(1, vognID);
 //            statement.setString(2,stat );
@@ -221,7 +260,6 @@ public class VognMapper {
 
         if (rs.next()) {
             origFrom = rs.getString(1);
-            System.out.println("origFrom   " + origFrom);
             if (origFrom.compareTo(From) != 0) {
                 statement = con.prepareStatement(SQLString2);
                 statement.setString(1, From);
@@ -240,7 +278,14 @@ public class VognMapper {
         return rowUpdated == 1;
     }
 
-    //== Update to date of a vogn
+    /**
+     * Opdaterer datoTil af vogn-opjektet og gemmer det i databasen
+     * 
+     * @param vognID
+     * @param To
+     * @param con
+     * @throws SQLException 
+     */
     public boolean updateVognDatoTil(int vognID, String To, Connection con) throws SQLException {
         int rowUpdated = 0;
         String origTo;
@@ -256,14 +301,13 @@ public class VognMapper {
 
         PreparedStatement statement = null;
 
-        //=== get order
+        //=== get vogn
         statement = con.prepareStatement(SQLString1);
         statement.setInt(1, vognID);
         ResultSet rs = statement.executeQuery();
 
         if (rs.next()) {
             origTo = rs.getString(1);
-            System.out.println("origTo   " + origTo);
             if (origTo.compareTo(To) != 0) {
                 statement = con.prepareStatement(SQLString2);
                 statement.setString(1, To);
@@ -279,13 +323,19 @@ public class VognMapper {
             System.out.println(e.getMessage());
         }
 
-        return rowUpdated
-                == 1;
+        return rowUpdated == 1;
     }
 
-    //== Delete a vogn
-    public boolean deleteVogn(int vognID, Connection con) throws SQLException {
-        int vognDeleted = 0;
+    /**
+     * Flytter tuplen med det givne vognID til vognRemoved tabellen og 
+     * sletter den fra vogn
+     * 
+     * @param vognID
+     * @param con
+     * @throws SQLException 
+     */
+    public boolean removeVogn(int vognID, Connection con) throws SQLException {
+        int vognRemoved = 0;
         String SQLString1 = "insert into vognRemoved "
                 + "select * from vogn where vognno = " + vognID;
         String SQLString2 = "Delete from vogn where vognno = " + vognID;
@@ -295,13 +345,42 @@ public class VognMapper {
         //== insert value
         statement = con.prepareStatement(SQLString1);
         statement2 = con.prepareStatement(SQLString2);
-        vognDeleted = statement.executeUpdate(); // delete order
+        vognRemoved = statement.executeUpdate(); // delete vogn
         statement2.executeUpdate();
 
         try {
             statement.close();
         } catch (SQLException e) {
-            System.out.println("Fail in VognMapper - deleteOrder");
+            System.out.println("Fail in VognMapper - removeVogn");
+            System.out.println(e.getMessage());
+        }
+
+        return vognRemoved == 1;
+    }
+
+    /**
+     * Sletter en tuple i vognRemoved, er kun til brug i tests.
+     * 
+     * MÅ IKKE BRUGES I PROGRAMMET!
+     * 
+     * @param vognID
+     * @param con
+     * @throws SQLException 
+     */
+    public boolean deleteVogn(int vognID, Connection con) throws SQLException {
+        int vognDeleted = 0;
+
+        String SQLString = "Delete from vognRemoved where vognno = " + vognID;
+        PreparedStatement statement = null;
+
+        //== insert value
+        statement = con.prepareStatement(SQLString);
+        vognDeleted = statement.executeUpdate(); // delete vogn
+
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in VognMapper - deleteVogn");
             System.out.println(e.getMessage());
         }
 

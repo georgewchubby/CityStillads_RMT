@@ -53,6 +53,6 @@ public class PDBFacade {
     }
 
     public boolean deletePart(int pnum) throws SQLException {
-        return pm.deletePart(pnum, con);
+        return pm.removePart(pnum, con);
     }
 }

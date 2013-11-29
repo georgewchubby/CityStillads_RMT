@@ -57,6 +57,6 @@ public class VDBFacade {
     }
 
     public boolean deleteVogn(int vognID) throws SQLException {
-        return vm.deleteVogn(vognID, con);
+        return vm.removeVogn(vognID, con);
     }
 }
